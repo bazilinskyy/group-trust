@@ -57,39 +57,37 @@ class CoupledSim:
             # read files with sim data one by one
             data_list = []
             data_dict = {}  # dictionary with data
-            for file in self.files_data:
-                # iterate over csv files in the directory
-                # logger.info('Reading sim data from {}.', file)
-                # f = open(file, 'r')
-                # # add data from the file to the dictionary
-                # data_list += f.readlines()
-                # f.close()
-                continue
-            # hold info on previous row for worker
-            prev_row_info = pd.DataFrame(columns=['worker_code', 'time_elapsed'])
-            prev_row_info.set_index('worker_code', inplace=True)
-            # read rows in data
-            for row in tqdm(data_list):  # tqdm adds progress bar
-                # use dict to store data
-                dict_row = {}
-                # load data from a single row into a list
-                list_row = json.loads(row)
-                logger.debug('To implement going over rows of data.')
+            # iterate over files in the directory
+            for file in os.listdir(self.files_data):
+                # todo: iterate over csv files in the directory 
+                filename = os.fsdecode(file)
+                if filename.endswith('.csv'): 
+                    logger.info('Reading sim data from {}.', os.path.join(self.files_data, filename))
+                    f = open(os.path.join(self.files_data, filename), 'r')
+                    # add data from the file to the dictionary
+                    data_list += f.readlines()
+                    f.close()
+                    # read rows in data
+                    for row in tqdm(data_list):  # tqdm adds progress bar
+                        logger.debug('To implement going over rows of data.')
+                        # use dict to store data
+                        dict_row = {}
+                        # load data from a single row into a list
+                        # list_row = json.loads(row)
+                else:
+                    continue
             # turn into pandas dataframe
             df = pd.DataFrame(data_dict)
             df = df.transpose()
-            # # report people that attempted study
-            # unique_worker_codes = df['worker_code'].drop_duplicates()
-            # logger.info('People who attempted to participate: {}', unique_worker_codes.shape[0])
-            # # filter data
-            # if filter_data:
-            #     df = self.filter_data(df)
-            # # sort columns alphabetically
-            # df = df.reindex(sorted(df.columns), axis=1)
-            # # move worker_code to the front
-            # worker_code_col = df['worker_code']
-            # df.drop(labels=['worker_code'], axis=1, inplace=True)
-            # df.insert(0, 'worker_code', worker_code_col)
+            # filter data
+            if filter_data:
+                df = self.filter_data(df)
+            # sort columns alphabetically
+            df = df.reindex(sorted(df.columns), axis=1)
+            # # move pp_id to the front
+            # pp_id_col = df['pp_id']
+            # df.drop(labels=['pp_id'], axis=1, inplace=True)
+            # df.insert(0, 'pp_id', pp_id_col)
         # save to pickle
         if self.save_p:
             gt.common.save_to_p(self.file_p, df, 'sim data')

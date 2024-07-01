@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import matplotlib._pylab_helpers
 import gtrust as gt
 
-gt.logs(show_level='info', show_color=True)
+gt.logs(show_level='debug', show_color=True)
 logger = gt.CustomLogger(__name__)  # use custom logger
 
 # const
@@ -24,7 +24,7 @@ if __name__ == '__main__':
                                   save_csv=SAVE_CSV)
     # read simulator data
     sim_data = csim.read_data(filter_data=FILTER_DATA)
-    
+
     logger.info('Data from {} participants included in analysis.', sim_data.shape[0])
     # update original data files
     csim.show_info()  # show info for filtered data
