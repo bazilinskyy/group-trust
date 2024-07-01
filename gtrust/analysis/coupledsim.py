@@ -105,7 +105,7 @@ class CoupledSim:
         return df
 
     def quaternion_to_digit(self, quaternion):
-        logger.info('To implement going over rows of data.')
+        logger.info('To implement quaternion_to_digit.')
         pass
 
     def filter_data(self, df):
