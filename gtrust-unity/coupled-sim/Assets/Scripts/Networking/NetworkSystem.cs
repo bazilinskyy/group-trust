@@ -1,6 +1,5 @@
-﻿
+﻿//base class for client and server implementation
 
-//base class for client and server implementation
 public abstract class NetworkSystem
 {
     protected NetState _currentState;

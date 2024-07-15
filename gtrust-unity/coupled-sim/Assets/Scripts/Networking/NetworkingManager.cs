@@ -100,38 +100,50 @@ public class NetworkingManager : MonoBehaviour
     {
         if (hideGui)
         {
-            if (_netSystem == null)
+            HideGUI();
+        }
+        else
+        {
+            ShowGUI();
+        }
+    }
+
+
+    private void HideGUI()
+    {
+        if (_netSystem == null)
+        {
+            if (RunTrialSequenceAutomatically)
             {
-                if (RunTrialSequenceAutomatically)
-                {
-                    _netSystem = new Host(_levelManager, _playerSystem, _aiCarSystem, _logger, _fixedLogger, trials[CurrentTrialIndex]);
-                }
-            }
-            else
-            {
-                _netSystem.OnGUI(RunTrialSequenceAutomatically);
+                _netSystem = new Host(_levelManager, _playerSystem, _aiCarSystem, _logger, _fixedLogger, trials[CurrentTrialIndex]);
             }
         }
         else
         {
-            if (_netSystem == null)
-            {
-                if (RunTrialSequenceAutomatically || GUILayout.Button("Start host"))
-                {
-                    _netSystem = new Host(_levelManager, _playerSystem, _aiCarSystem, _logger, _fixedLogger, trials[CurrentTrialIndex]);
-                }
+            _netSystem.OnGUI(RunTrialSequenceAutomatically);
+        }
+    }
 
-                if (!RunTrialSequenceAutomatically && GUILayout.Button("Start client"))
-                {
-                    _netSystem = new Client(_levelManager, _playerSystem, _aiCarSystem, _logger, _fixedLogger);
-                }
 
-                _logConverter.OnGUI();
-            }
-            else
+    private void ShowGUI()
+    {
+        if (_netSystem == null)
+        {
+            if (RunTrialSequenceAutomatically || GUILayout.Button("Start host"))
             {
-                _netSystem.OnGUI(RunTrialSequenceAutomatically);
+                _netSystem = new Host(_levelManager, _playerSystem, _aiCarSystem, _logger, _fixedLogger, trials[CurrentTrialIndex]);
             }
+
+            if (!RunTrialSequenceAutomatically && GUILayout.Button("Start client"))
+            {
+                _netSystem = new Client(_levelManager, _playerSystem, _aiCarSystem, _logger, _fixedLogger);
+            }
+
+            _logConverter.OnGUI();
+        }
+        else
+        {
+            _netSystem.OnGUI(RunTrialSequenceAutomatically);
         }
     }
 

@@ -16,6 +16,7 @@ public class UNetClient
     private readonly byte[] _sendBuffer = new byte[UNetConfig.SendBufferSize];
     private Serializer _serializer;
     private BinaryWriter _writer;
+
     private MemoryStream _writerStream;
     private NetworkPipeline reliablePipeline;
 

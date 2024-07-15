@@ -26,6 +26,7 @@ public struct TransportEvent
 
 //low level UNET networking host implementation - message sending and handling
 public class UNetHost
+
 {
     private NativeList<NetworkConnection> m_Connections;
     private NetworkDriver m_Driver;

@@ -8,6 +8,9 @@ Having multiple XROrigins in the scene was causing me a real headache.  They cau
 
 Now what needs to happen is that the remote player actually syncs their own (local) position to their corresponding remote halves. 
 
+Ran Rider code silent cleanup for more consistent code. 
+
+
 
 -----
 

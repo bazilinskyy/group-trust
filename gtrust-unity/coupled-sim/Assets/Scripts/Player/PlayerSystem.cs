@@ -258,6 +258,8 @@ public class PlayerSystem : MonoBehaviour
         foreach (var avatar in Avatars)
         {
             _poses.Add(avatar.GetPose());
+
+            Debug.LogFormat("SOSXR: I'm gathering poses for avatar {0}. I think this only happens on the Host?", avatar.name);
         }
 
         return _poses;
@@ -273,6 +275,9 @@ public class PlayerSystem : MonoBehaviour
             if (avatar != LocalPlayer)
             {
                 Avatars[i].ApplyPose(poses[i]);
+                
+                Debug.LogFormat("SOSXR: I'm applying poses for Avatar {0}, but not the local player. And only on Clients?", Avatars[i].name);
+                
             }
         }
     }
