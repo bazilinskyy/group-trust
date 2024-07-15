@@ -1,18 +1,18 @@
 ﻿/*
  * This code is part of Arcade Car Physics for Unity by Saarg (2018)
- * 
+ *
  * This is distributed under the MIT Licence (see LICENSE.md for details)
  */
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
-namespace VehicleBehaviour {
+
+namespace VehicleBehaviour
+{
     [RequireComponent(typeof(WheelVehicle))]
     [RequireComponent(typeof(AudioSource))]
-
-    public class EngineSoundManager : MonoBehaviour {
-
+    public class EngineSoundManager : MonoBehaviour
+    {
         [Header("AudioClips")]
         public AudioClip starting;
         public AudioClip rolling;
@@ -29,19 +29,26 @@ namespace VehicleBehaviour {
 
         private AudioSource _source;
         private IVehicle _vehicle;
-        
-        void Start () {
+
+
+        private void Start()
+        {
             _source = GetComponent<AudioSource>();
             var aiCar = GetComponent<AICar>();
-            if (aiCar.isActiveAndEnabled) {
+
+            if (aiCar.isActiveAndEnabled)
+            {
                 _vehicle = aiCar;
-            } else
+            }
+            else
             {
                 _vehicle = GetComponent<WheelVehicle>();
             }
         }
-        
-        void Update () {
+
+
+        private void Update()
+        {
             if (_vehicle.Handbrake && _source.clip == rolling)
             {
                 _source.volume = volume;

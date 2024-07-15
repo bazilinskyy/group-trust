@@ -1,6 +1,6 @@
 ﻿/*
- 
-using System; 
+
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -39,7 +39,7 @@ public class WorldLogger
 
     public float RealtimeLogInterval = 0;
     private float lastRealtimeLog = 0;
-    
+
     // Data from varjo HMD
     float distance_pa;
     long Frame_pa;
@@ -61,10 +61,10 @@ public class WorldLogger
     float distance_pe;
     float Frame_pe;
     float CaptureTime_pe;
-    
+
     Vector3 Hmdposition_pe; float Hmdposition_pe_x; float Hmdposition_pe_y; float Hmdposition_pe_z;
     Vector3 Hmdrotation_pe; float Hmdrotation_pe_x; float Hmdrotation_pe_y; float Hmdrotation_pe_z;
-    
+
     double LeftEyePupilSize_pe;
     double RightEyePupilSize_pe;
     double FocusDistance_pe;
@@ -250,7 +250,7 @@ public class WorldLogger
             {
                 Debug.LogWarning("SOSXR: We don't have any StopLights in our _driverBuffer");
             }
-            
+
             // TODO: will it blend for also passengers in the car?
             // TODO: there is some magic with hardcoding values for pedestrians going on at https://github.com/bazilinskyy/coupled-sim/blob/f3caebfafe296620a17eba1e75cc182a72a674c3/Assets/Scripts/Logging/WorldLogging.cs#L290. maybe need to see if it can be useful in our case (finding NetworkObject_x manually as a reference point?)
             var passengerGaze = driver.transform.GetComponentInChildren<VarjoGazeRay_CS>();
@@ -264,7 +264,7 @@ public class WorldLogger
 
                     Hmdposition_pa = passengerGaze.hmdposition;
                     Hmdposition_pa_x = Hmdposition_pa.x; Hmdposition_pa_y = Hmdposition_pa.y; Hmdposition_pa_z = Hmdposition_pa.z;
-                    
+
                     Hmdrotation_pa = passengerGaze.hmdrotation;
                     Hmdrotation_pa_x = Hmdrotation_pa.x; Hmdrotation_pa_y = Hmdrotation_pa.y; Hmdrotation_pa_z = Hmdrotation_pa.z;
 
@@ -320,14 +320,14 @@ public class WorldLogger
             _fileWriter.Write(gazeRayDirection_pa_x);   _fileWriter.Write(gazeRayDirection_pa_y);   _fileWriter.Write(gazeRayDirection_pa_z);
             _fileWriter.Write(gazePosition_pa_x);       _fileWriter.Write(gazePosition_pa_y);       _fileWriter.Write(gazePosition_pa_z);
             _fileWriter.Write(gazeRayOrigin_pa_x);      _fileWriter.Write(gazeRayOrigin_pa_y);      _fileWriter.Write(gazeRayOrigin_pa_z);
-            
+
             // TODO: same controller as we have now? TBC if all participants will be inputing a value of "trust" with a controller. In the manual driving condition, may not apply for the driver behind the steering wheel
             // Vive controller
             // TODO: Hardcoding networking object is a way to get the controller?
             gapAcceptance = N10.position.x; //pedestrian.transform.GetComponentInChildren<ViveInput>().getGapAcceptance();
 
             _fileWriter.Write(gapAcceptance);
-            
+
             // Only log car velocity if local player
             // TODO: relevant for us?
             if (driver == _playerSystem.LocalPlayer)
@@ -555,7 +555,7 @@ public class LogConverter
                 }
                 Debug.LogWarning(LogFrameType.PositionsUpdate);
                 Debug.LogWarning(eventType);
-                
+
                 Assert.AreEqual(LogFrameType.PositionsUpdate, eventType);
                 var frame = new SerializedFrame();
                 log.Frames.Add(frame);
@@ -1082,7 +1082,7 @@ public class LogConverter
         public readonly Dictionary<int, bool> stopped = new();
         public readonly Dictionary<int, bool> takeoff = new();
         public readonly Dictionary<int, bool> eyecontact = new(); //TODO: remove eyecontact from everywhere? in principle, we could check if eye contact was detected between any of the three people, it's be amazing
-        
+
         // Varjo data of the passenger
         public float distance_pa;
         public long Frame_pa;
@@ -1125,3 +1125,4 @@ public class LogConverter
 }
 
 */
+

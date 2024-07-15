@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.Utility;
+
 
 [Serializable]
 public struct CarSpawnParams
@@ -14,5 +14,5 @@ public struct CarSpawnParams
     public PlayerSystem.VehicleType VehicleType;
     public Color color;
     public bool Labeled;
-    public CustomBehaviour [] customBehaviours;
+    public CustomBehaviour[] customBehaviours;
 }

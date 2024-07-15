@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityStandardAssets.Utility;
 
+
 public enum SpawnPointType
 {
     PlayerControlledPedestrian,
@@ -16,13 +17,14 @@ public struct SpawnPoint
 {
     //defines where player avatar will be spawned
     public Transform Point;
-    public Vector3 position => Point.position;
-    public Quaternion rotation => Point.rotation;
     //a type of player avatar
     public SpawnPointType Type;
     public int CameraIndex;
     public PlayerSystem.VehicleType VehicleType;
+    public Vector3 position => Point.position;
+    public Quaternion rotation => Point.rotation;
 }
+
 
 [Serializable]
 public struct ExperimentRoleDefinition
@@ -46,6 +48,7 @@ public struct ExperimentRoleDefinition
     public WaypointCircuit AutonomousPath;
     public bool AutonomousIsYielding;
 }
+
 
 public class ExperimentDefinition : MonoBehaviour
 {

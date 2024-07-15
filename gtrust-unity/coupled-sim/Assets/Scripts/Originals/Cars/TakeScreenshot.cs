@@ -4,30 +4,32 @@
 // Instead we should place the screenshots on the user's desktop. However, the ~/ notation doesn't
 // work, and Unity doesn't have a mechanism to return special paths. Therefore, the correct way to
 // solve this is probably with a plug-in to return OS specific special paths.
- 
+
 // Mono/.NET has functions to get special paths... see discussion page. --Aarku
- 
+
+using System.IO;
 using UnityEngine;
-using System.Collections;
- 
+
+
 public class TakeScreenshot : MonoBehaviour
-{    
+{
     private int screenshotCount = 0;
- 
+
+
     // Check for screenshot key each frame
-    void Update()
+    private void Update()
     {
         // take screenshot on up->down transition of F9 key
         if (Input.GetKeyDown("f9"))
-        {        
+        {
             string screenshotFilename;
+
             do
             {
                 screenshotCount++;
                 screenshotFilename = "screenshot" + screenshotCount + ".png";
- 
-            } while (System.IO.File.Exists(screenshotFilename));
- 
+            } while (File.Exists(screenshotFilename));
+
             ScreenCapture.CaptureScreenshot(screenshotFilename);
         }
     }

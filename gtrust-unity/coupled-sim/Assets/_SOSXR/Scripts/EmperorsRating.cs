@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 using UnityEngine.XR.Interaction.Toolkit;
 using Random = UnityEngine.Random;
 
@@ -22,7 +21,7 @@ public struct Rating
     public Handedness RatingHand;
     public long CurrentUnixTimeSeconds;
     public Quaternion CurrentRotation;
-     public Vector3 CurrentHumanReadableRotation;
+    public Vector3 CurrentHumanReadableRotation;
 }
 
 
@@ -35,7 +34,6 @@ public struct Rating
 ///     length-wise axis.
 ///     Testing should indicate whether this axis is the one desired, or that another axis should be measured instead.
 /// </summary>
-
 public class EmperorsRating : MonoBehaviour
 {
     [Tooltip("With what hand should we do the rating?")]
@@ -79,15 +77,15 @@ public class EmperorsRating : MonoBehaviour
 
     public Rating CurrentRating = new();
 
-    private XRBaseController _controller;
-
     private InputAction _buttonPressAction;
     private InputAction _buttonReleaseAction;
-    private InputAction _rotationAction;
+
+    private XRBaseController _controller;
+    private Coroutine _hapticsActiveCR;
 
     private Coroutine _hapticsReminderCR;
-    private Coroutine _hapticsActiveCR;
     private Coroutine _measureRotationCR;
+    private InputAction _rotationAction;
 
 
     private void Awake()

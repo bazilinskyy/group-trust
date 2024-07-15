@@ -121,9 +121,10 @@ public class CreateLogData : MonoBehaviour
         if (Time.timeScale <= 0)
         {
             Debug.LogWarning("Timescale is 0, will not write logs");
+
             return;
         }
-        
+
         LogFrameData();
     }
 

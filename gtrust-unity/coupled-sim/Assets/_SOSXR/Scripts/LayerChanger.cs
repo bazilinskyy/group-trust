@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+
 public class LayerChanger : MonoBehaviour
 {
     [SerializeField] private GameObject objectToLayerChange;
@@ -24,6 +25,7 @@ public class LayerChanger : MonoBehaviour
         set => setToLayer = value;
     }
 
+
     private void Awake()
     {
         if (ObjectToLayerChange == null)
@@ -34,10 +36,12 @@ public class LayerChanger : MonoBehaviour
         GetLayer();
     }
 
+
     public void GetLayer()
     {
         OriginalLayer = ObjectToLayerChange.layer;
     }
+
 
     public void SetLayer()
     {

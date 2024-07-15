@@ -40,29 +40,28 @@
 //todo turn on this feature once we send T-Pose in the first frame
 //#define TPOSE_FIRST
 
-using UnityEngine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
+
 
 namespace xsens
 {
-
     /// <summary>
-    /// Xsens Live Animator.
-    /// 
-    /// This class provide the logic to read an actor pose from MVN Stream and 
-    /// retarget the animation to a character.
+    ///     Xsens Live Animator.
+    ///     This class provide the logic to read an actor pose from MVN Stream and
+    ///     retarget the animation to a character.
     /// </summary>
     /// <remarks>
-    /// Attach this component to the character and bind the MvnActors with this object.
+    ///     Attach this component to the character and bind the MvnActors with this object.
     /// </remarks>
     public class XsLiveAnimator : MonoBehaviour
     {
-        public XsStreamReader mvnActors;			//network streamer, which contains all 4 actors' poses
-        public int actorID = 1;                     //current actor ID, where 1 is the first streamed character from MVN
+        public XsStreamReader mvnActors; //network streamer, which contains all 4 actors' poses
+        public int actorID = 1; //current actor ID, where 1 is the first streamed character from MVN
 
-        public bool applyRootMotion = true;         //if true, position will be applied to the root (pelvis)
+        public bool applyRootMotion = true; //if true, position will be applied to the root (pelvis)
 
         public XsProp prop1;
         public XsProp prop2;
@@ -72,38 +71,39 @@ namespace xsens
         private XsPropManager[] targetProps;
         private GameObject[] currentProps;
 
-        private Transform mvnActor; 				//reference for MVN Actor. This has the same layout as the streamed pose.
-        private Transform target;                   //Reference to the character in Unity3D.
-        private Transform origPos;					//original position of the animation, this is the zero
-        private Transform[] targetModel;			//Model holds each segments
-        private Transform[] currentPose;			//animation applyed on skeleton. global position and rotation, used to represent a pose	
-        private Quaternion[] modelRotTP;			//T-Pose reference rotation on each segment
-        private Vector3[] modelPosTP;				//T-Pose reference position on each segment
-        private GameObject missingSegments;			//Empty object for not used segments
-        private Animator animator;					//Animator object to get the Humanoid character mapping correct.
+        private Transform mvnActor; //reference for MVN Actor. This has the same layout as the streamed pose.
+        private Transform target; //Reference to the character in Unity3D.
+        private Transform origPos; //original position of the animation, this is the zero
+        private Transform[] targetModel; //Model holds each segments
+        private Transform[] currentPose; //animation applyed on skeleton. global position and rotation, used to represent a pose	
+        private Quaternion[] modelRotTP; //T-Pose reference rotation on each segment
+        private Vector3[] modelPosTP; //T-Pose reference position on each segment
+        private GameObject missingSegments; //Empty object for not used segments
+        private Animator animator; //Animator object to get the Humanoid character mapping correct.
         private Dictionary<XsBodyAnimationSegment, HumanBodyBones> bodyMecanimBones;
         private Dictionary<XsFingerAnimationSegment, HumanBodyBones> fingerMechanimBones;
-        private bool isInited;						//flag to check if the plugin was correctly intialized.
-        private int segmentCount = 0;               //used to figure out the total segment count provided by the data
-        private bool fingerTrackingEnabled;         //toggles setting up the finger transforms 
-        private int propDataSize = 0;                  //used to offset the index of incoming data since props sit between body segments and finger segments
+        private bool isInited; //flag to check if the plugin was correctly intialized.
+        private int segmentCount = 0; //used to figure out the total segment count provided by the data
+        private bool fingerTrackingEnabled; //toggles setting up the finger transforms 
+        private int propDataSize = 0; //used to offset the index of incoming data since props sit between body segments and finger segments
 
-#if TPOSE_FIRST		
+        #if TPOSE_FIRST
         private bool isFirstPose;					//check if the first pose is passed
-#endif		
-        private bool isDebugFrame = false;			//debug animation skeleton
+        #endif
+        private readonly bool isDebugFrame = false; //debug animation skeleton
+
 
         /// <summary>
-        /// Contains the segment numbers for the body animation
+        ///     Contains the segment numbers for the body animation
         /// </summary>
         public enum XsBodyAnimationSegment
         {
             Pelvis = 0,
 
-            L5 = 1,//not used
-            L3 = 2,//spine
-            T12 = 3,//not used
-            T8 = 4,//chest
+            L5 = 1, //not used
+            L3 = 2, //spine
+            T12 = 3, //not used
+            T8 = 4, //chest
 
             Neck = 5,
             Head = 6,
@@ -129,8 +129,9 @@ namespace xsens
             LeftToe = 22
         }
 
+
         /// <summary>
-        /// Contains the segment numbers for the finger animation
+        ///     Contains the segment numbers for the finger animation
         /// </summary>
         public enum XsFingerAnimationSegment
         {
@@ -185,105 +186,106 @@ namespace xsens
             RightFifthProximalPhalange = 37,
             RightFifthMiddlePhalange = 38,
             RightFifthDistalPhalange = 39
-
         }
 
+
         /// <summary>
-        /// The body segment order.
+        ///     The body segment order.
         /// </summary>
-        int[] bodySegmentOrder =
+        private readonly int[] bodySegmentOrder =
         {
-                    (int)XsBodyAnimationSegment.Pelvis,
+            (int) XsBodyAnimationSegment.Pelvis,
 
-                    (int)XsBodyAnimationSegment.L5,
-                    (int)XsBodyAnimationSegment.L3,
-                    (int)XsBodyAnimationSegment.T12,
-                    (int)XsBodyAnimationSegment.T8,
+            (int) XsBodyAnimationSegment.L5,
+            (int) XsBodyAnimationSegment.L3,
+            (int) XsBodyAnimationSegment.T12,
+            (int) XsBodyAnimationSegment.T8,
 
-                    (int)XsBodyAnimationSegment.Neck,
-                    (int)XsBodyAnimationSegment.Head,
+            (int) XsBodyAnimationSegment.Neck,
+            (int) XsBodyAnimationSegment.Head,
 
-                    (int)XsBodyAnimationSegment.RightShoulder,
-                    (int)XsBodyAnimationSegment.RightUpperArm,
-                    (int)XsBodyAnimationSegment.RightLowerArm,
-                    (int)XsBodyAnimationSegment.RightHand,
+            (int) XsBodyAnimationSegment.RightShoulder,
+            (int) XsBodyAnimationSegment.RightUpperArm,
+            (int) XsBodyAnimationSegment.RightLowerArm,
+            (int) XsBodyAnimationSegment.RightHand,
 
-                    (int)XsBodyAnimationSegment.LeftShoulder,
-                    (int)XsBodyAnimationSegment.LeftUpperArm,
-                    (int)XsBodyAnimationSegment.LeftLowerArm,
-                    (int)XsBodyAnimationSegment.LeftHand,
+            (int) XsBodyAnimationSegment.LeftShoulder,
+            (int) XsBodyAnimationSegment.LeftUpperArm,
+            (int) XsBodyAnimationSegment.LeftLowerArm,
+            (int) XsBodyAnimationSegment.LeftHand,
 
-                    (int)XsBodyAnimationSegment.RightUpperLeg,
-                    (int)XsBodyAnimationSegment.RightLowerLeg,
-                    (int)XsBodyAnimationSegment.RightFoot,
-                    (int)XsBodyAnimationSegment.RightToe,
+            (int) XsBodyAnimationSegment.RightUpperLeg,
+            (int) XsBodyAnimationSegment.RightLowerLeg,
+            (int) XsBodyAnimationSegment.RightFoot,
+            (int) XsBodyAnimationSegment.RightToe,
 
-                    (int)XsBodyAnimationSegment.LeftUpperLeg,
-                    (int)XsBodyAnimationSegment.LeftLowerLeg,
-                    (int)XsBodyAnimationSegment.LeftFoot,
-                    (int)XsBodyAnimationSegment.LeftToe
+            (int) XsBodyAnimationSegment.LeftUpperLeg,
+            (int) XsBodyAnimationSegment.LeftLowerLeg,
+            (int) XsBodyAnimationSegment.LeftFoot,
+            (int) XsBodyAnimationSegment.LeftToe
         };
 
         /// <summary>
-        /// The finger segment order.
+        ///     The finger segment order.
         /// </summary>
-        int[] fingerSegmentOrder =
+        private readonly int[] fingerSegmentOrder =
         {
-            (int)XsFingerAnimationSegment.LeftCarpus,
+            (int) XsFingerAnimationSegment.LeftCarpus,
 
-            (int)XsFingerAnimationSegment.LeftFirstMetacarpal,
-            (int)XsFingerAnimationSegment.LeftFirstProximalPhalange,
-            (int)XsFingerAnimationSegment.LeftFirstDistalPhalange,
+            (int) XsFingerAnimationSegment.LeftFirstMetacarpal,
+            (int) XsFingerAnimationSegment.LeftFirstProximalPhalange,
+            (int) XsFingerAnimationSegment.LeftFirstDistalPhalange,
 
-            (int)XsFingerAnimationSegment.LeftSecondMetacarpal, //not used
-            (int)XsFingerAnimationSegment.LeftSecondProximalPhalange,
-            (int)XsFingerAnimationSegment.LeftSecondMiddlePhalange,
-            (int)XsFingerAnimationSegment.LeftSecondDistalPhalange,
+            (int) XsFingerAnimationSegment.LeftSecondMetacarpal, //not used
+            (int) XsFingerAnimationSegment.LeftSecondProximalPhalange,
+            (int) XsFingerAnimationSegment.LeftSecondMiddlePhalange,
+            (int) XsFingerAnimationSegment.LeftSecondDistalPhalange,
 
-            (int)XsFingerAnimationSegment.LeftThirdMetacarpal, //not used
-            (int)XsFingerAnimationSegment.LeftThirdProximalPhalange,
-            (int)XsFingerAnimationSegment.LeftThirdMiddlePhalange,
-            (int)XsFingerAnimationSegment.LeftThirdDistalPhalange,
+            (int) XsFingerAnimationSegment.LeftThirdMetacarpal, //not used
+            (int) XsFingerAnimationSegment.LeftThirdProximalPhalange,
+            (int) XsFingerAnimationSegment.LeftThirdMiddlePhalange,
+            (int) XsFingerAnimationSegment.LeftThirdDistalPhalange,
 
-            (int)XsFingerAnimationSegment.LeftFourthMetacarpal, //not used
-            (int)XsFingerAnimationSegment.LeftFourthProximalPhalange,
-            (int)XsFingerAnimationSegment.LeftFourthMiddlePhalange,
-            (int)XsFingerAnimationSegment.LeftFourthDistalPhalange,
+            (int) XsFingerAnimationSegment.LeftFourthMetacarpal, //not used
+            (int) XsFingerAnimationSegment.LeftFourthProximalPhalange,
+            (int) XsFingerAnimationSegment.LeftFourthMiddlePhalange,
+            (int) XsFingerAnimationSegment.LeftFourthDistalPhalange,
 
-            (int)XsFingerAnimationSegment.LeftFifthMetacarpal, //not used
-            (int)XsFingerAnimationSegment.LeftFifthProximalPhalange,
-            (int)XsFingerAnimationSegment.LeftFifthMiddlePhalange,
-            (int)XsFingerAnimationSegment.LeftFifthDistalPhalange,
+            (int) XsFingerAnimationSegment.LeftFifthMetacarpal, //not used
+            (int) XsFingerAnimationSegment.LeftFifthProximalPhalange,
+            (int) XsFingerAnimationSegment.LeftFifthMiddlePhalange,
+            (int) XsFingerAnimationSegment.LeftFifthDistalPhalange,
 
-            (int)XsFingerAnimationSegment.RightCarpus,
+            (int) XsFingerAnimationSegment.RightCarpus,
 
-            (int)XsFingerAnimationSegment.RightFirstMetacarpal,
-            (int)XsFingerAnimationSegment.RightFirstProximalPhalange,
-            (int)XsFingerAnimationSegment.RightFirstDistalPhalange,
+            (int) XsFingerAnimationSegment.RightFirstMetacarpal,
+            (int) XsFingerAnimationSegment.RightFirstProximalPhalange,
+            (int) XsFingerAnimationSegment.RightFirstDistalPhalange,
 
-            (int)XsFingerAnimationSegment.RightSecondMetacarpal, //not used
-            (int)XsFingerAnimationSegment.RightSecondProximalPhalange,
-            (int)XsFingerAnimationSegment.RightSecondMiddlePhalange,
-            (int)XsFingerAnimationSegment.RightSecondDistalPhalange,
+            (int) XsFingerAnimationSegment.RightSecondMetacarpal, //not used
+            (int) XsFingerAnimationSegment.RightSecondProximalPhalange,
+            (int) XsFingerAnimationSegment.RightSecondMiddlePhalange,
+            (int) XsFingerAnimationSegment.RightSecondDistalPhalange,
 
-            (int)XsFingerAnimationSegment.RightThirdMetacarpal, //not used
-            (int)XsFingerAnimationSegment.RightThirdProximalPhalange,
-            (int)XsFingerAnimationSegment.RightThirdMiddlePhalange,
-            (int)XsFingerAnimationSegment.RightThirdDistalPhalange,
+            (int) XsFingerAnimationSegment.RightThirdMetacarpal, //not used
+            (int) XsFingerAnimationSegment.RightThirdProximalPhalange,
+            (int) XsFingerAnimationSegment.RightThirdMiddlePhalange,
+            (int) XsFingerAnimationSegment.RightThirdDistalPhalange,
 
-            (int)XsFingerAnimationSegment.RightFourthMetacarpal, //not used
-            (int)XsFingerAnimationSegment.RightFourthProximalPhalange,
-            (int)XsFingerAnimationSegment.RightFourthMiddlePhalange,
-            (int)XsFingerAnimationSegment.RightFourthDistalPhalange,
+            (int) XsFingerAnimationSegment.RightFourthMetacarpal, //not used
+            (int) XsFingerAnimationSegment.RightFourthProximalPhalange,
+            (int) XsFingerAnimationSegment.RightFourthMiddlePhalange,
+            (int) XsFingerAnimationSegment.RightFourthDistalPhalange,
 
-            (int)XsFingerAnimationSegment.RightFifthMetacarpal, //not used
-            (int)XsFingerAnimationSegment.RightFifthProximalPhalange,
-            (int)XsFingerAnimationSegment.RightFifthMiddlePhalange,
-            (int)XsFingerAnimationSegment.RightFifthDistalPhalange
+            (int) XsFingerAnimationSegment.RightFifthMetacarpal, //not used
+            (int) XsFingerAnimationSegment.RightFifthProximalPhalange,
+            (int) XsFingerAnimationSegment.RightFifthMiddlePhalange,
+            (int) XsFingerAnimationSegment.RightFifthDistalPhalange
         };
 
+
         /// <summary>
-        /// Maps the mecanim body bones.
+        ///     Maps the mecanim body bones.
         /// </summary>
         protected void mapMecanimBones()
         {
@@ -298,9 +300,9 @@ namespace xsens
             bodyMecanimBones.Add(XsBodyAnimationSegment.RightLowerLeg, HumanBodyBones.RightLowerLeg);
             bodyMecanimBones.Add(XsBodyAnimationSegment.RightFoot, HumanBodyBones.RightFoot);
             bodyMecanimBones.Add(XsBodyAnimationSegment.RightToe, HumanBodyBones.RightToes);
-            bodyMecanimBones.Add(XsBodyAnimationSegment.L5, HumanBodyBones.LastBone);	//not used
+            bodyMecanimBones.Add(XsBodyAnimationSegment.L5, HumanBodyBones.LastBone); //not used
             bodyMecanimBones.Add(XsBodyAnimationSegment.L3, HumanBodyBones.Spine);
-            bodyMecanimBones.Add(XsBodyAnimationSegment.T12, HumanBodyBones.LastBone);	//not used
+            bodyMecanimBones.Add(XsBodyAnimationSegment.T12, HumanBodyBones.LastBone); //not used
             bodyMecanimBones.Add(XsBodyAnimationSegment.T8, HumanBodyBones.Chest);
             bodyMecanimBones.Add(XsBodyAnimationSegment.LeftShoulder, HumanBodyBones.LeftShoulder);
             bodyMecanimBones.Add(XsBodyAnimationSegment.LeftUpperArm, HumanBodyBones.LeftUpperArm);
@@ -314,8 +316,9 @@ namespace xsens
             bodyMecanimBones.Add(XsBodyAnimationSegment.Head, HumanBodyBones.Head);
         }
 
+
         /// <summary>
-        /// Maps the mecanim finger bones.
+        ///     Maps the mecanim finger bones.
         /// </summary>
         protected void mapFingerMecanimBones()
         {
@@ -374,26 +377,29 @@ namespace xsens
             fingerMechanimBones.Add(XsFingerAnimationSegment.RightFifthDistalPhalange, HumanBodyBones.RightLittleDistal);
         }
 
+
         /// <summary>
-        /// Wake this instance and initialize the live objects.
+        ///     Wake this instance and initialize the live objects.
         /// </summary>
-        IEnumerator Start()
+        private IEnumerator Start()
         {
             isInited = false;
-#if TPOSE_FIRST
+            #if TPOSE_FIRST
             isFirstPose = true;
-#endif
+            #endif
             //save start positions
             target = gameObject.transform;
             origPos = target;
 
             //create an MvnActor 
-            GameObject obj = (GameObject)Instantiate(Resources.Load("MvnActor"));
+            var obj = (GameObject) Instantiate(Resources.Load("MvnActor"));
             obj.transform.parent = gameObject.transform;
             mvnActor = obj.transform;
+
             if (mvnActor == null)
             {
                 Debug.LogError("[xsens] No AnimationSkeleton found!");
+
                 yield return null;
             }
 
@@ -401,6 +407,7 @@ namespace xsens
             if (mvnActors == null)
             {
                 Debug.LogError("[xsens] No MvnActor found! You must assign an MvnActor to this component.");
+
                 yield return null;
             }
 
@@ -414,17 +421,17 @@ namespace xsens
             CheckFingers(segmentCount);
 
             beginSetup();
-
         }
 
+
         /// <summary>
-        /// This was moved out of Start since Start is now an IEnumerator to establish segment counts before setup
+        ///     This was moved out of Start since Start is now an IEnumerator to establish segment counts before setup
         /// </summary>
         private void beginSetup()
         {
             //Work out way through the segment count cominations to figure out what we need to setup
 
-            
+
             try
             {
                 //map each bone with xsens bipad model and mecanim bones
@@ -448,6 +455,7 @@ namespace xsens
                 if (!setupMvnActor())
                 {
                     Debug.Log("[xsens] failed to init MvnActor");
+
                     return;
                 }
 
@@ -468,175 +476,189 @@ namespace xsens
             }
         }
 
+
         /// <summary>
-        /// Sets up the mvn actor, with binding the currentPose to the actor bones.
+        ///     Sets up the mvn actor, with binding the currentPose to the actor bones.
         /// </summary>
         /// <returns>
-        /// true on success
+        ///     true on success
         /// </returns>
         public bool setupMvnActor()
         {
             mvnActor.rotation = transform.rotation;
             mvnActor.position = transform.position;
 
-            currentPose[(int)XsBodyAnimationSegment.Pelvis] = mvnActor.Find("Pelvis");
-            currentPose[(int)XsBodyAnimationSegment.L5] = mvnActor.Find("Pelvis/L5");
+            currentPose[(int) XsBodyAnimationSegment.Pelvis] = mvnActor.Find("Pelvis");
+            currentPose[(int) XsBodyAnimationSegment.L5] = mvnActor.Find("Pelvis/L5");
 
-            currentPose[(int)XsBodyAnimationSegment.L3] = mvnActor.Find("Pelvis/L5/L3");
-            currentPose[(int)XsBodyAnimationSegment.T12] = mvnActor.Find("Pelvis/L5/L3/T12");
-            currentPose[(int)XsBodyAnimationSegment.T8] = mvnActor.Find("Pelvis/L5/L3/T12/T8");
-            currentPose[(int)XsBodyAnimationSegment.LeftShoulder] = mvnActor.Find("Pelvis/L5/L3/T12/T8/LeftShoulder");
-            currentPose[(int)XsBodyAnimationSegment.LeftUpperArm] = mvnActor.Find("Pelvis/L5/L3/T12/T8/LeftShoulder/LeftUpperArm");
-            currentPose[(int)XsBodyAnimationSegment.LeftLowerArm] = mvnActor.Find("Pelvis/L5/L3/T12/T8/LeftShoulder/LeftUpperArm/LeftLowerArm");
-            currentPose[(int)XsBodyAnimationSegment.LeftHand] = mvnActor.Find("Pelvis/L5/L3/T12/T8/LeftShoulder/LeftUpperArm/LeftLowerArm/LeftHand");
+            currentPose[(int) XsBodyAnimationSegment.L3] = mvnActor.Find("Pelvis/L5/L3");
+            currentPose[(int) XsBodyAnimationSegment.T12] = mvnActor.Find("Pelvis/L5/L3/T12");
+            currentPose[(int) XsBodyAnimationSegment.T8] = mvnActor.Find("Pelvis/L5/L3/T12/T8");
+            currentPose[(int) XsBodyAnimationSegment.LeftShoulder] = mvnActor.Find("Pelvis/L5/L3/T12/T8/LeftShoulder");
+            currentPose[(int) XsBodyAnimationSegment.LeftUpperArm] = mvnActor.Find("Pelvis/L5/L3/T12/T8/LeftShoulder/LeftUpperArm");
+            currentPose[(int) XsBodyAnimationSegment.LeftLowerArm] = mvnActor.Find("Pelvis/L5/L3/T12/T8/LeftShoulder/LeftUpperArm/LeftLowerArm");
+            currentPose[(int) XsBodyAnimationSegment.LeftHand] = mvnActor.Find("Pelvis/L5/L3/T12/T8/LeftShoulder/LeftUpperArm/LeftLowerArm/LeftHand");
 
-            currentPose[(int)XsBodyAnimationSegment.Neck] = mvnActor.Find("Pelvis/L5/L3/T12/T8/Neck");
-            currentPose[(int)XsBodyAnimationSegment.Head] = mvnActor.Find("Pelvis/L5/L3/T12/T8/Neck/Head");
+            currentPose[(int) XsBodyAnimationSegment.Neck] = mvnActor.Find("Pelvis/L5/L3/T12/T8/Neck");
+            currentPose[(int) XsBodyAnimationSegment.Head] = mvnActor.Find("Pelvis/L5/L3/T12/T8/Neck/Head");
 
-            currentPose[(int)XsBodyAnimationSegment.RightShoulder] = mvnActor.Find("Pelvis/L5/L3/T12/T8/RightShoulder");
-            currentPose[(int)XsBodyAnimationSegment.RightUpperArm] = mvnActor.Find("Pelvis/L5/L3/T12/T8/RightShoulder/RightUpperArm");
-            currentPose[(int)XsBodyAnimationSegment.RightLowerArm] = mvnActor.Find("Pelvis/L5/L3/T12/T8/RightShoulder/RightUpperArm/RightLowerArm");
-            currentPose[(int)XsBodyAnimationSegment.RightHand] = mvnActor.Find("Pelvis/L5/L3/T12/T8/RightShoulder/RightUpperArm/RightLowerArm/RightHand");
+            currentPose[(int) XsBodyAnimationSegment.RightShoulder] = mvnActor.Find("Pelvis/L5/L3/T12/T8/RightShoulder");
+            currentPose[(int) XsBodyAnimationSegment.RightUpperArm] = mvnActor.Find("Pelvis/L5/L3/T12/T8/RightShoulder/RightUpperArm");
+            currentPose[(int) XsBodyAnimationSegment.RightLowerArm] = mvnActor.Find("Pelvis/L5/L3/T12/T8/RightShoulder/RightUpperArm/RightLowerArm");
+            currentPose[(int) XsBodyAnimationSegment.RightHand] = mvnActor.Find("Pelvis/L5/L3/T12/T8/RightShoulder/RightUpperArm/RightLowerArm/RightHand");
 
-            currentPose[(int)XsBodyAnimationSegment.LeftUpperLeg] = mvnActor.Find("Pelvis/LeftUpperLeg");
-            currentPose[(int)XsBodyAnimationSegment.LeftLowerLeg] = mvnActor.Find("Pelvis/LeftUpperLeg/LeftLowerLeg");
-            currentPose[(int)XsBodyAnimationSegment.LeftFoot] = mvnActor.Find("Pelvis/LeftUpperLeg/LeftLowerLeg/LeftFoot");
-            currentPose[(int)XsBodyAnimationSegment.LeftToe] = mvnActor.Find("Pelvis/LeftUpperLeg/LeftLowerLeg/LeftFoot/LeftToe");
-            currentPose[(int)XsBodyAnimationSegment.RightUpperLeg] = mvnActor.Find("Pelvis/RightUpperLeg");
-            currentPose[(int)XsBodyAnimationSegment.RightLowerLeg] = mvnActor.Find("Pelvis/RightUpperLeg/RightLowerLeg");
-            currentPose[(int)XsBodyAnimationSegment.RightFoot] = mvnActor.Find("Pelvis/RightUpperLeg/RightLowerLeg/RightFoot");
-            currentPose[(int)XsBodyAnimationSegment.RightToe] = mvnActor.Find("Pelvis/RightUpperLeg/RightLowerLeg/RightFoot/RightToe");
+            currentPose[(int) XsBodyAnimationSegment.LeftUpperLeg] = mvnActor.Find("Pelvis/LeftUpperLeg");
+            currentPose[(int) XsBodyAnimationSegment.LeftLowerLeg] = mvnActor.Find("Pelvis/LeftUpperLeg/LeftLowerLeg");
+            currentPose[(int) XsBodyAnimationSegment.LeftFoot] = mvnActor.Find("Pelvis/LeftUpperLeg/LeftLowerLeg/LeftFoot");
+            currentPose[(int) XsBodyAnimationSegment.LeftToe] = mvnActor.Find("Pelvis/LeftUpperLeg/LeftLowerLeg/LeftFoot/LeftToe");
+            currentPose[(int) XsBodyAnimationSegment.RightUpperLeg] = mvnActor.Find("Pelvis/RightUpperLeg");
+            currentPose[(int) XsBodyAnimationSegment.RightLowerLeg] = mvnActor.Find("Pelvis/RightUpperLeg/RightLowerLeg");
+            currentPose[(int) XsBodyAnimationSegment.RightFoot] = mvnActor.Find("Pelvis/RightUpperLeg/RightLowerLeg/RightFoot");
+            currentPose[(int) XsBodyAnimationSegment.RightToe] = mvnActor.Find("Pelvis/RightUpperLeg/RightLowerLeg/RightFoot/RightToe");
 
             setupPropsWithActor();
             setupFingerTrackingWithActor();
+
             return true;
         }
 
+
         /// <summary>
-        /// Sets up the mvn actors props
+        ///     Sets up the mvn actors props
         /// </summary>
         private void setupPropsWithActor()
         {
-            props = new XsProp[4] { prop1, prop2, prop3, prop4 };
+            props = new XsProp[4] {prop1, prop2, prop3, prop4};
             targetProps = new XsPropManager[XsMvnPose.MvnPropSegmentCount];
             currentProps = new GameObject[XsMvnPose.MvnPropSegmentCount];
-            int startingPoiont = XsMvnPose.MvnBodySegmentCount;
-            for (int i = 0; i < XsMvnPose.MvnPropSegmentCount; i++)
+            var startingPoiont = XsMvnPose.MvnBodySegmentCount;
+
+            for (var i = 0; i < XsMvnPose.MvnPropSegmentCount; i++)
             {
-                GameObject prop = new GameObject("prop " + (i + 1));
+                var prop = new GameObject("prop " + (i + 1));
                 currentProps[i] = prop;
-                prop.transform.parent = currentPose[(int)props[i].segment];
+                prop.transform.parent = currentPose[(int) props[i].segment];
                 currentPose[startingPoiont + i] = prop.transform;
             }
         }
 
+
         /// <summary>
-        /// Sets up the mvn actor, with binding the currentPose to the actor bones.
+        ///     Sets up the mvn actor, with binding the currentPose to the actor bones.
         /// </summary>
         /// <returns>
-        /// true on success
+        ///     true on success
         /// </returns>
         private bool setupFingerTrackingWithActor()
         {
-            int nonFingerCount = XsMvnPose.MvnBodySegmentCount + XsMvnPose.MvnPropSegmentCount;
-            currentPose[(int)XsFingerAnimationSegment.LeftCarpus + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/LeftShoulder/LeftUpperArm/LeftLowerArm/LeftHand");
+            var nonFingerCount = XsMvnPose.MvnBodySegmentCount + XsMvnPose.MvnPropSegmentCount;
+            currentPose[(int) XsFingerAnimationSegment.LeftCarpus + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/LeftShoulder/LeftUpperArm/LeftLowerArm/LeftHand");
 
-            currentPose[(int)XsFingerAnimationSegment.LeftFirstDistalPhalange + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/LeftShoulder/LeftUpperArm/LeftLowerArm/LeftHand/LeftFirstMC/LeftFirstPP/LeftFirstDP");
-            currentPose[(int)XsFingerAnimationSegment.LeftFirstMetacarpal + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/LeftShoulder/LeftUpperArm/LeftLowerArm/LeftHand/LeftFirstMC");
-            currentPose[(int)XsFingerAnimationSegment.LeftFirstProximalPhalange + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/LeftShoulder/LeftUpperArm/LeftLowerArm/LeftHand/LeftFirstMC/LeftFirstPP");
+            currentPose[(int) XsFingerAnimationSegment.LeftFirstDistalPhalange + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/LeftShoulder/LeftUpperArm/LeftLowerArm/LeftHand/LeftFirstMC/LeftFirstPP/LeftFirstDP");
+            currentPose[(int) XsFingerAnimationSegment.LeftFirstMetacarpal + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/LeftShoulder/LeftUpperArm/LeftLowerArm/LeftHand/LeftFirstMC");
+            currentPose[(int) XsFingerAnimationSegment.LeftFirstProximalPhalange + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/LeftShoulder/LeftUpperArm/LeftLowerArm/LeftHand/LeftFirstMC/LeftFirstPP");
 
-            currentPose[(int)XsFingerAnimationSegment.LeftSecondDistalPhalange + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/LeftShoulder/LeftUpperArm/LeftLowerArm/LeftHand/LeftSecondMC/LeftSecondPP/LeftSecondMP/LeftSecondDP");
-            currentPose[(int)XsFingerAnimationSegment.LeftSecondMetacarpal + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/LeftShoulder/LeftUpperArm/LeftLowerArm/LeftHand/LeftSecondMC");
-            currentPose[(int)XsFingerAnimationSegment.LeftSecondProximalPhalange + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/LeftShoulder/LeftUpperArm/LeftLowerArm/LeftHand/LeftSecondMC/LeftSecondPP");
-            currentPose[(int)XsFingerAnimationSegment.LeftSecondMiddlePhalange + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/LeftShoulder/LeftUpperArm/LeftLowerArm/LeftHand/LeftSecondMC/LeftSecondPP/LeftSecondMP");
+            currentPose[(int) XsFingerAnimationSegment.LeftSecondDistalPhalange + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/LeftShoulder/LeftUpperArm/LeftLowerArm/LeftHand/LeftSecondMC/LeftSecondPP/LeftSecondMP/LeftSecondDP");
+            currentPose[(int) XsFingerAnimationSegment.LeftSecondMetacarpal + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/LeftShoulder/LeftUpperArm/LeftLowerArm/LeftHand/LeftSecondMC");
+            currentPose[(int) XsFingerAnimationSegment.LeftSecondProximalPhalange + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/LeftShoulder/LeftUpperArm/LeftLowerArm/LeftHand/LeftSecondMC/LeftSecondPP");
+            currentPose[(int) XsFingerAnimationSegment.LeftSecondMiddlePhalange + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/LeftShoulder/LeftUpperArm/LeftLowerArm/LeftHand/LeftSecondMC/LeftSecondPP/LeftSecondMP");
 
-            currentPose[(int)XsFingerAnimationSegment.LeftThirdDistalPhalange + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/LeftShoulder/LeftUpperArm/LeftLowerArm/LeftHand/LeftThirdMC/LeftThirdPP/LeftThirdMP/LeftThirdDP");
-            currentPose[(int)XsFingerAnimationSegment.LeftThirdMetacarpal + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/LeftShoulder/LeftUpperArm/LeftLowerArm/LeftHand/LeftThirdMC");
-            currentPose[(int)XsFingerAnimationSegment.LeftThirdProximalPhalange + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/LeftShoulder/LeftUpperArm/LeftLowerArm/LeftHand/LeftThirdMC/LeftThirdPP");
-            currentPose[(int)XsFingerAnimationSegment.LeftThirdMiddlePhalange + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/LeftShoulder/LeftUpperArm/LeftLowerArm/LeftHand/LeftThirdMC/LeftThirdPP/LeftThirdMP");
+            currentPose[(int) XsFingerAnimationSegment.LeftThirdDistalPhalange + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/LeftShoulder/LeftUpperArm/LeftLowerArm/LeftHand/LeftThirdMC/LeftThirdPP/LeftThirdMP/LeftThirdDP");
+            currentPose[(int) XsFingerAnimationSegment.LeftThirdMetacarpal + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/LeftShoulder/LeftUpperArm/LeftLowerArm/LeftHand/LeftThirdMC");
+            currentPose[(int) XsFingerAnimationSegment.LeftThirdProximalPhalange + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/LeftShoulder/LeftUpperArm/LeftLowerArm/LeftHand/LeftThirdMC/LeftThirdPP");
+            currentPose[(int) XsFingerAnimationSegment.LeftThirdMiddlePhalange + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/LeftShoulder/LeftUpperArm/LeftLowerArm/LeftHand/LeftThirdMC/LeftThirdPP/LeftThirdMP");
 
-            currentPose[(int)XsFingerAnimationSegment.LeftFourthDistalPhalange + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/LeftShoulder/LeftUpperArm/LeftLowerArm/LeftHand/LeftFourthMC/LeftFourthPP/LeftFourthMP/LeftFourthDP");
-            currentPose[(int)XsFingerAnimationSegment.LeftFourthMetacarpal + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/LeftShoulder/LeftUpperArm/LeftLowerArm/LeftHand/LeftFourthMC");
-            currentPose[(int)XsFingerAnimationSegment.LeftFourthProximalPhalange + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/LeftShoulder/LeftUpperArm/LeftLowerArm/LeftHand/LeftFourthMC/LeftFourthPP");
-            currentPose[(int)XsFingerAnimationSegment.LeftFourthMiddlePhalange + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/LeftShoulder/LeftUpperArm/LeftLowerArm/LeftHand/LeftFourthMC/LeftFourthPP/LeftFourthMP");
+            currentPose[(int) XsFingerAnimationSegment.LeftFourthDistalPhalange + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/LeftShoulder/LeftUpperArm/LeftLowerArm/LeftHand/LeftFourthMC/LeftFourthPP/LeftFourthMP/LeftFourthDP");
+            currentPose[(int) XsFingerAnimationSegment.LeftFourthMetacarpal + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/LeftShoulder/LeftUpperArm/LeftLowerArm/LeftHand/LeftFourthMC");
+            currentPose[(int) XsFingerAnimationSegment.LeftFourthProximalPhalange + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/LeftShoulder/LeftUpperArm/LeftLowerArm/LeftHand/LeftFourthMC/LeftFourthPP");
+            currentPose[(int) XsFingerAnimationSegment.LeftFourthMiddlePhalange + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/LeftShoulder/LeftUpperArm/LeftLowerArm/LeftHand/LeftFourthMC/LeftFourthPP/LeftFourthMP");
 
-            currentPose[(int)XsFingerAnimationSegment.LeftFifthDistalPhalange + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/LeftShoulder/LeftUpperArm/LeftLowerArm/LeftHand/LeftFifthMC/LeftFifthPP/LeftFifthMP/LeftFifthDP");
-            currentPose[(int)XsFingerAnimationSegment.LeftFifthMetacarpal + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/LeftShoulder/LeftUpperArm/LeftLowerArm/LeftHand/LeftFifthMC");
-            currentPose[(int)XsFingerAnimationSegment.LeftFifthProximalPhalange + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/LeftShoulder/LeftUpperArm/LeftLowerArm/LeftHand/LeftFifthMC/LeftFifthPP");
-            currentPose[(int)XsFingerAnimationSegment.LeftFifthMiddlePhalange + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/LeftShoulder/LeftUpperArm/LeftLowerArm/LeftHand/LeftFifthMC/LeftFifthPP/LeftFifthMP");
+            currentPose[(int) XsFingerAnimationSegment.LeftFifthDistalPhalange + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/LeftShoulder/LeftUpperArm/LeftLowerArm/LeftHand/LeftFifthMC/LeftFifthPP/LeftFifthMP/LeftFifthDP");
+            currentPose[(int) XsFingerAnimationSegment.LeftFifthMetacarpal + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/LeftShoulder/LeftUpperArm/LeftLowerArm/LeftHand/LeftFifthMC");
+            currentPose[(int) XsFingerAnimationSegment.LeftFifthProximalPhalange + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/LeftShoulder/LeftUpperArm/LeftLowerArm/LeftHand/LeftFifthMC/LeftFifthPP");
+            currentPose[(int) XsFingerAnimationSegment.LeftFifthMiddlePhalange + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/LeftShoulder/LeftUpperArm/LeftLowerArm/LeftHand/LeftFifthMC/LeftFifthPP/LeftFifthMP");
 
-            currentPose[(int)XsFingerAnimationSegment.RightCarpus + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/RightShoulder/RightUpperArm/RightLowerArm/RightHand");
+            currentPose[(int) XsFingerAnimationSegment.RightCarpus + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/RightShoulder/RightUpperArm/RightLowerArm/RightHand");
 
-            currentPose[(int)XsFingerAnimationSegment.RightFirstDistalPhalange + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/RightShoulder/RightUpperArm/RightLowerArm/RightHand/RightFirstMC/RightFirstPP/RightFirstDP");
-            currentPose[(int)XsFingerAnimationSegment.RightFirstMetacarpal + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/RightShoulder/RightUpperArm/RightLowerArm/RightHand/RightFirstMC");
-            currentPose[(int)XsFingerAnimationSegment.RightFirstProximalPhalange + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/RightShoulder/RightUpperArm/RightLowerArm/RightHand/RightFirstMC/RightFirstPP");
+            currentPose[(int) XsFingerAnimationSegment.RightFirstDistalPhalange + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/RightShoulder/RightUpperArm/RightLowerArm/RightHand/RightFirstMC/RightFirstPP/RightFirstDP");
+            currentPose[(int) XsFingerAnimationSegment.RightFirstMetacarpal + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/RightShoulder/RightUpperArm/RightLowerArm/RightHand/RightFirstMC");
+            currentPose[(int) XsFingerAnimationSegment.RightFirstProximalPhalange + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/RightShoulder/RightUpperArm/RightLowerArm/RightHand/RightFirstMC/RightFirstPP");
 
-            currentPose[(int)XsFingerAnimationSegment.RightSecondDistalPhalange + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/RightShoulder/RightUpperArm/RightLowerArm/RightHand/RightSecondMC/RightSecondPP/RightSecondMP/RightSecondDP");
-            currentPose[(int)XsFingerAnimationSegment.RightSecondMetacarpal + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/RightShoulder/RightUpperArm/RightLowerArm/RightHand/RightSecondMC");
-            currentPose[(int)XsFingerAnimationSegment.RightSecondProximalPhalange + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/RightShoulder/RightUpperArm/RightLowerArm/RightHand/RightSecondMC/RightSecondPP");
-            currentPose[(int)XsFingerAnimationSegment.RightSecondMiddlePhalange + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/RightShoulder/RightUpperArm/RightLowerArm/RightHand/RightSecondMC/RightSecondPP/RightSecondMP");
+            currentPose[(int) XsFingerAnimationSegment.RightSecondDistalPhalange + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/RightShoulder/RightUpperArm/RightLowerArm/RightHand/RightSecondMC/RightSecondPP/RightSecondMP/RightSecondDP");
+            currentPose[(int) XsFingerAnimationSegment.RightSecondMetacarpal + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/RightShoulder/RightUpperArm/RightLowerArm/RightHand/RightSecondMC");
+            currentPose[(int) XsFingerAnimationSegment.RightSecondProximalPhalange + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/RightShoulder/RightUpperArm/RightLowerArm/RightHand/RightSecondMC/RightSecondPP");
+            currentPose[(int) XsFingerAnimationSegment.RightSecondMiddlePhalange + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/RightShoulder/RightUpperArm/RightLowerArm/RightHand/RightSecondMC/RightSecondPP/RightSecondMP");
 
-            currentPose[(int)XsFingerAnimationSegment.RightThirdDistalPhalange + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/RightShoulder/RightUpperArm/RightLowerArm/RightHand/RightThirdMC/RightThirdPP/RightThirdMP/RightThirdDP");
-            currentPose[(int)XsFingerAnimationSegment.RightThirdMetacarpal + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/RightShoulder/RightUpperArm/RightLowerArm/RightHand/RightThirdMC");
-            currentPose[(int)XsFingerAnimationSegment.RightThirdProximalPhalange + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/RightShoulder/RightUpperArm/RightLowerArm/RightHand/RightThirdMC/RightThirdPP");
-            currentPose[(int)XsFingerAnimationSegment.RightThirdMiddlePhalange + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/RightShoulder/RightUpperArm/RightLowerArm/RightHand/RightThirdMC/RightThirdPP/RightThirdMP");
+            currentPose[(int) XsFingerAnimationSegment.RightThirdDistalPhalange + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/RightShoulder/RightUpperArm/RightLowerArm/RightHand/RightThirdMC/RightThirdPP/RightThirdMP/RightThirdDP");
+            currentPose[(int) XsFingerAnimationSegment.RightThirdMetacarpal + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/RightShoulder/RightUpperArm/RightLowerArm/RightHand/RightThirdMC");
+            currentPose[(int) XsFingerAnimationSegment.RightThirdProximalPhalange + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/RightShoulder/RightUpperArm/RightLowerArm/RightHand/RightThirdMC/RightThirdPP");
+            currentPose[(int) XsFingerAnimationSegment.RightThirdMiddlePhalange + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/RightShoulder/RightUpperArm/RightLowerArm/RightHand/RightThirdMC/RightThirdPP/RightThirdMP");
 
-            currentPose[(int)XsFingerAnimationSegment.RightFourthDistalPhalange + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/RightShoulder/RightUpperArm/RightLowerArm/RightHand/RightFourthMC/RightFourthPP/RightFourthMP/RightFourthDP");
-            currentPose[(int)XsFingerAnimationSegment.RightFourthMetacarpal + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/RightShoulder/RightUpperArm/RightLowerArm/RightHand/RightFourthMC");
-            currentPose[(int)XsFingerAnimationSegment.RightFourthProximalPhalange + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/RightShoulder/RightUpperArm/RightLowerArm/RightHand/RightFourthMC/RightFourthPP");
-            currentPose[(int)XsFingerAnimationSegment.RightFourthMiddlePhalange + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/RightShoulder/RightUpperArm/RightLowerArm/RightHand/RightFourthMC/RightFourthPP/RightFourthMP");
+            currentPose[(int) XsFingerAnimationSegment.RightFourthDistalPhalange + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/RightShoulder/RightUpperArm/RightLowerArm/RightHand/RightFourthMC/RightFourthPP/RightFourthMP/RightFourthDP");
+            currentPose[(int) XsFingerAnimationSegment.RightFourthMetacarpal + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/RightShoulder/RightUpperArm/RightLowerArm/RightHand/RightFourthMC");
+            currentPose[(int) XsFingerAnimationSegment.RightFourthProximalPhalange + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/RightShoulder/RightUpperArm/RightLowerArm/RightHand/RightFourthMC/RightFourthPP");
+            currentPose[(int) XsFingerAnimationSegment.RightFourthMiddlePhalange + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/RightShoulder/RightUpperArm/RightLowerArm/RightHand/RightFourthMC/RightFourthPP/RightFourthMP");
 
-            currentPose[(int)XsFingerAnimationSegment.RightFifthDistalPhalange + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/RightShoulder/RightUpperArm/RightLowerArm/RightHand/RightFifthMC/RightFifthPP/RightFifthMP/RightFifthDP");
-            currentPose[(int)XsFingerAnimationSegment.RightFifthMetacarpal + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/RightShoulder/RightUpperArm/RightLowerArm/RightHand/RightFifthMC");
-            currentPose[(int)XsFingerAnimationSegment.RightFifthProximalPhalange + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/RightShoulder/RightUpperArm/RightLowerArm/RightHand/RightFifthMC/RightFifthPP");
-            currentPose[(int)XsFingerAnimationSegment.RightFifthMiddlePhalange + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/RightShoulder/RightUpperArm/RightLowerArm/RightHand/RightFifthMC/RightFifthPP/RightFifthMP");
+            currentPose[(int) XsFingerAnimationSegment.RightFifthDistalPhalange + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/RightShoulder/RightUpperArm/RightLowerArm/RightHand/RightFifthMC/RightFifthPP/RightFifthMP/RightFifthDP");
+            currentPose[(int) XsFingerAnimationSegment.RightFifthMetacarpal + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/RightShoulder/RightUpperArm/RightLowerArm/RightHand/RightFifthMC");
+            currentPose[(int) XsFingerAnimationSegment.RightFifthProximalPhalange + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/RightShoulder/RightUpperArm/RightLowerArm/RightHand/RightFifthMC/RightFifthPP");
+            currentPose[(int) XsFingerAnimationSegment.RightFifthMiddlePhalange + nonFingerCount] = mvnActor.Find("Pelvis/L5/L3/T12/T8/RightShoulder/RightUpperArm/RightLowerArm/RightHand/RightFifthMC/RightFifthPP/RightFifthMP");
 
             return true;
         }
 
+
         /// <summary>
-        /// We check to see if the target Rig has the correct rigging and avatar setup to accept finger data
+        ///     We check to see if the target Rig has the correct rigging and avatar setup to accept finger data
         /// </summary>
         /// <returns>Finger Tracking Enabled</returns>
         private bool targetHasFingers()
         {
             animator = target.GetComponent<Animator>();
-            if (segmentCount < XsMvnPose.MvnBodySegmentCount + XsMvnPose.MvnFingerSegmentCount) return false;
 
-            for (int i = 0; i < XsMvnPose.MvnFingerSegmentCount; i++)
+            if (segmentCount < XsMvnPose.MvnBodySegmentCount + XsMvnPose.MvnFingerSegmentCount)
             {
-                if (fingerMechanimBones[(XsFingerAnimationSegment)fingerSegmentOrder[i]] != HumanBodyBones.LastBone)    //Used to fix error with Unity 2018+ (GetBoneTransform must be BETWEEN 0 and LastBone)
+                return false;
+            }
+
+            for (var i = 0; i < XsMvnPose.MvnFingerSegmentCount; i++)
+            {
+                if (fingerMechanimBones[(XsFingerAnimationSegment) fingerSegmentOrder[i]] != HumanBodyBones.LastBone) //Used to fix error with Unity 2018+ (GetBoneTransform must be BETWEEN 0 and LastBone)
                 {
-                    if (animator.GetBoneTransform(fingerMechanimBones[(XsFingerAnimationSegment)fingerSegmentOrder[i]]) == null)
+                    if (animator.GetBoneTransform(fingerMechanimBones[(XsFingerAnimationSegment) fingerSegmentOrder[i]]) == null)
                     {
                         Debug.Log(i);
                         segmentCount -= XsMvnPose.MvnFingerSegmentCount;
                         Debug.Log("[xsens] actorID: " + actorID + "'s data from MVN contains finger tracking data but the avatar does not contain the bones needed to accept the data.");
+
                         return false;
                     }
                 }
             }
+
             return true;
         }
 
+
         /// <summary>
-        /// Sets up the model.
-        /// Bind the model with the animation.
-        /// This funciton will use Macanim animator to find the right bones, 
-        /// then it will store it in an array by animation segment id
+        ///     Sets up the model.
+        ///     Bind the model with the animation.
+        ///     This funciton will use Macanim animator to find the right bones,
+        ///     then it will store it in an array by animation segment id
         /// </summary>
         /// <param name='model'>
-        /// Model.
+        ///     Model.
         /// </param>
         /// <param name='modelRef'>
-        /// Model reference.
+        ///     Model reference.
         /// </param>
         /// <returns>
-        /// true on success
+        ///     true on success
         /// </returns>
         public bool setupModel(Transform model, Transform[] modelRef)
         {
             animator = model.GetComponent<Animator>();
+
             if (!animator)
             {
                 return false;
@@ -647,35 +669,33 @@ namespace xsens
             model.position = transform.position;
 
             //go through the model's body segments and store values
-            for (int i = 0; i < XsMvnPose.MvnBodySegmentCount; i++)
+            for (var i = 0; i < XsMvnPose.MvnBodySegmentCount; i++)
             {
+                var segID = (XsBodyAnimationSegment) bodySegmentOrder[i];
+                var boneID = bodyMecanimBones[(XsBodyAnimationSegment) bodySegmentOrder[i]];
 
-                XsBodyAnimationSegment segID = (XsBodyAnimationSegment)bodySegmentOrder[i];
-                HumanBodyBones boneID = bodyMecanimBones[(XsBodyAnimationSegment)bodySegmentOrder[i]];
                 try
                 {
-
                     if (boneID == HumanBodyBones.LastBone)
                     {
                         //not used bones
-                        modelRef[(int)segID] = null;
-                        modelPosTP[(int)segID] = Vector3.zero;
-                        modelRotTP[(int)segID] = Quaternion.Euler(Vector3.zero);
-
+                        modelRef[(int) segID] = null;
+                        modelPosTP[(int) segID] = Vector3.zero;
+                        modelRotTP[(int) segID] = Quaternion.Euler(Vector3.zero);
                     }
                     else
                     {
                         //used bones
-                        Transform tmpTransf = animator.GetBoneTransform(boneID);
-                        Vector3 tempPos = transform.position;
-                        Quaternion tempRot = transform.rotation;
+                        var tmpTransf = animator.GetBoneTransform(boneID);
+                        var tempPos = transform.position;
+                        var tempRot = transform.rotation;
 
                         transform.position = Vector3.zero;
                         transform.rotation = Quaternion.identity;
 
-                        modelRef[(int)segID] = tmpTransf;
-                        modelPosTP[(int)segID] = modelRef[(int)segID].position;
-                        modelRotTP[(int)segID] = modelRef[(int)segID].rotation;
+                        modelRef[(int) segID] = tmpTransf;
+                        modelPosTP[(int) segID] = modelRef[(int) segID].position;
+                        modelRotTP[(int) segID] = modelRef[(int) segID].rotation;
 
                         transform.position = tempPos;
                         transform.rotation = tempRot;
@@ -684,19 +704,19 @@ namespace xsens
                 catch (Exception e)
                 {
                     Debug.Log("[xsens] Can't find " + boneID + " in the model! " + e);
-                    modelRef[(int)segID] = null;
-                    modelPosTP[(int)segID] = Vector3.zero;
-                    modelRotTP[(int)segID] = Quaternion.Euler(Vector3.zero);
+                    modelRef[(int) segID] = null;
+                    modelPosTP[(int) segID] = Vector3.zero;
+                    modelRotTP[(int) segID] = Quaternion.Euler(Vector3.zero);
 
                     return false;
                 }
-
             }
 
             //set our starting index
-            int startingPoiont = XsMvnPose.MvnBodySegmentCount;
+            var startingPoiont = XsMvnPose.MvnBodySegmentCount;
+
             //iterate through the prop segment count and setup each prop
-            for (int i = 0; i < XsMvnPose.MvnPropSegmentCount; i++)
+            for (var i = 0; i < XsMvnPose.MvnPropSegmentCount; i++)
             {
                 try
                 {
@@ -708,9 +728,9 @@ namespace xsens
                     }
                     else
                     {
-                        GameObject prop = Instantiate(props[i].SpawnProp());
+                        var prop = Instantiate(props[i].SpawnProp());
                         targetProps[i] = prop.GetComponent<XsPropManager>();
-                        prop.transform.parent = targetModel[(int)props[i].segment];
+                        prop.transform.parent = targetModel[(int) props[i].segment];
 
                         modelRef[startingPoiont + i] = prop.transform;
                         modelPosTP[startingPoiont + i] = modelRef[startingPoiont + i].position;
@@ -729,35 +749,34 @@ namespace xsens
             }
 
             //go through the model's finger segments and store values
-            for (int i = 0; i < XsMvnPose.MvnFingerSegmentCount; i++)
+            for (var i = 0; i < XsMvnPose.MvnFingerSegmentCount; i++)
             {
-                XsFingerAnimationSegment segID = (XsFingerAnimationSegment)fingerSegmentOrder[i] + XsMvnPose.MvnBodySegmentCount + XsMvnPose.MvnPropSegmentCount;
-                HumanBodyBones boneID = fingerMechanimBones[(XsFingerAnimationSegment)fingerSegmentOrder[i]];
+                var segID = (XsFingerAnimationSegment) fingerSegmentOrder[i] + XsMvnPose.MvnBodySegmentCount + XsMvnPose.MvnPropSegmentCount;
+                var boneID = fingerMechanimBones[(XsFingerAnimationSegment) fingerSegmentOrder[i]];
 
                 try
                 {
                     if (boneID == HumanBodyBones.LastBone)
                     {
                         //not used bones
-                        modelRef[(int)segID] = null;
-                        modelPosTP[(int)segID] = Vector3.zero;
-                        modelRotTP[(int)segID] = Quaternion.Euler(Vector3.zero);
-
+                        modelRef[(int) segID] = null;
+                        modelPosTP[(int) segID] = Vector3.zero;
+                        modelRotTP[(int) segID] = Quaternion.Euler(Vector3.zero);
                     }
                     else
                     {
                         //used bones
-                        Transform tmpTransf = animator.GetBoneTransform(boneID);
+                        var tmpTransf = animator.GetBoneTransform(boneID);
 
-                        Vector3 tempPos = transform.position;
-                        Quaternion tempRot = transform.rotation;
+                        var tempPos = transform.position;
+                        var tempRot = transform.rotation;
 
                         transform.position = Vector3.zero;
                         transform.rotation = Quaternion.identity;
 
-                        modelRef[(int)segID] = tmpTransf;
-                        modelPosTP[(int)segID] = modelRef[(int)segID].position;
-                        modelRotTP[(int)segID] = modelRef[(int)segID].rotation;
+                        modelRef[(int) segID] = tmpTransf;
+                        modelPosTP[(int) segID] = modelRef[(int) segID].position;
+                        modelRotTP[(int) segID] = modelRef[(int) segID].rotation;
                         transform.position = tempPos;
                         transform.rotation = tempRot;
                     }
@@ -765,18 +784,20 @@ namespace xsens
                 catch (Exception e)
                 {
                     Debug.Log("[xsens] Can't find " + boneID + " in the model! " + e);
-                    modelRef[(int)segID] = null;
-                    modelPosTP[(int)segID] = Vector3.zero;
-                    modelRotTP[(int)segID] = Quaternion.Euler(Vector3.zero);
+                    modelRef[(int) segID] = null;
+                    modelPosTP[(int) segID] = Vector3.zero;
+                    modelRotTP[(int) segID] = Quaternion.Euler(Vector3.zero);
 
                     return false;
                 }
             }
+
             return true;
         }
 
+
         //Sets up data needed for fingers
-        void CheckFingers(int segmentSize)
+        private void CheckFingers(int segmentSize)
         {
             segmentCount = segmentSize;
             fingerTrackingEnabled = false;
@@ -796,15 +817,15 @@ namespace xsens
             }
         }
 
-        
+
         /// <summary>
-        /// Reset the model to Tpose, used when we change actor during runtime
+        ///     Reset the model to Tpose, used when we change actor during runtime
         /// </summary>
-        void TposeModel()
+        private void TposeModel()
         {
-            for(int i = 0; i < modelRotTP.Length; i++)
+            for (var i = 0; i < modelRotTP.Length; i++)
             {
-                if(targetModel[i] != null)
+                if (targetModel[i] != null)
                 {
                     targetModel[i].position = modelPosTP[i];
                     targetModel[i].rotation = modelRotTP[i];
@@ -812,12 +833,13 @@ namespace xsens
             }
         }
 
+
         /// <summary>
-        /// Checks the props and updates models/segments in runtime
+        ///     Checks the props and updates models/segments in runtime
         /// </summary>
-        void CheckProps()
+        private void CheckProps()
         {
-            for(int i = 0; i < props.Length; i++)
+            for (var i = 0; i < props.Length; i++)
             {
                 if (i < propDataSize)
                 {
@@ -830,8 +852,8 @@ namespace xsens
 
                     if (props[i].segment != targetProps[i].currentSegment)
                     {
-                        currentProps[i].transform.parent = currentPose[(int)props[i].segment];
-                        targetProps[i].gameObject.transform.parent = targetModel[(int)props[i].segment];
+                        currentProps[i].transform.parent = currentPose[(int) props[i].segment];
+                        targetProps[i].gameObject.transform.parent = targetModel[(int) props[i].segment];
                         targetProps[i].currentSegment = props[i].segment;
                     }
                 }
@@ -842,51 +864,53 @@ namespace xsens
             }
         }
 
-        /// <summary>
-        ///	Update the body segments in every frame.
-        ///
-        /// The mvn actors segment orientations and positions are read from the network,
-        /// using the MvnLiveActor component.
-        /// This component provides all data for the current pose for each actors.
-        /// </summary>
-        void Update()
-        {
 
+        /// <summary>
+        ///     Update the body segments in every frame.
+        ///     The mvn actors segment orientations and positions are read from the network,
+        ///     using the MvnLiveActor component.
+        ///     This component provides all data for the current pose for each actors.
+        /// </summary>
+        private void Update()
+        {
             //only do magic if we have everything ready
             if (!isInited)
+            {
                 return;
+            }
 
             CheckProps();
 
             //Store the parent transform so that we can apply data from MVN assuming our character is in the center of the world facing the forward vector
-            Vector3 storedPos = transform.position;
-            Vector3 storedScale = transform.localScale;
-            Quaternion storedRot = transform.rotation;
+            var storedPos = transform.position;
+            var storedScale = transform.localScale;
+            var storedRot = transform.rotation;
             transform.position = Vector3.zero;
             transform.rotation = Quaternion.identity;
 
             Vector3[] latestPositions;
             Quaternion[] latestOrientations;
+
             // Get the pose data in one call, else the orientation might come from a different pose
             // than the position
             if (mvnActors.getLatestPose(actorID - 1, out latestPositions, out latestOrientations))
             {
-
                 if (latestPositions.Length != segmentCount)
                 {
                     TposeModel();
                     CheckFingers(latestPositions.Length);
+
                     return;
                 }
 
-#if TPOSE_FIRST
+                #if TPOSE_FIRST
                 if (isFirstPose)
                 {
                     //init the animation skeleton with the first pose
                     initSkeleton(currentPose, latestPositions, latestOrientations);
                 }
                 else
-#endif
+                #endif
                 {
                     //update pose		
                     updateMvnActor(currentPose, latestPositions, latestOrientations);
@@ -898,40 +922,38 @@ namespace xsens
             transform.position = storedPos;
             transform.localScale = storedScale;
             transform.rotation = storedRot;
-
         }
 
+
         /// <summary>
-        /// Updates the actor skeleton local positions, based on the first valid pose
+        ///     Updates the actor skeleton local positions, based on the first valid pose
         /// </summary>
         /// <param name='model'>
-        /// Model.
+        ///     Model.
         /// </param>
         /// <param name='positions'>
-        /// Positions.
+        ///     Positions.
         /// </param>
         protected void initSkeleton(Transform[] model, Vector3[] positions, Quaternion[] orientations)
         {
-
             //wait for real data
-            if (positions[(int)XsBodyAnimationSegment.Pelvis] == Vector3.zero)
+            if (positions[(int) XsBodyAnimationSegment.Pelvis] == Vector3.zero)
             {
                 return;
             }
 
             //reposition the segments based on the data
-#if TPOSE_FIRST			
+            #if TPOSE_FIRST
             isFirstPose = false;
-#endif
+            #endif
 
-            for (int i = 0; i < bodySegmentOrder.Length; i++)
+            for (var i = 0; i < bodySegmentOrder.Length; i++)
             {
-                if (XsBodyAnimationSegment.Pelvis == (XsBodyAnimationSegment)bodySegmentOrder[i])
+                if (XsBodyAnimationSegment.Pelvis == (XsBodyAnimationSegment) bodySegmentOrder[i])
                 {
                     //global for pelvis
                     model[bodySegmentOrder[i]].transform.position = positions[bodySegmentOrder[i]];
                     model[bodySegmentOrder[i]].transform.rotation = orientations[bodySegmentOrder[i]];
-
                 }
                 else
                 {
@@ -947,24 +969,24 @@ namespace xsens
 
 
         /// <summary>
-        /// Updates the mvn actor segment orientations and positions.
+        ///     Updates the mvn actor segment orientations and positions.
         /// </summary>
         /// <param name='model'>
-        /// Model to update.
+        ///     Model to update.
         /// </param>
         /// <param name='positions'>
-        /// Positions in array
+        ///     Positions in array
         /// </param>
         /// <param name='orientations'>
-        /// Orientations in array
+        ///     Orientations in array
         /// </param>
         private void updateMvnActor(Transform[] model, Vector3[] positions, Quaternion[] orientations)
         {
             try
             {
-                for (int i = 0; i < bodySegmentOrder.Length; i++)	//front
+                for (var i = 0; i < bodySegmentOrder.Length; i++) //front
                 {
-                    if (XsBodyAnimationSegment.Pelvis == (XsBodyAnimationSegment)bodySegmentOrder[i])
+                    if (XsBodyAnimationSegment.Pelvis == (XsBodyAnimationSegment) bodySegmentOrder[i])
                     {
                         //we apply global position and orientaion to the pelvis
                         if (applyRootMotion)
@@ -975,27 +997,29 @@ namespace xsens
                         {
                             model[bodySegmentOrder[i]].transform.localPosition =
                                 new Vector3(model[bodySegmentOrder[i]].transform.position.x,
-                                positions[bodySegmentOrder[i]].y + origPos.position.y,
-                                model[bodySegmentOrder[i]].transform.position.z);
+                                    positions[bodySegmentOrder[i]].y + origPos.position.y,
+                                    model[bodySegmentOrder[i]].transform.position.z);
                         }
-                        Quaternion orientation =
+
+                        var orientation =
                             Quaternion.Inverse(model[i].transform.parent.rotation)
-                             * orientations[bodySegmentOrder[i]]
+                            * orientations[bodySegmentOrder[i]]
                             * modelRotTP[i];
 
                         model[bodySegmentOrder[i]].transform.localRotation = orientation;
-
                     }
                     else
                     {
                         if (model[bodySegmentOrder[i]] == null)
                         {
                             Debug.LogError("[xsens] XsLiveAnimator: Missing bone from mvn actor! Did you change MvnLive plugin? Please check if you are using the right actor!");
+
                             break;
                         }
-                        Quaternion orientation =
+
+                        var orientation =
                             Quaternion.Inverse(model[i].transform.parent.rotation)
-                             * orientations[bodySegmentOrder[i]]
+                            * orientations[bodySegmentOrder[i]]
                             * modelRotTP[i];
 
                         model[bodySegmentOrder[i]].transform.localRotation = orientation;
@@ -1003,71 +1027,70 @@ namespace xsens
                         //draw wireframe for original animation
                         if (isDebugFrame)
                         {
+                            var color = new Color(1.0f, 0.0f, 0.0f, 1.0f);
+                            var id = bodySegmentOrder[i];
 
-                            Color color = new Color(1.0f, 0.0f, 0.0f, 1.0f);
-                            int id = bodySegmentOrder[i];
                             if (model[id - 1] != null)
                             {
-                                if (((id - 1) != (int)XsBodyAnimationSegment.LeftHand)
-                                && ((id - 1) != (int)XsBodyAnimationSegment.RightHand)
-                                && ((id - 1) != (int)XsBodyAnimationSegment.Head)
-                                && ((id - 1) != (int)XsBodyAnimationSegment.LeftToe)
-                                && ((id - 1) != (int)XsBodyAnimationSegment.RightToe))
+                                if (id - 1 != (int) XsBodyAnimationSegment.LeftHand
+                                    && id - 1 != (int) XsBodyAnimationSegment.RightHand
+                                    && id - 1 != (int) XsBodyAnimationSegment.Head
+                                    && id - 1 != (int) XsBodyAnimationSegment.LeftToe
+                                    && id - 1 != (int) XsBodyAnimationSegment.RightToe)
                                 {
                                     Debug.DrawLine(model[id].position, model[id - 1].position, color);
                                 }
                             }
-                        }//isDebugFrame
+                        } //isDebugFrame
                     }
-
-                }//for i
+                } //for i
 
                 //if we have props to animate
                 if (propDataSize > 0 && props.Length != 0)
                 {
-                    int startingIndex = XsMvnPose.MvnBodySegmentCount;
-                    for (int i = 0; i < propDataSize; i++)
+                    var startingIndex = XsMvnPose.MvnBodySegmentCount;
+
+                    for (var i = 0; i < propDataSize; i++)
                     {
                         if (model[startingIndex + i] == null)
                         {
                             Debug.LogError("[xsens] XsLiveAnimator: Missing prop from mvn actor! Did you change MvnLive plugin? Please check if you are using the right actor!");
+
                             break;
                         }
-                        else
-                        {
-                            model[startingIndex + i].transform.position = model[startingIndex + i].transform.parent.position + (positions[startingIndex + i] - positions[(int)props[i].segment]) * transform.localScale.x;
 
-                            Quaternion orientation =
-                                Quaternion.Inverse(model[startingIndex + i].transform.parent.rotation)
-                                 * orientations[startingIndex + i]
-                                * modelRotTP[startingIndex + i];
-                            model[startingIndex + i].transform.localRotation = orientation;
-                        }
-                    }//for i
-                }//if props
+                        model[startingIndex + i].transform.position = model[startingIndex + i].transform.parent.position + (positions[startingIndex + i] - positions[(int) props[i].segment]) * transform.localScale.x;
+
+                        var orientation =
+                            Quaternion.Inverse(model[startingIndex + i].transform.parent.rotation)
+                            * orientations[startingIndex + i]
+                            * modelRotTP[startingIndex + i];
+
+                        model[startingIndex + i].transform.localRotation = orientation;
+                    } //for i
+                } //if props
 
                 //if we have finger data
                 if (fingerTrackingEnabled)
                 {
-                    for (int i = 0; i < fingerSegmentOrder.Length; i++)
+                    for (var i = 0; i < fingerSegmentOrder.Length; i++)
                     {
                         if (model[i + XsMvnPose.MvnBodySegmentCount + XsMvnPose.MvnPropSegmentCount] == null)
                         {
                             Debug.Log(i);
                             Debug.LogError("[xsens] XsLiveAnimator: Missing finger bone from mvn actor! Did you change MvnLive plugin? Please check if you are using the right actor!");
+
                             break;
                         }
-                        else
-                        {
-                            Quaternion orientation =
-                                Quaternion.Inverse(model[i + XsMvnPose.MvnBodySegmentCount + XsMvnPose.MvnPropSegmentCount].transform.parent.rotation)
-                                 * orientations[orientations.Length - XsMvnPose.MvnFingerSegmentCount + i]
-                                * modelRotTP[i + XsMvnPose.MvnBodySegmentCount + XsMvnPose.MvnPropSegmentCount];
-                            model[i + XsMvnPose.MvnBodySegmentCount + XsMvnPose.MvnPropSegmentCount].transform.localRotation = orientation;
 
-                        }
+                        var orientation =
+                            Quaternion.Inverse(model[i + XsMvnPose.MvnBodySegmentCount + XsMvnPose.MvnPropSegmentCount].transform.parent.rotation)
+                            * orientations[orientations.Length - XsMvnPose.MvnFingerSegmentCount + i]
+                            * modelRotTP[i + XsMvnPose.MvnBodySegmentCount + XsMvnPose.MvnPropSegmentCount];
+
+                        model[i + XsMvnPose.MvnBodySegmentCount + XsMvnPose.MvnPropSegmentCount].transform.localRotation = orientation;
                     } // for i
-                }// if fingers
+                } // if fingers
             }
             catch (Exception e)
             {
@@ -1075,38 +1098,40 @@ namespace xsens
             }
         }
 
+
         /// <summary>
-        /// Updates the model.
-        /// Every pose contains the transform objects for each segment within the model.
+        ///     Updates the model.
+        ///     Every pose contains the transform objects for each segment within the model.
         /// </summary>
         /// <param name='pose'>
-        /// Pose holds the positions and orientations of the actor.
+        ///     Pose holds the positions and orientations of the actor.
         /// </param>
         /// <param name='model'>
-        /// Model to update with the pose.
+        ///     Model to update with the pose.
         /// </param>
         private void updateModel(Transform[] pose, Transform[] model)
         {
             //reset the target, then set it based on segments
-            Vector3 pelvisPos = new Vector3();
-            Vector3 lastPos = target.position;
+            var pelvisPos = new Vector3();
+            var lastPos = target.position;
 
             // if(applyRootMotion) target.position = Vector3.zero;
-            for (int i = 0; i < XsMvnPose.MvnBodySegmentCount; i++)
+            for (var i = 0; i < XsMvnPose.MvnBodySegmentCount; i++)
             {
                 switch (i)
                 {
                     //no update required
-                    case (int)XsBodyAnimationSegment.L5:
-                    case (int)XsBodyAnimationSegment.T12:
+                    case (int) XsBodyAnimationSegment.L5:
+                    case (int) XsBodyAnimationSegment.T12:
                         break;
 
-                    case (int)XsBodyAnimationSegment.Pelvis:
+                    case (int) XsBodyAnimationSegment.Pelvis:
                         //position only on the y axis, leave the x,z to the body
-                        pelvisPos = (pose[i].localPosition);
+                        pelvisPos = pose[i].localPosition;
                         model[i].localPosition = new Vector3(0, pelvisPos.y, 0);
 
                         model[i].rotation = pose[i].rotation;
+
                         break;
 
                     default:
@@ -1115,28 +1140,31 @@ namespace xsens
                         {
                             model[i].rotation = pose[i].rotation;
                         }
+
                         break;
                 }
             }
 
             if (propDataSize > 0 && props.Length != 0)
             {
-                int startingIndex = XsMvnPose.MvnBodySegmentCount;
-                for (int i = 0; i < propDataSize; i++)
+                var startingIndex = XsMvnPose.MvnBodySegmentCount;
+
+                for (var i = 0; i < propDataSize; i++)
                 {
-                    Vector3 propPos = (pose[i + startingIndex].localPosition);
+                    var propPos = pose[i + startingIndex].localPosition;
                     model[i + startingIndex].localPosition = propPos;
+
                     if (model[i + startingIndex] != null && pose[i + startingIndex] != null)
                     {
                         model[i + startingIndex].rotation = pose[i + startingIndex].rotation;
                     }
-                }//for i
-            }//if props
+                } //for i
+            } //if props
 
 
             if (fingerTrackingEnabled)
             {
-                for (int i = 0; i < XsMvnPose.MvnFingerSegmentCount; i++)
+                for (var i = 0; i < XsMvnPose.MvnFingerSegmentCount; i++)
                 {
                     switch (i)
                     {
@@ -1146,10 +1174,11 @@ namespace xsens
                             {
                                 model[i + XsMvnPose.MvnBodySegmentCount + XsMvnPose.MvnPropSegmentCount].rotation = pose[i + XsMvnPose.MvnBodySegmentCount + XsMvnPose.MvnPropSegmentCount].rotation;
                             }
+
                             break;
                     }
-                }//for i
-            }//if fingers
+                } //for i
+            } //if fingers
 
             //apply root motion if flag enabled only
             if (applyRootMotion)
@@ -1161,5 +1190,5 @@ namespace xsens
                 model[0].transform.parent.transform.localPosition = Vector3.zero;
             }
         }
-    }//class XsLiveAnimator
-}//namespace Xsens
+    } //class XsLiveAnimator
+} //namespace Xsens

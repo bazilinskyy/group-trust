@@ -30,35 +30,23 @@
 /// EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ///</remarks>
 
-using UnityEngine;
-using System.Net.Sockets;
 using System;
 using System.Net;
+using System.Net.Sockets;
 using System.Threading;
-using System.IO;
+using UnityEngine;
+
 
 namespace xsens
 {
     /// <summary>
-    /// This class is responsible for setting up the connection with MVN studio.
-    /// MVN Studio can stream up to 4 actors, therefore we have 1 thread for each (4 total).
-    /// It also reads which datapacket it should create, and is responsible for always having the last correct pose ready to read for Unity3D
+    ///     This class is responsible for setting up the connection with MVN studio.
+    ///     MVN Studio can stream up to 4 actors, therefore we have 1 thread for each (4 total).
+    ///     It also reads which datapacket it should create, and is responsible for always having the last correct pose ready
+    ///     to read for Unity3D
     /// </summary>
     public class XsStreamReader : MonoBehaviour
     {
-        public int listenPort = 9763;		//default port in MVN Studio
-        private const int NUM_STREAMS = 4;      //number of streams from MVN
-
-        private UdpClient udpClient;
-        private Thread connectionThread;
-        private Vector3[] emptyPositions;
-        private Quaternion[] emptyOrientations;
-        private XsStreamReaderThread[] poseActors;
-        private bool[] availableStreams;
-        private int counter;
-        private bool stopListening;
-        private int[] segmentCounts;
-
         public enum StreamingProtocol
         {
             SPPoseEuler = 1,
@@ -70,17 +58,33 @@ namespace xsens
             SPMetaPropInfoLegacy = 11,
             SPMetaMoreMeta = 12,
             SPMetaScaling = 13
-        };
+        }
+
+
+        public int listenPort = 9763; //default port in MVN Studio
+        private bool[] availableStreams;
+        private Thread connectionThread;
+        private int counter;
+        private Quaternion[] emptyOrientations;
+        private Vector3[] emptyPositions;
+        private XsStreamReaderThread[] poseActors;
+        private int[] segmentCounts;
+        private bool stopListening;
+
+        private UdpClient udpClient;
+        private const int NUM_STREAMS = 4; //number of streams from MVN
+
 
         /// <summary>
-        /// Wake this instance.
+        ///     Wake this instance.
         /// </summary>
-        void Awake()
+        private void Awake()
         {
             //create empty list for reasons when no data arrives
             emptyPositions = new Vector3[XsMvnPose.MvnDefaultSegmentCount];
             emptyOrientations = new Quaternion[XsMvnPose.MvnDefaultSegmentCount];
-            for (int i = 0; i < XsMvnPose.MvnDefaultSegmentCount; ++i)
+
+            for (var i = 0; i < XsMvnPose.MvnDefaultSegmentCount; ++i)
             {
                 emptyPositions[i] = Vector3.zero;
                 emptyOrientations[i] = Quaternion.identity;
@@ -89,32 +93,35 @@ namespace xsens
             segmentCounts = new int[NUM_STREAMS];
             availableStreams = new bool[NUM_STREAMS];
             poseActors = new XsStreamReaderThread[NUM_STREAMS];
-            for (int i = 0; i < NUM_STREAMS; ++i)
+
+            for (var i = 0; i < NUM_STREAMS; ++i)
             {
                 poseActors[i] = new XsStreamReaderThread();
-                availableStreams[i] = false;    // this is set to true in the read thread when data is received for a stream
+                availableStreams[i] = false; // this is set to true in the read thread when data is received for a stream
             }
 
             // Make a thread to read from the connection with MVN studio
-            connectionThread = new Thread(new ThreadStart(read));
+            connectionThread = new Thread(read);
             connectionThread.Start();
         }
 
 
         /// <summary>
-        /// Raises the application quit event.
+        ///     Raises the application quit event.
         /// </summary>
-        void OnApplicationQuit()
+        private void OnApplicationQuit()
         {
             try
             {
                 // shutdown 'the friendly' way
                 stopListening = true;
                 Debug.LogError("stopping");
+
                 if (!connectionThread.Join(2000))
                 {
                     // shutdown Schwarzenegger style
                     connectionThread.Abort();
+
                     if (udpClient != null)
                     {
                         udpClient.Close();
@@ -122,7 +129,7 @@ namespace xsens
                     }
                 }
 
-                for (int i = 0; i < NUM_STREAMS; ++i)
+                for (var i = 0; i < NUM_STREAMS; ++i)
                 {
                     poseActors[i].killThread();
                 }
@@ -133,36 +140,41 @@ namespace xsens
             }
         }
 
+
         /// <summary>
-        /// Read UDP network data.
+        ///     Read UDP network data.
         /// </summary>
         private void read()
         {
             stopListening = false;
 
             udpClient = new UdpClient(listenPort);
-            IPEndPoint groupEP = new IPEndPoint(IPAddress.Any, listenPort);
+            var groupEP = new IPEndPoint(IPAddress.Any, listenPort);
 
             try
             {
                 while (!stopListening)
                 {
-                    byte[] receiveBytes = udpClient.Receive(ref groupEP);
+                    var receiveBytes = udpClient.Receive(ref groupEP);
 
-                    string result = "";
-                    result += (char)(receiveBytes[4]);
-                    result += (char)(receiveBytes[5]);
-                    StreamingProtocol packId = (StreamingProtocol)Int32.Parse(result);
+                    var result = "";
+                    result += (char) receiveBytes[4];
+                    result += (char) receiveBytes[5];
+                    var packId = (StreamingProtocol) int.Parse(result);
 
                     if (packId == StreamingProtocol.SPPoseQuaternion)
                     {
                         if (receiveBytes.Length > 15)
                         {
                             int streamID = receiveBytes[16];
+
                             if (streamID >= 0 && streamID < NUM_STREAMS)
                             {
                                 if (segmentCounts[streamID] == 0)
+                                {
                                     segmentCounts[streamID] = receiveBytes.Length / 32;
+                                }
+
                                 poseActors[streamID].setPacket(receiveBytes);
                                 availableStreams[streamID] = true;
                             }
@@ -189,7 +201,7 @@ namespace xsens
 
 
         /// <summary>
-        /// Get the latest pose by the actorId
+        ///     Get the latest pose by the actorId
         /// </summary>
         /// <param name="actorId"> id of actor to associated with the data</param>
         /// <param name="positions">segment positions of the actor</param>
@@ -197,35 +209,36 @@ namespace xsens
         /// <returns>true if actor has data or false </returns>
         public bool getLatestPose(int actorId, out Vector3[] positions, out Quaternion[] orientations)
         {
-            if ((actorId >= 0 && actorId < NUM_STREAMS)
-             && (availableStreams[actorId] == true)
-             && (poseActors[actorId].dataAvailable()))
+            if (actorId >= 0 && actorId < NUM_STREAMS
+                             && availableStreams[actorId]
+                             && poseActors[actorId].dataAvailable())
             {
                 return poseActors[actorId].getLatestPose(out positions, out orientations);
             }
-            else
-            {
-                positions = emptyPositions;
-                orientations = emptyOrientations;
-                return true;
-            }
+
+            positions = emptyPositions;
+            orientations = emptyOrientations;
+
+            return true;
         }
 
+
         /// <summary>
-        /// Allows the XsLiveAnimator to setup properly based on the incoming data
+        ///     Allows the XsLiveAnimator to setup properly based on the incoming data
         /// </summary>
         /// <param name="actorId"></param>
         /// <param name="segmentCount"></param>
         /// <returns></returns>
         public bool poseEstablished(int actorId, out int segmentCount)
         {
-            segmentCount = segmentCounts[actorId-1];
-            if(segmentCount != 0)
+            segmentCount = segmentCounts[actorId - 1];
+
+            if (segmentCount != 0)
             {
                 return true;
             }
+
             return false;
         }
-
-    }//class XsStreamReader
-}//namespace xsens
+    } //class XsStreamReader
+} //namespace xsens

@@ -1,6 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
+
 [CustomEditor(typeof(LayerChanger))]
 public class LayerChangerEditor : Editor
 {
@@ -8,12 +9,14 @@ public class LayerChangerEditor : Editor
     private SerializedProperty originalLayerProp;
     private SerializedProperty setToLayerProp;
 
+
     private void OnEnable()
     {
         objectToLayerChangeProp = serializedObject.FindProperty("objectToLayerChange");
         originalLayerProp = serializedObject.FindProperty("originalLayer");
         setToLayerProp = serializedObject.FindProperty("setToLayer");
     }
+
 
     public override void OnInspectorGUI()
     {
@@ -25,12 +28,12 @@ public class LayerChangerEditor : Editor
 
         if (GUILayout.Button("Get Layer"))
         {
-            ((LayerChanger)target).GetLayer();
+            ((LayerChanger) target).GetLayer();
         }
 
         if (GUILayout.Button("Set Layer"))
         {
-            ((LayerChanger)target).SetLayer();
+            ((LayerChanger) target).SetLayer();
         }
 
         serializedObject.ApplyModifiedProperties();

@@ -71,12 +71,11 @@ public class Host : NetworkSystem
     public const int PlayerId = 0;
     private const float PoseUpdateInterval = 0.01f;
 
-    
 
     public override void Shutdown()
     {
         Debug.Log("Host shutting down");
-        
+
         _host.Shutdown();
         _currentState = NetState.Disconnected;
     }
@@ -284,7 +283,7 @@ public class Host : NetworkSystem
         }
 
         _transitionPhase = TransitionPhase.LoadingLevel;
-        
+
         Time.timeScale = 0;
     }
 

@@ -29,19 +29,19 @@
 /// EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ///</remarks>
 
-using System;
-using UnityEngine;
 using System.Threading;
+using UnityEngine;
+
 
 namespace xsens
 {
     /// <summary>
-    /// Xsens Stream Reader Thread.
-    /// Every actor from MVN Stream has its own reader trhead.
+    ///     Xsens Stream Reader Thread.
+    ///     Every actor from MVN Stream has its own reader trhead.
     /// </summary>
-    class XsStreamReaderThread
+    internal class XsStreamReaderThread
     {
-        private Thread thread;
+        private readonly Thread thread;
         private byte[] lastPackets;
         //private bool newData = false;
         private bool dataUpdated = true;
@@ -49,8 +49,9 @@ namespace xsens
         private Vector3[] lastPosePositions;
         private Quaternion[] lastPoseOrientations;
 
+
         /// <summary>
-        /// Initializes a new instance of the <see cref="xsens.XsStreamReaderThread"/> class.
+        ///     Initializes a new instance of the <see cref="xsens.XsStreamReaderThread" /> class.
         /// </summary>
         public XsStreamReaderThread()
         {
@@ -58,35 +59,38 @@ namespace xsens
             lastPosePositions = new Vector3[XsMvnPose.MvnDefaultSegmentCount];
             lastPoseOrientations = new Quaternion[XsMvnPose.MvnDefaultSegmentCount];
             //start a new thread		
-            thread = new Thread(new ThreadStart(start));
+            thread = new Thread(start);
             thread.Start();
         }
 
+
         /// <summary>
-        /// Start this instance.
-        /// The datapacket will be set to one of the supported mode, based on its type.
+        ///     Start this instance.
+        ///     The datapacket will be set to one of the supported mode, based on its type.
         /// </summary>
         public void start()
         {
             while (true)
             {
-                  Thread.Sleep(1);
+                Thread.Sleep(1);
             }
         }
 
+
         /// <summary>
-        /// Check if there is data available.
+        ///     Check if there is data available.
         /// </summary>
         /// <returns>
-        /// true if data is available
+        ///     true if data is available
         /// </returns>
         public bool dataAvailable()
         {
             return dataUpdated;
         }
 
+
         /// <summary>
-        /// Get the latest pose info that is available
+        ///     Get the latest pose info that is available
         /// </summary>
         /// <param name="positions">This will return the positions</param>
         /// <param name="orientations">This will return the orientations</param>
@@ -95,27 +99,31 @@ namespace xsens
         {
             positions = lastPosePositions;
             orientations = lastPoseOrientations;
+
             return true;
         }
 
+
         /// <summary>
-        /// Kills the thread.
+        ///     Kills the thread.
         /// </summary>
         public void killThread()
         {
             thread.Abort();
         }
 
+
         /// <summary>
-        /// Sets the packet.
+        ///     Sets the packet.
         /// </summary>
         /// <param name='incomingData'>
-        /// _incoming data in array
+        ///     _incoming data in array
         /// </param>
         public void setPacket(byte[] incomingData)
         {
             XsDataPacket dataPacket = new XsQuaternionPacket(incomingData);
-            XsMvnPose pose = dataPacket.getPose();
+            var pose = dataPacket.getPose();
+
             if (pose != null)
             {
                 lastPosePositions = pose.positions;
@@ -123,6 +131,5 @@ namespace xsens
                 dataUpdated = true;
             }
         }
-
-    }//class XsStreamReaderThread
-}//namespace xsens
+    } //class XsStreamReaderThread
+} //namespace xsens

@@ -1,47 +1,52 @@
-using System.Linq;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using UnityEditor;
+using UnityEngine;
+
 
 namespace Barmetler.RoadSystem
 {
-	public static class RoadSystemSettingsProvider
-	{
-		[SettingsProvider]
-		public static SettingsProvider CreateRoadSystemSettingsProvider()
-		{
-			var settings = RoadSystemSettings.SerializedInstance;
+    public static class RoadSystemSettingsProvider
+    {
+        [SettingsProvider]
+        public static SettingsProvider CreateRoadSystemSettingsProvider()
+        {
+            var settings = RoadSystemSettings.SerializedInstance;
 
-			var names = new HashSet<string>();
+            var names = new HashSet<string>();
 
-			var prop = settings.GetIterator();
-			while (prop.NextVisible(true))
-			{
-				if (prop.name != "m_Script")
-					names.Add(prop.displayName);
-			}
+            var prop = settings.GetIterator();
 
-			return new SettingsProvider("Project/MBRoadSystemSettings", SettingsScope.Project)
-			{
-				label = "MB RoadSystem",
-				guiHandler = (searchContext) =>
-				{
-					var settings = RoadSystemSettings.SerializedInstance;
-					var prop = settings.GetIterator();
+            while (prop.NextVisible(true))
+            {
+                if (prop.name != "m_Script")
+                {
+                    names.Add(prop.displayName);
+                }
+            }
 
-					prop.NextVisible(true);
-					do
-					{
-						if (prop.name != "m_Script")
-							EditorGUILayout.PropertyField(prop, new GUIContent(prop.displayName));
-					} while (prop.NextVisible(false));
+            return new SettingsProvider("Project/MBRoadSystemSettings", SettingsScope.Project)
+            {
+                label = "MB RoadSystem",
+                guiHandler = searchContext =>
+                {
+                    var settings = RoadSystemSettings.SerializedInstance;
+                    var prop = settings.GetIterator();
 
-					settings.ApplyModifiedProperties();
-				},
+                    prop.NextVisible(true);
 
-				keywords = names,
-			};
-		}
-	}
+                    do
+                    {
+                        if (prop.name != "m_Script")
+                        {
+                            EditorGUILayout.PropertyField(prop, new GUIContent(prop.displayName));
+                        }
+                    } while (prop.NextVisible(false));
+
+                    settings.ApplyModifiedProperties();
+                },
+
+                keywords = names
+            };
+        }
+    }
 }

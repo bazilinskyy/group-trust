@@ -11,9 +11,9 @@ public class CrossingTrigger : MonoBehaviour
     public GameObject Marker;
     public bool HalfWay;
     public bool crossbutton = false;
+    private bool paused = false;
 
     private float pauseUntil;
-    private bool paused = false;
     private Rect windowRect = new(425, 225, 200, 50);
 
 

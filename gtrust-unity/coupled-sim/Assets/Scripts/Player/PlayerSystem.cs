@@ -157,27 +157,11 @@ public class PlayerSystem : MonoBehaviour
         var remotePlayer = SpawnAvatar(spawnPoint, GetAvatarPrefab(spawnPoint.Type, role.carIdx), player, role);
 
         DisableRemoteXROriginParts(remotePlayer);
-        
-        // DestroyRemoteXROrigins(remotePlayer);
 
         remotePlayer.Initialize(true, InputMode.None, ControlMode.HostAI, spawnPoint.VehicleType);
     }
 
-    private static void DestroyRemoteXROrigins(PlayerAvatar remotePlayer)
-    {
-        var remoteXROrigin = remotePlayer.GetComponentInChildren<XROrigin>();
 
-        if (remoteXROrigin == null)
-        {
-            Debug.LogError("SOSXR: I couldn't find the remote XROrigin. This is not good.");
-            return;
-        }
-
-        Debug.Log("SOSXR: I'm destroying the remote XROrigin. This is probably good.");
-        Destroy(remoteXROrigin.gameObject);
-    }
-
-    
     private static void DisableRemoteXROriginParts(PlayerAvatar remotePlayer)
     {
         var remoteXROrigin = remotePlayer.GetComponentInChildren<XROrigin>();
@@ -185,9 +169,10 @@ public class PlayerSystem : MonoBehaviour
         if (remoteXROrigin == null)
         {
             Debug.LogError("SOSXR: I couldn't find the remote XROrigin. This is not good.");
+
             return;
         }
-        
+
         foreach (Transform child in remoteXROrigin.transform)
         {
             child.gameObject.SetActive(false);

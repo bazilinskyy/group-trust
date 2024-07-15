@@ -9,6 +9,6 @@ public struct SOSXRData
 
     public SOSXRData(string focusName)
     {
-        this.FocusName = focusName;
+        FocusName = focusName;
     }
 }

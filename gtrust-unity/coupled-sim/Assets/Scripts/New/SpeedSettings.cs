@@ -1,40 +1,32 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.Serialization;
 
+
 // This script was originally used by De Clercq. It has been omitted from the experiment of Kooijman.
+
 
 public class SpeedSettings : MonoBehaviour
 {
-    public static class Defaults
-    {
-        public const int WaypointType = 1;
-        public const float Speed = 5;
-        public const float Acceleration = 5;
-        public const float Jerk = 0;
-        public const int BlinkerState = 0;
-    }
-
     public enum WaypointType
     {
         InitialSetSpeed,
         SetSpeedTarget,
-        Delete,
+        Delete
     }
+
 
     [HideInInspector]
     public AICar targetAICar;
     //Simple Kinematics
     [FormerlySerializedAs("WaypointNumber")]
     public WaypointType Type = WaypointType.SetSpeedTarget;
-    public float speed = Defaults.Speed;                    //km/h
-    public float acceleration = Defaults.Acceleration;      //m/s^2
+    public float speed = Defaults.Speed; //km/h
+    public float acceleration = Defaults.Acceleration; //m/s^2
     public BlinkerState BlinkerState = BlinkerState.None;
 
     //Advanced Kinematics
-    public float jerk = Defaults.Jerk;                      //m/s^3
+    public float jerk = Defaults.Jerk; //m/s^3
     //public bool resetSpeedAfterStop = false;
     //Yielding
     public bool causeToYield;
@@ -52,26 +44,33 @@ public class SpeedSettings : MonoBehaviour
     //Dynamics
     public CustomBehaviourData[] customBehaviourData;
 
+    private float startTime;
+
+
     private void OnTriggerEnter(Collider other)
     {
         var aiCar = other.GetComponent<AICar>();
+
         if (aiCar == null || (targetAICar != null && targetAICar != aiCar))
         {
             return;
         }
+
         if (other.gameObject.CompareTag("ManualCar") && causeToYield)
         {
             var eyeContact = other.gameObject.GetComponentInChildren<EyeContact>();
-            if (eyeContact != null) {
+
+            if (eyeContact != null)
+            {
                 StartCoroutine(LookAtPlayerAfterCarStops(other.gameObject.GetComponent<AICar>(), eyeContact));
             }
         }
-        foreach (var bd in customBehaviourData) {
+
+        foreach (var bd in customBehaviourData)
+        {
             aiCar.TriggerCustomBehaviours(bd);
         }
     }
-
-    float startTime;
 
 
     private IEnumerator LookAtPlayerAfterCarStops(AICar car, EyeContact driver)
@@ -80,33 +79,55 @@ public class SpeedSettings : MonoBehaviour
         {
             yield return new WaitForFixedUpdate();
         }
+
         driver.Tracking = EyeContactAfterYielding;
-        if (EyeContactWhileYielding) {
+
+        if (EyeContactWhileYielding)
+        {
             driver.TrackingWhileYielding = false;
             startTime = Time.fixedTime;
-            while (YieldingEyeContactSince > Time.fixedTime - startTime) {
+
+            while (YieldingEyeContactSince > Time.fixedTime - startTime)
+            {
                 yield return new WaitForFixedUpdate();
             }
+
             driver.TrackingWhileYielding = true;
+
             while (YieldingEyeContactUntil > Time.fixedTime - startTime)
             {
                 yield return new WaitForFixedUpdate();
             }
+
             driver.TrackingWhileYielding = false;
         }
     }
 
+
     internal string GetCustomBehaviourDataString()
     {
-        string result = "";
-        foreach(var cbd in customBehaviourData)
+        var result = "";
+
+        foreach (var cbd in customBehaviourData)
         {
             if (!string.IsNullOrWhiteSpace(result))
             {
                 result += "%";
             }
-            result += (cbd.name + "#" + cbd.GetInstanceID());
+
+            result += cbd.name + "#" + cbd.GetInstanceID();
         }
+
         return result;
+    }
+
+
+    public static class Defaults
+    {
+        public const int WaypointType = 1;
+        public const float Speed = 5;
+        public const float Acceleration = 5;
+        public const float Jerk = 0;
+        public const int BlinkerState = 0;
     }
 }

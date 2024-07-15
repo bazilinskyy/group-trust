@@ -56,7 +56,7 @@ public class LevelManager
                     }
                 }
             }
-            
+
             foreach (IExperimentModifier em in ActiveExperiment.GetComponentsInChildren(typeof(IExperimentModifier)))
             {
                 em.SetParameter(trial.experimentParameters);
@@ -65,7 +65,6 @@ public class LevelManager
             _mainLoadOp = null;
         };
     }
-
 
 
     public void LoadLevelNoLocalPlayer(int experiment, List<int> playerStartingPositions, NetworkingManager.Trial trial)

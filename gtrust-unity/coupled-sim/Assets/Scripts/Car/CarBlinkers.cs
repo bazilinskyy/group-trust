@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
+
 
 public enum BlinkerState
 {
@@ -9,31 +8,29 @@ public enum BlinkerState
     Left,
     Right
 }
+
+
 //manages car blinkers both light and dashboard indicators
 public class CarBlinkers : MonoBehaviour
 {
     public BlinkerState State;
-    [SerializeField]
-    float blinkInterval = 0.25f;
+    [SerializeField] private float blinkInterval = 0.25f;
 
-    [SerializeField]
-    MeshRenderer[] leftBlinkers;
-    [SerializeField]
-    MeshRenderer[] rightBlinkers;
+    [SerializeField] private MeshRenderer[] leftBlinkers;
+    [SerializeField] private MeshRenderer[] rightBlinkers;
 
-    [SerializeField]
-    GameObject[] leftBlinkerObjects;
-    [SerializeField]
-    GameObject[] rightBlinkerObjects;
+    [SerializeField] private GameObject[] leftBlinkerObjects;
+    [SerializeField] private GameObject[] rightBlinkerObjects;
 
-    [SerializeField]
-    Material lightOn;
-    [SerializeField]
-    Material lightOff;
+    [SerializeField] private Material lightOn;
+    [SerializeField] private Material lightOff;
 
-    void Awake () {
+
+    private void Awake()
+    {
         Stop();
     }
+
 
     public void StartLeftBlinkers()
     {
@@ -41,17 +38,20 @@ public class CarBlinkers : MonoBehaviour
         State = BlinkerState.Left;
     }
 
+
     public void StartRightBlinkers()
     {
         TurnOnBlinkers(rightBlinkers, rightBlinkerObjects);
         State = BlinkerState.Right;
     }
 
+
     private void TurnOnBlinkers(MeshRenderer[] blinkerRenderers, GameObject[] blinkerObjects)
     {
         Stop();
         StartCoroutine(Blink(blinkerRenderers, blinkerObjects));
     }
+
 
     public void Stop()
     {
@@ -63,11 +63,12 @@ public class CarBlinkers : MonoBehaviour
 
     private void ResetBlinkers()
     {
-        foreach (MeshRenderer renderer in leftBlinkers)
+        foreach (var renderer in leftBlinkers)
         {
             renderer.material = lightOff;
         }
-        foreach (MeshRenderer renderer in rightBlinkers)
+
+        foreach (var renderer in rightBlinkers)
         {
             renderer.material = lightOff;
         }
@@ -83,44 +84,58 @@ public class CarBlinkers : MonoBehaviour
         }
     }
 
+
     private IEnumerator Blink(MeshRenderer[] blinkerRenderers, GameObject[] blinkerObjects)
     {
-        while(true)
+        while (true)
         {
             yield return new WaitForSeconds(blinkInterval);
-            foreach (MeshRenderer rend in blinkerRenderers)
+
+            foreach (var rend in blinkerRenderers)
             {
                 rend.material = lightOn;
             }
+
             foreach (var obj in blinkerObjects)
             {
                 obj.SetActive(true);
             }
+
             yield return new WaitForSeconds(blinkInterval);
-            foreach (MeshRenderer rend in blinkerRenderers)
+
+            foreach (var rend in blinkerRenderers)
             {
                 rend.material = lightOff;
             }
-            foreach(var obj in blinkerObjects)
+
+            foreach (var obj in blinkerObjects)
             {
                 obj.SetActive(false);
             }
         }
     }
 
+
     public void SwitchToState(BlinkerState state)
     {
-        if (State == state) return;
+        if (State == state)
+        {
+            return;
+        }
+
         switch (state)
         {
             case BlinkerState.None:
                 Stop();
+
                 break;
             case BlinkerState.Left:
                 StartLeftBlinkers();
+
                 break;
             case BlinkerState.Right:
                 StartRightBlinkers();
+
                 break;
         }
     }

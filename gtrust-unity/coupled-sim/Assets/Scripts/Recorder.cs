@@ -1,21 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using System.IO;
 #if UNITY_EDITOR
 using UnityEditor.Recorder;
 using UnityEditor.Recorder.Input;
 #endif
 
+
 public class Recorder : MonoBehaviour
 {
     public string directory = "../../videos";
-    public Vector2Int resolution = new Vector2Int(3840, 2160);
+    public Vector2Int resolution = new(3840, 2160);
     public int framerate = 60;
-#if UNITY_EDITOR
-    RecorderController recorderController; // control interface for recording video
-    RecorderControllerSettings controllerSettings;
-    MovieRecorderSettings videoRecorder;
+    #if UNITY_EDITOR
+    private RecorderController recorderController; // control interface for recording video
+    private RecorderControllerSettings controllerSettings;
+    private MovieRecorderSettings videoRecorder;
+
 
     public void Init()
     {
@@ -28,16 +27,18 @@ public class Recorder : MonoBehaviour
         controllerSettings.AddRecorderSettings(videoRecorder);
         // controllerSettings.SetRecordModeToManual(); // will stop when closing
         RecorderOptions.VerboseMode = false;
-        videoRecorder.ImageInputSettings = new GameViewInputSettings()
+
+        videoRecorder.ImageInputSettings = new GameViewInputSettings
         {
             OutputWidth = resolution.x,
             OutputHeight = resolution.y
         };
+
         videoRecorder.AudioInputSettings.PreserveAudio = true;
         controllerSettings.AddRecorderSettings(videoRecorder);
         controllerSettings.FrameRate = framerate;
-
     }
+
 
     public void StartRecording(string videoName)
     {
@@ -47,9 +48,10 @@ public class Recorder : MonoBehaviour
         recorderController.StartRecording();
     }
 
+
     public void StopRecording()
     {
         recorderController.StopRecording();
     }
-#endif
+    #endif
 }

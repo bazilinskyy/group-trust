@@ -1,17 +1,20 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
+
 // This script is used to control the tooltip or mouse pointer in game so the game knows when a button has been pressed.
 
-class TooltipController : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+
+internal class TooltipController : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    [SerializeField]
-    GameObject target;
+    [SerializeField] private GameObject target;
+
 
     void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
     {
         target.SetActive(true);
     }
+
 
     void IPointerExitHandler.OnPointerExit(PointerEventData eventData)
     {

@@ -43,15 +43,15 @@ public class EyeTracking : MonoBehaviour
     [SerializeField] private float m_targetOffset = 0.2f;
 
     private readonly List<InputDevice> _devices = new();
-    private MeshRenderer _gazeRenderer;
     private Camera _camera;
-    private InputDevice _inputDevice;
     private Vector3 _direction;
     private float _distance;
     private Eyes _eyes;
     private Vector3 _fixationPoint;
     private GazeData _gazeData;
+    private MeshRenderer _gazeRenderer;
     private RaycastHit _hit;
+    private InputDevice _inputDevice;
     private Vector3 _leftEyeTrackingPosition;
     private Quaternion _leftEyeTrackingRotation;
     private Vector3 _rayOrigin;
@@ -61,7 +61,7 @@ public class EyeTracking : MonoBehaviour
     // SOSXR: Added FocusName property
     public string FocusName { get; private set; }
 
-    
+
     private void Awake()
     {
         _camera = transform.root.GetComponentInChildren<Camera>();
@@ -124,12 +124,10 @@ public class EyeTracking : MonoBehaviour
                 m_gazeTarget.SetActive(!m_gazeTarget.activeInHierarchy);
             }
         }
-        
+
         FocusName = _hit.collider != null ? _hit.collider.name : "NULL"; // With _hit.transform.name you'd get the info of the RigidBody, where we want info on the Collider. 
 
         Debug.LogFormat("We hit {0}", FocusName);
-        
-        
     }
 
 
@@ -187,7 +185,6 @@ public class EyeTracking : MonoBehaviour
         _rayOrigin = _camera.transform.position;
 
         _direction = (m_fixationPointTransform.position - _camera.transform.position).normalized;
-        
     }
 
 

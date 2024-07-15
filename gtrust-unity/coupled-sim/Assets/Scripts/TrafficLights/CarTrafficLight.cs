@@ -1,6 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+
+
 //controls single car trafficlight 
 //set renderers to match state set by trafficlight cycle
 public class CarTrafficLight : MonoBehaviour
@@ -22,6 +22,7 @@ public class CarTrafficLight : MonoBehaviour
     [SerializeField]
     protected MeshRenderer upRenderer;
 
+
     public void TurnGreen()
     {
         State = LightState.GREEN;
@@ -29,6 +30,7 @@ public class CarTrafficLight : MonoBehaviour
         middleLightRenderer.material = turnOffMaterial;
         upRenderer.material = turnOffMaterial;
     }
+
 
     public void TurnRed()
     {
@@ -38,6 +40,7 @@ public class CarTrafficLight : MonoBehaviour
         upRenderer.material = redMaterial;
     }
 
+
     public void TurnYellow()
     {
         State = LightState.YELLOW;
@@ -46,6 +49,7 @@ public class CarTrafficLight : MonoBehaviour
         upRenderer.material = turnOffMaterial;
     }
 
+
     public void TurnRedAndYellow()
     {
         State = LightState.RED_AND_YELLOW;
@@ -53,6 +57,4 @@ public class CarTrafficLight : MonoBehaviour
         middleLightRenderer.material = yellowMaterial;
         upRenderer.material = redMaterial;
     }
-
 }
-

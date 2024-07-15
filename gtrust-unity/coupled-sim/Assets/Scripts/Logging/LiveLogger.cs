@@ -2,19 +2,28 @@
 using System.IO;
 using System.Net.Sockets;
 
+
 public class LiveLogger : IDisposable
 {
-    UdpClient _socket;
-    public BinaryWriter _writer;
-    MemoryStream _stream;
-    byte[] _buffer;
-    const int Port = 40131;
-    
     public enum LogPacketType
     {
         Begin = 1,
-        Frame = 2,
+        Frame = 2
     }
+
+
+    private UdpClient _socket;
+    public BinaryWriter _writer;
+    private MemoryStream _stream;
+    private byte[] _buffer;
+    private const int Port = 40131;
+
+
+    public void Dispose()
+    {
+        _socket.Dispose();
+    }
+
 
     public void Init()
     {
@@ -25,11 +34,13 @@ public class LiveLogger : IDisposable
         _writer = new BinaryWriter(_stream);
     }
 
+
     public void Flush()
     {
-        _socket.Send(_buffer, (int)_stream.Position);
+        _socket.Send(_buffer, (int) _stream.Position);
         _stream.Position = 0;
     }
+
 
     public void BeginLog(
         int localDriver,
@@ -37,15 +48,13 @@ public class LiveLogger : IDisposable
         int numPedestrians,
         int numCarLights,
         int numPedestrianLights
-        )
+    )
     {
-        _writer.Write((int)LogPacketType.Begin);
+        _writer.Write((int) LogPacketType.Begin);
         _writer.Write(localDriver);
         _writer.Write(numPersistentDrivers);
         _writer.Write(numPedestrians);
         _writer.Write(numCarLights);
         _writer.Write(numPedestrianLights);
     }
-
-    public void Dispose() => _socket.Dispose();
 }

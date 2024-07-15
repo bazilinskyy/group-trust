@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
+
 
 //updates speedometer 
 //it can be configured with as analog (with arrow) and digital "display"
@@ -12,9 +8,6 @@ public class Speedometer : MonoBehaviour
 {
     [SerializeField]
     private Rigidbody carBody;
-
-    [Header("Digital")]
-    private float lastUpdate;
     [SerializeField]
     private Text speedometerText;
 
@@ -28,17 +21,24 @@ public class Speedometer : MonoBehaviour
     [SerializeField]
     private float maxSpeed = 160f;
 
+    [Header("Digital")]
+    private float lastUpdate;
+
+
     private void Update()
     {
-        float v = carBody.velocity.magnitude * SpeedConvertion.Mps2Kmph;
+        var v = carBody.velocity.magnitude * SpeedConvertion.Mps2Kmph;
 
         if (lastUpdate + 0.5f < Time.time)
         {
             lastUpdate = Time.time;
             speedometerText.text = Mathf.RoundToInt(v).ToString();
         }
-        var angle = Mathf.Lerp(pivotMinSpeedAngle, pivotMaxSpeedAngle, v/maxSpeed);
-        if (pivot != null) {
+
+        var angle = Mathf.Lerp(pivotMinSpeedAngle, pivotMaxSpeedAngle, v / maxSpeed);
+
+        if (pivot != null)
+        {
             pivot.localRotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
     }

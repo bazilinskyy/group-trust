@@ -5,12 +5,12 @@ public class RecenterImmovableChild : MonoBehaviour
 {
     [SerializeField] private Transform m_parent;
     [Tooltip("This can be the XR Camera for instance")]
-    [SerializeField] private Transform m_immovableChild; 
+    [SerializeField] private Transform m_immovableChild;
     [SerializeField] private Transform m_recenterTo;
     [Tooltip("If no RecenterTo Transform has been set, it will search for this Tag")]
     [SerializeField] [TagSelector] private string m_recenterToTag = "Target_XROrigin";
     [SerializeField] private KeyCode m_recenterKey = KeyCode.Keypad0;
-    
+
 
     [ContextMenu(nameof(RecenterAndFlatten))]
     public void RecenterAndFlatten()

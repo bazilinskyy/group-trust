@@ -1,122 +1,124 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
 
+
 namespace Barmetler.RoadSystem
 {
-	[CreateAssetMenu(fileName = "RoadSystemSettings", menuName = "Barmetler/RoadSystemSettings")]
-	public class RoadSystemSettings : ScriptableObject
-	{
-		[System.Serializable]
-		class RoadSettings
-		{
-			[Tooltip("Draw bounding boxes around bezier segments?")]
-			public bool drawBoundingBoxes = false;
-			[Tooltip("When extending the road, whether to place it at the intersection of the mouse with the scene's geometry.")]
-			public bool useRayCast = true;
-			[Tooltip("If useRayCast is enabled, should the new road segment copy the surface normal of the intersection?")]
-			public bool copyHitNormal = false;
+    [CreateAssetMenu(fileName = "RoadSystemSettings", menuName = "Barmetler/RoadSystemSettings")]
+    public class RoadSystemSettings : ScriptableObject
+    {
+        [SerializeField] private RoadSettings roadSettings = new();
+        [SerializeField] private IntersectionSettings intersectionSettings = new();
 
-			[Tooltip("The Prefab to use when creating a new road.")]
-			public GameObject newRoadPrefab;
-		}
+        [SerializeField] private bool drawNavigatorDebug = false;
+        [SerializeField] private bool drawNavigatorDebugPoints = false;
+        [SerializeField] private bool autoCalculateNavigator = false;
 
-		[System.Serializable]
-		class IntersectionSettings
+        internal static RoadSystemSettings instance = null;
+
+        public const string settingsFolderPath = "Assets/Settings/Editor";
+        public const string settingsPath = "Assets/Settings/Editor/RoadSystemSettings.asset";
+
+        public bool DrawBoundingBoxes => roadSettings.drawBoundingBoxes;
+        public bool UseRayCast => roadSettings.useRayCast;
+        public bool CopyHitNormal => roadSettings.copyHitNormal;
+
+        public GameObject NewRoadPrefab
         {
-			[Tooltip("The Prefab to use when creating a new intersection.")]
-			public GameObject newIntersectionPrefab;
-		}
+            get => roadSettings.newRoadPrefab;
+            set
+            {
+                roadSettings.newRoadPrefab = value;
+                EditorUtility.SetDirty(this);
+            }
+        }
 
-		[SerializeField]
-		RoadSettings roadSettings = new RoadSettings();
-		[SerializeField]
-		IntersectionSettings intersectionSettings = new IntersectionSettings();
+        public GameObject NewIntersectionPrefab
+        {
+            get => intersectionSettings.newIntersectionPrefab;
+            set
+            {
+                intersectionSettings.newIntersectionPrefab = value;
+                EditorUtility.SetDirty(this);
+            }
+        }
 
-		[SerializeField]
-		bool drawNavigatorDebug = false;
-		[SerializeField]
-		bool drawNavigatorDebugPoints = false;
-		[SerializeField]
-		bool autoCalculateNavigator = false;
+        public bool DrawNavigatorDebug
+        {
+            get => drawNavigatorDebug;
+            set
+            {
+                drawNavigatorDebug = value;
+                EditorUtility.SetDirty(this);
+            }
+        }
 
-		public bool DrawBoundingBoxes => roadSettings.drawBoundingBoxes;
-		public bool UseRayCast => roadSettings.useRayCast;
-		public bool CopyHitNormal => roadSettings.copyHitNormal;
+        public bool DrawNavigatorDebugPoints
+        {
+            get => drawNavigatorDebugPoints;
+            set
+            {
+                drawNavigatorDebugPoints = value;
+                EditorUtility.SetDirty(this);
+            }
+        }
 
-		public GameObject NewRoadPrefab
-		{
-			get => roadSettings.newRoadPrefab;
-			set
-			{
-				roadSettings.newRoadPrefab = value;
-				EditorUtility.SetDirty(this);
-			}
-		}
+        public bool AutoCalculateNavigator
+        {
+            get => autoCalculateNavigator;
+            set
+            {
+                autoCalculateNavigator = value;
+                EditorUtility.SetDirty(this);
+            }
+        }
 
-		public GameObject NewIntersectionPrefab
-		{
-			get => intersectionSettings.newIntersectionPrefab;
-			set
-			{
-				intersectionSettings.newIntersectionPrefab = value;
-				EditorUtility.SetDirty(this);
-			}
-		}
+        public static RoadSystemSettings Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = AssetDatabase.LoadAssetAtPath<RoadSystemSettings>(settingsPath);
+                }
 
-		public bool DrawNavigatorDebug
-		{
-			get => drawNavigatorDebug;
-			set
-			{
-				drawNavigatorDebug = value;
-				EditorUtility.SetDirty(this);
-			}
-		}
+                if (instance == null)
+                {
+                    instance = CreateInstance<RoadSystemSettings>();
+                    Directory.CreateDirectory(settingsFolderPath);
+                    AssetDatabase.CreateAsset(instance, settingsPath);
+                    AssetDatabase.SaveAssets();
+                }
 
-		public bool DrawNavigatorDebugPoints
-		{
-			get => drawNavigatorDebugPoints;
-			set
-			{
-				drawNavigatorDebugPoints = value;
-				EditorUtility.SetDirty(this);
-			}
-		}
+                return instance;
+            }
+        }
 
-		public bool AutoCalculateNavigator
-		{
-			get => autoCalculateNavigator;
-			set
-			{
-				autoCalculateNavigator = value;
-				EditorUtility.SetDirty(this);
-			}
-		}
+        internal static SerializedObject SerializedInstance => new(Instance);
 
-		public const string settingsFolderPath = "Assets/Settings/Editor";
-		public const string settingsPath = "Assets/Settings/Editor/RoadSystemSettings.asset";
 
-		internal static RoadSystemSettings instance = null;
-		public static RoadSystemSettings Instance
-		{
-			get
-			{
-				if (instance == null)
-					instance = AssetDatabase.LoadAssetAtPath<RoadSystemSettings>(settingsPath);
-				if (instance == null)
-				{
-					instance = CreateInstance<RoadSystemSettings>();
-					Directory.CreateDirectory(settingsFolderPath);
-					AssetDatabase.CreateAsset(instance, settingsPath);
-					AssetDatabase.SaveAssets();
-				}
-				return instance;
-			}
-		}
+        [Serializable]
+        private class RoadSettings
+        {
+            [Tooltip("Draw bounding boxes around bezier segments?")]
+            public bool drawBoundingBoxes = false;
+            [Tooltip("When extending the road, whether to place it at the intersection of the mouse with the scene's geometry.")]
+            public bool useRayCast = true;
+            [Tooltip("If useRayCast is enabled, should the new road segment copy the surface normal of the intersection?")]
+            public bool copyHitNormal = false;
 
-		internal static SerializedObject SerializedInstance => new SerializedObject(Instance);
-	}
+            [Tooltip("The Prefab to use when creating a new road.")]
+            public GameObject newRoadPrefab;
+        }
+
+
+        [Serializable]
+        private class IntersectionSettings
+        {
+            [Tooltip("The Prefab to use when creating a new intersection.")]
+            public GameObject newIntersectionPrefab;
+        }
+    }
 }

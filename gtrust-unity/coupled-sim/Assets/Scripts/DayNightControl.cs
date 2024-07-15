@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
-using System;
+
 
 [Serializable]
 public struct EnviromentalLightData
@@ -14,18 +13,20 @@ public struct EnviromentalLightData
     public float intensity;
 }
 
+
 //helper script that allows switching between two (day/night) lightning/environment settings
 //scene lightmaps have to be rebaked manually after such a switch
 public class DayNightControl : MonoBehaviour
 {
     public GameObject[] lamps;
     public Light directionalLight;
-  
+
     public EnviromentalLightData dayLight;
     public EnviromentalLightData nightLight;
 
     public Material daySkybox;
     public Material nightSkybox;
+
 
     public void InitNight()
     {
@@ -34,20 +35,23 @@ public class DayNightControl : MonoBehaviour
         ToggleLights(true);
     }
 
+
     public void InitDay()
     {
         ChangeLight(dayLight);
         ChangeSkybox(daySkybox);
-        ToggleLights(false); 
+        ToggleLights(false);
     }
+
 
     private void ToggleLights(bool toggle)
     {
-        foreach(GameObject lamp in lamps)
+        foreach (var lamp in lamps)
         {
             lamp.GetComponentInChildren<Light>().enabled = toggle;
         }
     }
+
 
     private void ChangeLight(EnviromentalLightData data)
     {
@@ -59,10 +63,9 @@ public class DayNightControl : MonoBehaviour
         directionalLight.intensity = data.intensity;
     }
 
+
     private void ChangeSkybox(Material data)
     {
         RenderSettings.skybox = data;
     }
-
-
 }

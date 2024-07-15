@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using UnityEngine;
+﻿using UnityEngine;
 
-interface IPimpColor
+
+internal interface IPimpColor
 {
     void setColor(Color color);
+
+
     void setColorLocally();
 }

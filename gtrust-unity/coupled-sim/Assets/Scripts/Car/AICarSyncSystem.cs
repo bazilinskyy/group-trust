@@ -117,9 +117,10 @@ public class AICarSyncSystem
             if (Cars[i] == null)
             {
                 Debug.LogWarning("SOSXR: I don't have a car here");
+
                 continue;
             }
-            
+
             Cars[i].ApplyPose(msg.Poses[i]);
         }
     }

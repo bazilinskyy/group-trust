@@ -1,16 +1,55 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class PimpZ4 : MonoBehaviour, IPimpColor {
-    public float R=0;
-    public float G=0;
-    public float B=0;
+
+public class PimpZ4 : MonoBehaviour, IPimpColor
+{
+    public float R = 0;
+    public float G = 0;
+    public float B = 0;
     public string[] bodyParts;
+    private readonly Color[] colors = new Color[5] {Color.black, Color.white, Color.gray, Color.blue, Color.red};
     private GameObject[] gameobjects;
-    private Color[] colors = new Color[5] { Color.black, Color.white, Color.gray, Color.blue, Color.red };
+
+
+    void IPimpColor.setColor(Color color)
+    {
+        applyColor(color);
+    }
+
+
+    public void setColorLocally()
+    {
+        var value = (int) Mathf.Ceil(Random.Range(1f, 100f));
+        var index = 0;
+
+        if (value <= 20) //25) //Black
+        {
+            index = 0;
+        }
+        else if (value <= 40) //50) //White
+        {
+            index = 1;
+        }
+        else if (value <= 60) //75) //Gray
+        {
+            index = 2;
+        }
+        else if (value <= 80) //95) //Blue
+        {
+            index = 3;
+        }
+        else //Red
+        {
+            index = 4;
+        }
+
+        Debug.Log("Selected value=" + value + " and index=" + index + " name=" + colors[index]);
+        applyColor(colors[index]);
+    }
+
+
     //private float[] colors_probabilities = new float[5] { 0.25f, 0.25f, 0.25f, 0.20f, 0.05f };
-   // private float[] colors_probabilities = new float[5] { 0.2f, 0.2f, 0.2f, 0.2f, 0.2f };
+    // private float[] colors_probabilities = new float[5] { 0.2f, 0.2f, 0.2f, 0.2f, 0.2f };
     private void initialize()
     {
         bodyParts = new string[21];
@@ -39,9 +78,10 @@ public class PimpZ4 : MonoBehaviour, IPimpColor {
         //Update the references
         gameobjects = new GameObject[bodyParts.Length];
 
-        for (int i = 0; i < bodyParts.Length; i++)
+        for (var i = 0; i < bodyParts.Length; i++)
         {
-            Transform t = transform.Find(bodyParts[i]);
+            var t = transform.Find(bodyParts[i]);
+
             if (t != null)
             {
                 gameobjects[i] = t.gameObject;
@@ -55,51 +95,28 @@ public class PimpZ4 : MonoBehaviour, IPimpColor {
             }
         }
     }
-	// Use this for initialization
-	void Start () {
-        Debug.Log("Start");
-        applyColor(new Color(R,G,B));
-	}
-    void IPimpColor.setColor(Color color)
+
+
+    // Use this for initialization
+    private void Start()
     {
-        applyColor(color);
+        Debug.Log("Start");
+        applyColor(new Color(R, G, B));
     }
 
-    public void setColorLocally()
-    {
-        int value = (int) Mathf.Ceil(Random.Range(1f, 100f));
-        int index = 0;
-        if(value <= 20)//25) //Black
-        {
-            index = 0;
-        } else if(value<=40)//50) //White
-        {
-            index = 1;
-        } else if (value <=60)//75) //Gray
-        {
-            index = 2;
-        } else if (value <= 80)//95) //Blue
-        {
-            index = 3;
-        }
-        else //Red
-        {
-            index = 4;
-        }
-        Debug.Log("Selected value="+value+" and index="+index+" name="+colors[index].ToString());
-        applyColor(colors[index]);
-    }
 
     private void applyColor(Color color)
     {
         initialize();
+
         if (gameobjects != null)
         {
-            for (int i = 0; i < gameobjects.Length; i++)
+            for (var i = 0; i < gameobjects.Length; i++)
             {
                 gameobjects[i].GetComponent<MeshRenderer>().material = new Material(gameobjects[i].GetComponent<MeshRenderer>().material);
                 gameobjects[i].GetComponent<MeshRenderer>().material.color = color;
             }
+
             R = color.r;
             G = color.g;
             B = color.b;
@@ -108,7 +125,5 @@ public class PimpZ4 : MonoBehaviour, IPimpColor {
         {
             Debug.LogWarning("Not possible to change the color");
         }
-        
-        
     }
 }

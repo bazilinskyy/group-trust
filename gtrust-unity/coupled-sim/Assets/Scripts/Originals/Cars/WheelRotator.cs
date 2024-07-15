@@ -1,23 +1,24 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using VehicleBehaviour;
 
-public class WheelRotator : MonoBehaviour {
 
+public class WheelRotator : MonoBehaviour
+{
     public Transform FrontLeft;
     public Transform FrontRight;
     public Transform RearLeft;
     public Transform RearRight;
 
-    VehicleBehaviour.Suspension FrontLeftSuspension;
-    VehicleBehaviour.Suspension FrontRightSuspension;
-    VehicleBehaviour.Suspension RearLeftSuspension;
-    VehicleBehaviour.Suspension RearRightSuspension;
-
     public float WheelDiameter = 0.65f;
 
-    private float RotationSpeed;  
+    private Suspension FrontLeftSuspension;
+    private Suspension FrontRightSuspension;
+    private Suspension RearLeftSuspension;
+    private Suspension RearRightSuspension;
+
+    private float RotationSpeed;
     private float speed = 0;
+
 
     private void Start()
     {
@@ -26,10 +27,10 @@ public class WheelRotator : MonoBehaviour {
         RearLeft.GetComponent<WheelCollider>().wheelDampingRate = 1000;
         RearRight.GetComponent<WheelCollider>().wheelDampingRate = 1000;
 
-        FrontLeftSuspension = FrontLeft.GetComponent<VehicleBehaviour.Suspension>();
-        FrontRightSuspension = FrontRight.GetComponent<VehicleBehaviour.Suspension>();
-        RearLeftSuspension = RearLeft.GetComponent<VehicleBehaviour.Suspension>();
-        RearRightSuspension = RearRight.GetComponent<VehicleBehaviour.Suspension>();
+        FrontLeftSuspension = FrontLeft.GetComponent<Suspension>();
+        FrontRightSuspension = FrontRight.GetComponent<Suspension>();
+        RearLeftSuspension = RearLeft.GetComponent<Suspension>();
+        RearRightSuspension = RearRight.GetComponent<Suspension>();
 
         FrontLeftSuspension.enabled = false;
         FrontRightSuspension.enabled = false;
@@ -37,13 +38,16 @@ public class WheelRotator : MonoBehaviour {
         RearRightSuspension.enabled = false;
     }
 
-    void Update () {
-        
-        speed = Mathf.Clamp(GetComponent<Rigidbody>().velocity.magnitude,-30,30); // Not Needed but might be useful, if rotation looks weird because of framerate
+
+    private void Update()
+    {
+        speed = Mathf.Clamp(GetComponent<Rigidbody>().velocity.magnitude, -30, 30); // Not Needed but might be useful, if rotation looks weird because of framerate
+
         if (speed < 0.05f && speed < 0.05f)
         {
             speed = 0f;
         }
+
         RotationSpeed = 360f * speed / 3.6f / Mathf.PI / WheelDiameter;
 
         //Front Left
