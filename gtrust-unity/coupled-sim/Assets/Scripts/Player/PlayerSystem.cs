@@ -184,15 +184,14 @@ public class PlayerSystem : MonoBehaviour
 
         if (remoteXROrigin == null)
         {
+            Debug.LogError("SOSXR: I couldn't find the remote XROrigin. This is not good.");
             return;
         }
-
-        var monoBehaviours = remoteXROrigin.GetComponentsInChildren<MonoBehaviour>();
-
-        foreach (var monoBehaviour in monoBehaviours)
+        
+        foreach (Transform child in remoteXROrigin.transform)
         {
-            monoBehaviour.enabled = false;
-            Debug.Log("Disabled another MonoBehaviour");
+            child.gameObject.SetActive(false);
+            Debug.Log("SOSXR: I'm disabling a child of the remote XROrigin. This is probably good.");
         }
     }
 
