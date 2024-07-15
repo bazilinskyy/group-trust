@@ -6,9 +6,11 @@ There had been a nasty Native Collection bug that kept throwing errors at shutdo
 
 Having multiple XROrigins in the scene was causing me a real headache.  They cause the HMDs to respond to the wrong rigs, and messing up any chance of inhabiting just the one character. It turned out that the XROrigin rig from the Remote players was causing havoc. That one needed to go. After a bunch of testing I found out that simply disabling all child components of the Rig was best (not Destroying, which causes major issues, and also not simply disabling components, which doesn't disable all (e.g. camera is not a component).
 
-Now what needs to happen is that the remote player actually syncs their own (local) position to their corresponding remote halves. 
+Now what needs to happen is that the remote player actually syncs their own (local) position to their corresponding remote halves. This seems to happen in the PlayerSystem..?
 
 Ran Rider code silent cleanup for more consistent code. 
+
+Finally: rebaking lgihtmaps
 
 
 

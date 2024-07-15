@@ -277,7 +277,6 @@ public class PlayerSystem : MonoBehaviour
                 Avatars[i].ApplyPose(poses[i]);
                 
                 Debug.LogFormat("SOSXR: I'm applying poses for Avatar {0}, but not the local player. And only on Clients?", Avatars[i].name);
-                
             }
         }
     }
