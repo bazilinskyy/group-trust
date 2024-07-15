@@ -3,7 +3,6 @@ using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.Serialization;
-using UnityEngine.XR.Interaction.Toolkit;
 using UnityStandardAssets.Utility;
 
 
@@ -129,6 +128,12 @@ public class PlayerSystem : MonoBehaviour
             hmiControl.Init(_hmiManager);
         }
 
+        ChangeLayerForFace();
+    }
+
+
+    private void ChangeLayerForFace()
+    {
         var layerChanger = LocalPlayer.GetComponentsInChildren<LayerChanger>();
 
         if (layerChanger == null)
@@ -144,19 +149,35 @@ public class PlayerSystem : MonoBehaviour
             Debug.Log("I found the exact good amount of layerchangers");
             layerChanger[0].SetLayer();
         }
-}
+    }
 
 
     public void SpawnRemotePlayer(SpawnPoint spawnPoint, int player, ExperimentRoleDefinition role)
     {
         var remotePlayer = SpawnAvatar(spawnPoint, GetAvatarPrefab(spawnPoint.Type, role.carIdx), player, role);
-        
+
         // DisableRemoteXROriginParts(remotePlayer);
+        
+        DestroyRemoteXROrigins(remotePlayer);
 
         remotePlayer.Initialize(true, InputMode.None, ControlMode.HostAI, spawnPoint.VehicleType);
     }
 
+    private static void DestroyRemoteXROrigins(PlayerAvatar remotePlayer)
+    {
+        var remoteXROrigin = remotePlayer.GetComponentInChildren<XROrigin>();
 
+        if (remoteXROrigin == null)
+        {
+            Debug.LogError("SOSXR: I couldn't find the remote XROrigin. This is not good.");
+            return;
+        }
+
+        Debug.Log("SOSXR: I'm destroying the remote XROrigin. This is probably good.");
+        Destroy(remoteXROrigin.gameObject);
+    }
+
+    
     private static void DisableRemoteXROriginParts(PlayerAvatar remotePlayer)
     {
         var remoteXROrigin = remotePlayer.GetComponentInChildren<XROrigin>();
@@ -166,13 +187,13 @@ public class PlayerSystem : MonoBehaviour
         {
             return;
         }
-        remotePlayer.gameObject.SetActive(false); 
+        remotePlayer.gameObject.SetActive(false);
         if (!remotePlayer.gameObject.activeInHierarchy)
         {
             return; // This is of course a bit bs, but a good way to quickly see what happens if we disable the entire XROrigin Gameobject.
         }
         */
-        
+
         remoteXROrigin.transform.GetChild(0).gameObject.SetActive(false);
         Debug.LogWarning("SOSXR: I'm disabling the first child of the remote player. That sounds very wrong.");
 
