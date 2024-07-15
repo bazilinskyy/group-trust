@@ -156,9 +156,9 @@ public class PlayerSystem : MonoBehaviour
     {
         var remotePlayer = SpawnAvatar(spawnPoint, GetAvatarPrefab(spawnPoint.Type, role.carIdx), player, role);
 
-        // DisableRemoteXROriginParts(remotePlayer);
+        DisableRemoteXROriginParts(remotePlayer);
         
-        DestroyRemoteXROrigins(remotePlayer);
+        // DestroyRemoteXROrigins(remotePlayer);
 
         remotePlayer.Initialize(true, InputMode.None, ControlMode.HostAI, spawnPoint.VehicleType);
     }
@@ -182,24 +182,18 @@ public class PlayerSystem : MonoBehaviour
     {
         var remoteXROrigin = remotePlayer.GetComponentInChildren<XROrigin>();
 
-        /*
-        if (remotePlayer == null)
+        if (remoteXROrigin == null)
         {
             return;
         }
-        remotePlayer.gameObject.SetActive(false);
-        if (!remotePlayer.gameObject.activeInHierarchy)
+
+        var monoBehaviours = remoteXROrigin.GetComponentsInChildren<MonoBehaviour>();
+
+        foreach (var monoBehaviour in monoBehaviours)
         {
-            return; // This is of course a bit bs, but a good way to quickly see what happens if we disable the entire XROrigin Gameobject.
+            monoBehaviour.enabled = false;
+            Debug.Log("Disabled another MonoBehaviour");
         }
-        */
-
-        remoteXROrigin.transform.GetChild(0).gameObject.SetActive(false);
-        Debug.LogWarning("SOSXR: I'm disabling the first child of the remote player. That sounds very wrong.");
-
-        var recenter = remoteXROrigin.GetComponent<RecenterXROrigin>();
-        recenter.enabled = false;
-        Debug.Log("SOSXR: Disabling remote RecenterXROrigin");
     }
 
 
