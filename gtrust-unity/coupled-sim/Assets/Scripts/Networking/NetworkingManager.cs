@@ -145,6 +145,8 @@ public class NetworkingManager : MonoBehaviour
 
         _logger.EndLog();
         _fixedLogger.EndLog();
+        
+        _netSystem.Shutdown(); // SOSXR
     }
 
 

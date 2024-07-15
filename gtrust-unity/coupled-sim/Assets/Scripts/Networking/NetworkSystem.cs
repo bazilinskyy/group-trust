@@ -27,4 +27,6 @@ public abstract class NetworkSystem
     public abstract void Update();
     public abstract void FixedUpdate();
     public abstract void OnGUI(bool RunTrialSequenceAutomatically);
+    public abstract void Shutdown();
+    
 }

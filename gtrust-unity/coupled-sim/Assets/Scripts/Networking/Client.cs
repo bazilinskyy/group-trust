@@ -260,4 +260,14 @@ public class Client : NetworkSystem
             }
         }
     }
+
+
+    /// <summary>
+    ///     SOSXR
+    /// </summary>
+    public override void Shutdown()
+    {
+        _client.Disconnect();
+        Debug.Log("Client shutdown: Disconnect");
+    }
 }
