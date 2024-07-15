@@ -459,13 +459,12 @@ namespace VehicleBehaviour
             if (!string.IsNullOrEmpty(throttleInput))
             {
                 throttle = GetInput(throttleInput) * (reverse ? -1f : 1);
-                
             }
 
             breaking = Mathf.Clamp01(GetInput(brakeInput));
-            
-            Debug.Log("Throttle:" + throttle + "- Breaking:" + breaking);
-            
+
+            // Debug.Log("Throttle:" + throttle + "- Breaking:" + breaking);
+
             playerAvatar.SetBreakLights(breaking > 0);
 
             // Turn

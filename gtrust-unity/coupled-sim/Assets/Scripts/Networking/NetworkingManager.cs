@@ -20,13 +20,13 @@ public class NetworkingManager : MonoBehaviour
     public bool recordVideos = false;
 
     public Trial[] trials;
+    private WorldLogger _fixedLogger;
+    private LevelManager _levelManager;
+    private LogConverter _logConverter;
+    private WorldLogger _logger;
 
     private NetworkSystem _netSystem;
-    private LevelManager _levelManager;
     private PlayerSystem _playerSystem;
-    private WorldLogger _logger;
-    private WorldLogger _fixedLogger;
-    private LogConverter _logConverter;
 
     private static int CurrentTrialIndex;
 
@@ -145,7 +145,7 @@ public class NetworkingManager : MonoBehaviour
 
         _logger.EndLog();
         _fixedLogger.EndLog();
-        
+
         _netSystem.Shutdown(); // SOSXR
     }
 
