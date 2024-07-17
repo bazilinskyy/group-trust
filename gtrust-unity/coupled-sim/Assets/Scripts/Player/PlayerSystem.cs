@@ -173,9 +173,9 @@ public class PlayerSystem : MonoBehaviour
             return;
         }
 
-        foreach (GameObject child in remoteXROrigin.transform)
+        foreach (Transform child in remoteXROrigin.transform)
         {
-            child.SetActive(false);
+            child.gameObject.SetActive(false);
             Debug.Log("SOSXR: I'm disabling a child of the remote XROrigin. This is probably good.");
         }
         
