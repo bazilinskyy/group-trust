@@ -11,12 +11,6 @@ public class RecenterChildXROrigin : MonoBehaviour
     private XROrigin _xrOrigin;
 
 
-    private void Awake()
-    {
-        GetRequiredComponents();
-    }
-
-
     private void GetRequiredComponents()
     {
         if (_xrOrigin != null)
@@ -38,47 +32,41 @@ public class RecenterChildXROrigin : MonoBehaviour
     [ContextMenu(nameof(RecenterAndFlatten))]
     public void RecenterAndFlatten()
     {
-        RecenterPosition(true);
-        RecenterRotation();
-
-        Debug.LogFormat("SOSXR: We just ran {0}", nameof(RecenterAndFlatten));
+        Recenter(true);
     }
 
 
     [ContextMenu(nameof(RecenterWithoutFlatten))]
     public void RecenterWithoutFlatten()
     {
-        RecenterPosition(false);
-        RecenterRotation();
-
-        Debug.LogFormat("SOSXR: We just ran {0}", nameof(RecenterWithoutFlatten));
+        
+        Recenter(false);
     }
 
 
-    private void RecenterPosition(bool flatten)
+    private void Recenter(bool flatten)
     {
-        var distanceDiff = m_recenterTo.transform.position - _xrCamera.position;
-        _xrOrigin.transform.position += distanceDiff;
-
-        if (flatten && _xrOrigin.CurrentTrackingOriginMode == TrackingOriginModeFlags.Floor)
+        GetRequiredComponents();
+        
+        if (m_recenterTo == null || _xrCamera == null)
         {
-            Debug.LogWarning("SOSXR: You want to flatten the _xrCamera on the _xrRig, but the CurrenTrackingOrigin-mode on the aforementioned Rig is set to 'floor', which doesn't allow setting the Y component");
+            Debug.LogWarning("SOSXR: We can't recenter the position, because either the RecenterTo object or the _xrCamera is null");
 
             return;
         }
 
-        if (flatten)
+        var distanceDiff = m_recenterTo.transform.position - _xrCamera.position;
+        _xrOrigin.transform.position += distanceDiff;
+
+        if (flatten && _xrOrigin.CurrentTrackingOriginMode != TrackingOriginModeFlags.Floor) // SOSXR: You want to flatten the _xrCamera on the _xrRig, but if the CurrenTrackingOrigin-mode on the aforementioned Rig is set to 'floor', which doesn't allow setting the Y component, you cannot flatten it.
         {
             _xrOrigin.transform.position = _xrOrigin.transform.position.Flatten();
         }
-    }
 
-
-    private void RecenterRotation()
-    {
         var rotationAngleY = m_recenterTo.transform.rotation.eulerAngles.y - _xrCamera.transform.rotation.eulerAngles.y;
-
         _xrOrigin.transform.Rotate(0, rotationAngleY, 0);
+
+        Debug.Log("SOSXR: We just ran RecenterCenter");
     }
 
 
@@ -87,7 +75,6 @@ public class RecenterChildXROrigin : MonoBehaviour
         if (Input.GetKeyDown(m_recenterKey))
         {
             RecenterWithoutFlatten();
-            Debug.Log("SOSXR: RecenterWithoutFlatten via key");
         }
     }
 }
