@@ -187,6 +187,7 @@ public class PlayerAvatar : MonoBehaviour
             }
             else
             {
+                cameras[cameraIndex] = new GameObject().AddComponent<Camera>();
                 cameras[cameraIndex].gameObject.SetActive(true);
             }
         }
