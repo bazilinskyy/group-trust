@@ -166,7 +166,7 @@ public class PlayerSystem : MonoBehaviour
 
     private void DisableRemoteXRRecenterer(PlayerAvatar remotePlayer)
     {
-        var recenterer = remotePlayer.GetComponentInChildren<RecenterXROrigin>();
+        var recenterer = remotePlayer.GetComponentInChildren<RecenterChildXROrigin>();
 
         if (recenterer == null)
         {
