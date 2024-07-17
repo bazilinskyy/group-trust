@@ -156,7 +156,7 @@ public class PlayerSystem : MonoBehaviour
     {
         var remotePlayer = SpawnAvatar(spawnPoint, GetAvatarPrefab(spawnPoint.Type, role.carIdx), player, role);
 
-        DisableRemoteXROriginParts(remotePlayer);
+        // DisableRemoteXROriginParts(remotePlayer);
 
         remotePlayer.Initialize(true, InputMode.None, ControlMode.HostAI, spawnPoint.VehicleType);
     }

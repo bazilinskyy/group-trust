@@ -14,12 +14,17 @@ public class CameraCounter : MonoBehaviour
     private void Awake()
     {
         _xrInputSubsystem = new XRInputSubsystem();
-        _childCamera = transform.GetChild(0);
+        
     }
 
 
     private void Update()
     {
+        if (_childCamera == null && transform.GetChild(0) != null)
+        {
+            _childCamera = transform.GetChild(0);
+        }
+        
         if (!m_allowRecentering)
         {
             return;
