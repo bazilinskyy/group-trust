@@ -138,144 +138,190 @@ public class PlayerAvatar : MonoBehaviour
     {
         if (isRemote)
         {
-            if (External != null)
-            {
-                External.enabled = true;
-            }
-
-            GetComponentInChildren<Rigidbody>().isKinematic = true;
-            GetComponentInChildren<Rigidbody>().useGravity = false;
-
-            foreach (var wc in GetComponentsInChildren<WheelCollider>())
-            {
-                wc.enabled = false;
-            }
-
-            foreach (var su in GetComponentsInChildren<Suspension>())
-            {
-                su.enabled = false;
-            }
-
-            if (_carBlinkers == null)
-            {
-                _carBlinkers = FindObjectOfType<CarBlinkers>();
-            }
-
-            if (_carBlinkers == null)
-            {
-                Debug.LogFormat("SOSXR: In our PlayerAvatar, a passenger doesn't carry their own blinkers, so they needed to find some 'out there'. We want to be sure we got the correct blinkers: {0}", _carBlinkers.name);
-            }
-
-            if (stopLights == null)
-            {
-                Debug.Log("SOSXR: We don't yet have any stoplights, but also no way to get some new ones.");
-            }
-
-            if (frontLights == null)
-            {
-                Debug.Log("SOSXR: We don't yet have any front lights, but also no way to get some new ones. Maybe they're on a car somewhere?");
-            }
+            InitializeRemote();
         }
         else
         {
-            if (cameraIndex >= 0)
+            InitializeLocal(inputMode, controlMode, vehicleType, cameraIndex);
+        }
+    }
+
+
+    private void InitializeLocal(PlayerSystem.InputMode inputMode, PlayerSystem.ControlMode controlMode, PlayerSystem.VehicleType vehicleType, int cameraIndex)
+    {
+        InitializeCamera(inputMode, cameraIndex);
+
+        var modeElements = InitializeInputMode(inputMode);
+
+        SetupModeElements(modeElements);
+
+        modeElements = InitializeControlMode(controlMode);
+
+        SetupModeElements(modeElements);
+
+        modeElements = InitializeVehicle(vehicleType);
+
+        SetupModeElements(modeElements);
+    }
+
+
+    private void InitializeCamera(PlayerSystem.InputMode inputMode, int cameraIndex)
+    {
+        if (cameraIndex >= 0)
+        {
+            if ((m_instantiateXRRig && m_xrRigPrefab != null && inputMode == PlayerSystem.InputMode.VR) || inputMode == PlayerSystem.InputMode.Suite)
             {
-                if ((m_instantiateXRRig && m_xrRigPrefab != null && inputMode == PlayerSystem.InputMode.VR) || inputMode == PlayerSystem.InputMode.Suite)
+                var rig = Instantiate(m_xrRigPrefab, transform);
+                rig.transform.parent = cameras[cameraIndex].transform.parent; // This will probably be the 'CameraParent'
+                rig.transform.localPosition = Vector3.zero;
+                rig.transform.localRotation = Quaternion.identity;
+
+
+                var cam = rig.GetComponentInChildren<Camera>();
+                cameras[cameraIndex] = cam;
+
+                Debug.Log("SOSXR: Instantiated XR_Origin rig for XR, instead of enabling the default camera.");
+            }
+            else
+            {
+                cameras[cameraIndex].gameObject.SetActive(true);
+            }
+        }
+    }
+
+
+    private ModeElements InitializeInputMode(PlayerSystem.InputMode inputMode)
+    {
+        ModeElements modeElements;
+
+        switch (inputMode)
+        {
+            case PlayerSystem.InputMode.Suite:
+                modeElements = SuiteModeElements;
+
+                break;
+            case PlayerSystem.InputMode.Flat:
+                modeElements = FlatModeElements;
+
+                break;
+            case PlayerSystem.InputMode.VR:
+                modeElements = VRModeElements;
+
+                break;
+            case PlayerSystem.InputMode.None:
+
+                modeElements = NoModeElements;
+
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(inputMode), inputMode, null);
+        }
+
+        return modeElements;
+    }
+
+
+    private ModeElements InitializeControlMode(PlayerSystem.ControlMode controlMode)
+    {
+        ModeElements modeElements;
+
+        switch (controlMode)
+        {
+            case PlayerSystem.ControlMode.Driver:
+                if (Internal != null)
                 {
-                    var rig = Instantiate(m_xrRigPrefab, transform);
-                    rig.transform.parent = cameras[cameraIndex].transform.parent; // This will probably be the 'CameraParent'
-                    rig.transform.localPosition = Vector3.zero;
-                    rig.transform.localRotation = Quaternion.identity;
-
-
-                    var cam = rig.GetComponentInChildren<Camera>();
-                    cameras[cameraIndex] = cam;
-
-                    Debug.Log("SOSXR: Instantiated XR_Origin rig for XR, instead of enabling the default camera.");
+                    Internal.enabled = true;
                 }
-                else
+
+                modeElements = PlayerAsDriver;
+
+                break;
+            case PlayerSystem.ControlMode.HostAI:
+                if (External != null)
                 {
-                    cameras[cameraIndex].gameObject.SetActive(true);
+                    External.enabled = true;
                 }
-            }
 
-            ModeElements modeElements;
+                modeElements = HostDrivenAIElements;
 
-            switch (inputMode)
-            {
-                case PlayerSystem.InputMode.Suite:
-                    modeElements = SuiteModeElements;
+                break;
+            case PlayerSystem.ControlMode.Passenger:
+                if (Internal != null)
+                {
+                    Internal.enabled = true;
+                }
 
-                    break;
-                case PlayerSystem.InputMode.Flat:
-                    modeElements = FlatModeElements;
+                modeElements = PlayerAsPassenger;
 
-                    break;
-                case PlayerSystem.InputMode.VR:
-                    modeElements = VRModeElements;
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(controlMode), controlMode, null);
+        }
 
-                    break;
-                case PlayerSystem.InputMode.None:
+        return modeElements;
+    }
 
-                    modeElements = NoModeElements;
 
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(inputMode), inputMode, null);
-            }
+    private ModeElements InitializeVehicle(PlayerSystem.VehicleType vehicleType)
+    {
+        ModeElements modeElements;
 
-            SetupModeElements(modeElements);
+        switch (vehicleType)
+        {
+            case PlayerSystem.VehicleType.AV:
+                modeElements = AV;
 
-            switch (controlMode)
-            {
-                case PlayerSystem.ControlMode.Driver:
-                    if (Internal != null)
-                    {
-                        Internal.enabled = true;
-                    }
+                break;
+            case PlayerSystem.VehicleType.MDV:
+                modeElements = MDV;
 
-                    modeElements = PlayerAsDriver;
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(vehicleType), vehicleType, null);
+        }
 
-                    break;
-                case PlayerSystem.ControlMode.HostAI:
-                    if (External != null)
-                    {
-                        External.enabled = true;
-                    }
+        return modeElements;
+    }
 
-                    modeElements = HostDrivenAIElements;
 
-                    break;
-                case PlayerSystem.ControlMode.Passenger:
-                    if (Internal != null)
-                    {
-                        Internal.enabled = true;
-                    }
+    private void InitializeRemote()
+    {
+        if (External != null)
+        {
+            External.enabled = true;
+        }
 
-                    modeElements = PlayerAsPassenger;
+        GetComponentInChildren<Rigidbody>().isKinematic = true;
+        GetComponentInChildren<Rigidbody>().useGravity = false;
 
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(controlMode), controlMode, null);
-            }
+        foreach (var wc in GetComponentsInChildren<WheelCollider>())
+        {
+            wc.enabled = false;
+        }
 
-            SetupModeElements(modeElements);
+        foreach (var su in GetComponentsInChildren<Suspension>())
+        {
+            su.enabled = false;
+        }
 
-            switch (vehicleType)
-            {
-                case PlayerSystem.VehicleType.AV:
-                    modeElements = AV;
+        if (_carBlinkers == null)
+        {
+            _carBlinkers = FindObjectOfType<CarBlinkers>();
+        }
 
-                    break;
-                case PlayerSystem.VehicleType.MDV:
-                    modeElements = MDV;
+        if (_carBlinkers == null)
+        {
+            Debug.LogFormat("SOSXR: In our PlayerAvatar, a passenger doesn't carry their own blinkers, so they needed to find some 'out there'. We want to be sure we got the correct blinkers: {0}", _carBlinkers.name);
+        }
 
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(vehicleType), vehicleType, null);
-            }
+        if (stopLights == null)
+        {
+            Debug.Log("SOSXR: We don't yet have any stoplights, but also no way to get some new ones.");
+        }
 
-            SetupModeElements(modeElements);
+        if (frontLights == null)
+        {
+            Debug.Log("SOSXR: We don't yet have any front lights, but also no way to get some new ones. Maybe they're on a car somewhere?");
         }
     }
 
