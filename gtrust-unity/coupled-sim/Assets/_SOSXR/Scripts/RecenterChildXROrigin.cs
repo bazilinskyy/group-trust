@@ -15,7 +15,7 @@ public class RecenterChildXROrigin : MonoBehaviour
     {
         if (_xrOrigin != null)
         {
-            return;
+           //  return;
         }
 
         _xrOrigin = GetComponentInChildren<XROrigin>();
@@ -39,7 +39,6 @@ public class RecenterChildXROrigin : MonoBehaviour
     [ContextMenu(nameof(RecenterWithoutFlatten))]
     public void RecenterWithoutFlatten()
     {
-        
         Recenter(false);
     }
 
