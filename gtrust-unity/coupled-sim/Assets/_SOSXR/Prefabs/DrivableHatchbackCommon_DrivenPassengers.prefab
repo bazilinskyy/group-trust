@@ -14937,7 +14937,7 @@ PrefabInstance:
     - target: {fileID: 2766714345549998028, guid: dbbb24367dd809f40a8b370b699c7028,
         type: 3}
       propertyPath: m_tagToSearchFor
-      value: PuntMuts
+      value: Carrot
       objectReference: {fileID: 0}
     - target: {fileID: 3107885711094521677, guid: dbbb24367dd809f40a8b370b699c7028,
         type: 3}
@@ -15127,7 +15127,7 @@ PrefabInstance:
     - target: {fileID: 9155366706085362843, guid: dbbb24367dd809f40a8b370b699c7028,
         type: 3}
       propertyPath: m_tagToSearchFor
-      value: PuntMuts
+      value: HMD_AttachPoint
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -15167,7 +15167,7 @@ MonoBehaviour:
   m_radius: 0.15
   m_color:
     serializedVersion: 2
-    rgba: 4278620063
+    rgba: 4279376641
 --- !u!1 &1445831409716139763 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1787720395961604265, guid: dbbb24367dd809f40a8b370b699c7028,
@@ -15189,7 +15189,7 @@ MonoBehaviour:
   m_radius: 0.15
   m_color:
     serializedVersion: 2
-    rgba: 4279571503
+    rgba: 4291618786
 --- !u!1 &4862565897515770530 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5738905134950493432, guid: dbbb24367dd809f40a8b370b699c7028,
@@ -15211,7 +15211,7 @@ MonoBehaviour:
   m_radius: 0.15
   m_color:
     serializedVersion: 2
-    rgba: 4280292388
+    rgba: 4290564274
 --- !u!4 &4909784205585218830 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5259338512305648468, guid: dbbb24367dd809f40a8b370b699c7028,
