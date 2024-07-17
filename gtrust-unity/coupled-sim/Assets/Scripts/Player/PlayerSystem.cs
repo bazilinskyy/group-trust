@@ -33,7 +33,7 @@ public class PlayerSystem : MonoBehaviour
     }
 
 
-    public InputMode PlayerInputMode;
+    private InputMode PlayerInputMode = InputMode.VR;
     [FormerlySerializedAs("_AvatarPrefab")] [SerializeField] private PlayerAvatar m_pedestrianPrefab;
     [SerializeField] private PlayerAvatar[] m_passengerPrefabs;
     [FormerlySerializedAs("_AvatarPrefabDriver")] [SerializeField] private PlayerAvatar[] m_driverPrefabs;
