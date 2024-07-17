@@ -120,15 +120,19 @@ public class PlayerAvatar : MonoBehaviour
     [SerializeField] private GameObject m_xrRigPrefab = null;
     [SerializeField] private Transform m_xrRigParent = null;
 
+    [Header("Sync these over the network")]
+    public Transform[] SyncTransforms; // SOSXR : These are the transforms that are synced over the network
+    
     [Header("Other")]
     public Camera[] cameras;
     public HMIAnchors HMISlots;
     public AvatarType Type;
-    public Transform[] SyncTransforms;
-    [SerializeField]
-    private CarBlinkers _carBlinkers;
+    
+    [SerializeField] private CarBlinkers _carBlinkers;
     public GameObject stopLights;
     public GameObject frontLights;
+    
+    
     private readonly List<Vector3> _pos = new();
     private readonly List<Quaternion> _rot = new();
     public CarBlinkers CarBlinkers => _carBlinkers;
@@ -175,7 +179,7 @@ public class PlayerAvatar : MonoBehaviour
                 var rig = Instantiate(m_xrRigPrefab, m_xrRigParent);
 
                 cameras[cameraIndex] = rig.GetComponentInChildren<Camera>();
-                
+
                 rig.transform.parent = cameras[cameraIndex].transform.parent; // This will probably be the 'CameraParent'
                 rig.transform.localPosition = Vector3.zero;
                 rig.transform.localRotation = Quaternion.identity;
@@ -385,6 +389,10 @@ public class PlayerAvatar : MonoBehaviour
     }
 
 
+    /// <summary>
+    ///     This happens on the Host
+    /// </summary>
+    /// <returns></returns>
     public AvatarPose GetPose()
     {
         _pos.Clear();
@@ -410,6 +418,10 @@ public class PlayerAvatar : MonoBehaviour
     }
 
 
+    /// <summary>
+    ///     This happens on the Client
+    /// </summary>
+    /// <param name="pose"></param>
     public void ApplyPose(AvatarPose pose)
     {
         transform.position = pose.LocalPositions[0];

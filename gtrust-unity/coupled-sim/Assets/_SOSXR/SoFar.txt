@@ -6,11 +6,30 @@ This caused some headache, since a lot of components were relying on the instant
 It had to look for a rig inside it's own hierarchy, but not being able to find the other rig (such as what would happen on the Host who has as a car also the rig of the Client in it's hierarchy). 
 So that needed to be searched for in a subsection of the hierarchy. 
 
-The transforms of the characters are not synced, which is still a bit of a mystery to me. Why is the position of the car proper being synced, but of the components inside the car, not? 
+The spawning of the rig caused some issues with the colliders, esp the one that consistitutes the head. This is a problem for the Eye Tracking, since that relies on a collider. I wonder if that would work with a non-rigidbody collider though? Maybe remove RB? Maybe kinematic? I don't know yet, will find out.
 
-    public Transform[] SyncTransforms; in PlayerAvatar?
+Repositioning the camera was an issue again, but only on the Passenger. Turns out that the CameraCounter had a reposition script on there as well, which I (once upon a time) rejigged to run with the saem keycode as the reposition proper script. That took me quite a while to figure out why it was behaving so very badly. 
+It wouldn't position the camera to the thing it was supposed to, but unlike last time: all the references were good. I found out because a component ABOVE my repositioner was also getting repositioned... That was due to the CameraCounter.cs madness. Removing that one made my life a lot better.  
 
+The transforms of the characters are not synced, which is still a bit of a mystery to me. Why is the position of the car proper being synced, but of the components inside the car, not?
+My god this is a bit of a spaghetti bowl here. There's stuff all over the place.  
 
+IS THIS THE THING? "public Transform[] SyncTransforms;" in PlayerAvatar.cs?
+
+YESSSS
+
+So each PlayerAvatar has a list of Transforms called SyncTransforms. These are the transforms that are synced across the network. 
+The way I found out was because in the PlayerSystem are two methods, one which 'gathers' 'poses', and another which 'applies' them. 
+Now the (Avatar)Pose is a custom struct which deals with some intermediate stuff. On the PlayerAvatar are also two methods that are hooked into the things on the PlayerSystem I just mentioned. 
+These two methods actually reference the 'SyncTransforms', that's part of how I found out. Also: queriyng the length of the list of Vectors that made up the LocalPositions gave me 6 always, so that made me look for lists with 6 things innem.
+Now this list of 'SyncTransforms' was burried somewhere under the header "Other" in the Inspector part of the PlayerAvatar script, so I made them a little more prominent.
+
+The other reason was that the steering wheel strangely wasn't synced, but the actual wheels were. So if I turned left, the steering wheel stayed put, but the wheels themselves were always turning. 
+That meant that the entire car wasn't synced. 
+
+Right. So now I added the Targets for the IK system to the lists of SyncTransforms. That way we still keep the number of Transforms getting psyched to the minimum, whilst still having all the prettiness!
+
+Good day.
 
 ----
 
