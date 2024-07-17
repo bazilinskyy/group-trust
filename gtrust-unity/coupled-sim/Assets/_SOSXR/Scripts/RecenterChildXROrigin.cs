@@ -23,7 +23,7 @@ public class RecenterChildXROrigin : MonoBehaviour
         {
             return;
         }
-        
+
         _xrOrigin = GetComponentInChildren<XROrigin>();
 
         if (_xrOrigin == null)
@@ -38,7 +38,6 @@ public class RecenterChildXROrigin : MonoBehaviour
     [ContextMenu(nameof(RecenterAndFlatten))]
     public void RecenterAndFlatten()
     {
-        GetRequiredComponents();
         RecenterPosition(true);
         RecenterRotation();
 
@@ -49,7 +48,6 @@ public class RecenterChildXROrigin : MonoBehaviour
     [ContextMenu(nameof(RecenterWithoutFlatten))]
     public void RecenterWithoutFlatten()
     {
-        GetRequiredComponents();
         RecenterPosition(false);
         RecenterRotation();
 
@@ -57,11 +55,9 @@ public class RecenterChildXROrigin : MonoBehaviour
     }
 
 
-    
-
     private void RecenterPosition(bool flatten)
     {
-        var distanceDiff = m_recenterTo.position - _xrCamera.position;
+        var distanceDiff = m_recenterTo.transform.position - _xrCamera.position;
         _xrOrigin.transform.position += distanceDiff;
 
         if (flatten && _xrOrigin.CurrentTrackingOriginMode == TrackingOriginModeFlags.Floor)
@@ -80,7 +76,7 @@ public class RecenterChildXROrigin : MonoBehaviour
 
     private void RecenterRotation()
     {
-        var rotationAngleY = m_recenterTo.rotation.eulerAngles.y - _xrCamera.transform.rotation.eulerAngles.y;
+        var rotationAngleY = m_recenterTo.transform.rotation.eulerAngles.y - _xrCamera.transform.rotation.eulerAngles.y;
 
         _xrOrigin.transform.Rotate(0, rotationAngleY, 0);
     }
