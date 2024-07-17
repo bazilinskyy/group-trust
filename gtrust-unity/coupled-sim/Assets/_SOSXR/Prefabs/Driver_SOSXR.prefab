@@ -102,6 +102,7 @@ MonoBehaviour:
   m_taggedTransform: {fileID: 0}
   m_tagToSearchFor: Carrot
   m_onlySearchInAncestralHierarchy: 1
+  m_rootTransform: {fileID: 0}
 --- !u!1 &1191839021774123613
 GameObject:
   m_ObjectHideFlags: 0
@@ -261,6 +262,7 @@ MonoBehaviour:
   m_taggedTransform: {fileID: 0}
   m_tagToSearchFor: HMD_AttachPoint
   m_onlySearchInAncestralHierarchy: 1
+  m_rootTransform: {fileID: 0}
 --- !u!1 &2020944424814476979
 GameObject:
   m_ObjectHideFlags: 0
@@ -405,7 +407,7 @@ Transform:
   m_GameObject: {fileID: 3327577469374489453}
   serializedVersion: 2
   m_LocalRotation: {x: 0.157686, y: -0.00012925269, z: -0.000020639556, w: 0.98748934}
-  m_LocalPosition: {x: -0.017, y: 1.186, z: -0.062}
+  m_LocalPosition: {x: -0.017, y: 1.275, z: -0.062}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -426,7 +428,7 @@ MonoBehaviour:
   m_radius: 0.15
   m_color:
     serializedVersion: 2
-    rgba: 4280038684
+    rgba: 4292270809
 --- !u!1 &4712703033922600709
 GameObject:
   m_ObjectHideFlags: 0
@@ -453,7 +455,7 @@ Transform:
   m_GameObject: {fileID: 4712703033922600709}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.34500003, y: 0, z: -10.739001}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -526,7 +528,7 @@ MonoBehaviour:
   m_Data:
     m_Root: {fileID: 7156813555140600780}
     m_Tip: {fileID: 7156813555140586026}
-    m_Target: {fileID: 0}
+    m_Target: {fileID: 9131233190578629277}
     m_ChainRotationWeight: 1
     m_TipRotationWeight: 1
     m_MaxIterations: 15
@@ -580,6 +582,7 @@ MonoBehaviour:
   m_taggedTransform: {fileID: 0}
   m_tagToSearchFor: PuntMuts
   m_onlySearchInAncestralHierarchy: 1
+  m_rootTransform: {fileID: 0}
 --- !u!1 &5943711095389461784
 GameObject:
   m_ObjectHideFlags: 0

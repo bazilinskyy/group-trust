@@ -5,7 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0588ed33-30a2-45ec-9206-a9228045be30" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.coupled-sim/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.coupled-sim/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerAvatar.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerAvatar.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerSystem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_SOSXR/Prefabs/DrivableHatchbackCommon_DrivenPassengers.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_SOSXR/Prefabs/DrivableHatchbackCommon_DrivenPassengers.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_SOSXR/Prefabs/Driver_SOSXR.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_SOSXR/Prefabs/Driver_SOSXR.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_SOSXR/Prefabs/Passenger_SOSXR.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_SOSXR/Prefabs/Passenger_SOSXR.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_SOSXR/Prefabs/XR Origin (SOSXR)_Varjo.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_SOSXR/Prefabs/XR Origin (SOSXR)_Varjo.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_SOSXR/Scripts/CopyPositionAndRotationOfTaggedTarget.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_SOSXR/Scripts/CopyPositionAndRotationOfTaggedTarget.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,6 +24,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/2ef0191b30684937a869061138f38973572e20/f8/018ed364/MemoryStream.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/56073df97ede4f769c2cc45d546d986d172200/f4/6abd940d/Object.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,

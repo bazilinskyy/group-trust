@@ -179,7 +179,7 @@ public class PlayerSystem : MonoBehaviour
             Debug.Log("SOSXR: I'm disabling a child of the remote XROrigin. This is probably good.");
         }
         
-        remoteXROrigin.gameObject.SetActive(false);
+        remoteXROrigin  .gameObject.SetActive(false);
     }
 
 

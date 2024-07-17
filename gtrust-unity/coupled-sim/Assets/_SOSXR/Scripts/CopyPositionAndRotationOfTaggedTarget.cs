@@ -8,7 +8,7 @@ public class CopyPositionAndRotationOfTaggedTarget : MonoBehaviour
     [Tooltip("When this is enabled, it will go to the root GameObject (its ancestor), and then go down all their children to find a tagged object. This can be useful for when working with networked systems, in which multiples of the same prefabs could be spawned, each having their own version of the tagged object.\n" +
              "If this is disabled, it will search throughout the scene for a tagged transform")]
     [SerializeField] private bool m_onlySearchInAncestralHierarchy = true;
-
+    [SerializeField] private Transform m_rootTransform;
 
     private bool FoundTaggedTransform()
     {
@@ -19,7 +19,7 @@ public class CopyPositionAndRotationOfTaggedTarget : MonoBehaviour
 
         if (m_onlySearchInAncestralHierarchy)
         {
-            m_taggedTransform = transform.root.FindChildByTag(m_tagToSearchFor); // Go to the root GameObject, then search back downwards until you find something with this tag.
+            m_taggedTransform = m_rootTransform.FindChildByTag(m_tagToSearchFor); // Go to the root GameObject, then search back downwards until you find something with this tag.
         }
         else
         {
