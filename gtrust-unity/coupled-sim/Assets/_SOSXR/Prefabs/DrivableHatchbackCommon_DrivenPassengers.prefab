@@ -4150,6 +4150,10 @@ MonoBehaviour:
   - {fileID: 3142531112889070784}
   - {fileID: 4762488084450674328}
   - {fileID: 6193591544290935352}
+  - {fileID: 4909784205585218830}
+  - {fileID: 8243639070531167431}
+  - {fileID: 8485270855540871066}
+  - {fileID: 209426147274557965}
   _carBlinkers: {fileID: 1824734568522575002}
   stopLights: {fileID: 6700914382337255891}
   frontLights: {fileID: 4527356753851922199}
@@ -14988,7 +14992,7 @@ PrefabInstance:
     - target: {fileID: 4764351552333431003, guid: dbbb24367dd809f40a8b370b699c7028,
         type: 3}
       propertyPath: m_color.rgba
-      value: 4281150503
+      value: 4282977040
       objectReference: {fileID: 0}
     - target: {fileID: 5335117400120193727, guid: dbbb24367dd809f40a8b370b699c7028,
         type: 3}
@@ -15147,6 +15151,12 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 6828324123381733064}
   m_SourcePrefab: {fileID: 100100000, guid: dbbb24367dd809f40a8b370b699c7028, type: 3}
+--- !u!4 &209426147274557965 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1024540067554788439, guid: dbbb24367dd809f40a8b370b699c7028,
+    type: 3}
+  m_PrefabInstance: {fileID: 927708794685263450}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &849318386420370422 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 510737072600106412, guid: dbbb24367dd809f40a8b370b699c7028,
@@ -15168,7 +15178,7 @@ MonoBehaviour:
   m_radius: 0.15
   m_color:
     serializedVersion: 2
-    rgba: 4282406279
+    rgba: 4289488214
 --- !u!1 &1445831409716139763 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1787720395961604265, guid: dbbb24367dd809f40a8b370b699c7028,
@@ -15190,7 +15200,7 @@ MonoBehaviour:
   m_radius: 0.15
   m_color:
     serializedVersion: 2
-    rgba: 4283837528
+    rgba: 4279442445
 --- !u!1 &4862565897515770530 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5738905134950493432, guid: dbbb24367dd809f40a8b370b699c7028,
@@ -15212,7 +15222,7 @@ MonoBehaviour:
   m_radius: 0.15
   m_color:
     serializedVersion: 2
-    rgba: 4280425247
+    rgba: 4287535974
 --- !u!4 &4909784205585218830 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5259338512305648468, guid: dbbb24367dd809f40a8b370b699c7028,
@@ -15258,6 +15268,12 @@ Transform:
 --- !u!4 &8243639070531167431 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9131233190578629277, guid: dbbb24367dd809f40a8b370b699c7028,
+    type: 3}
+  m_PrefabInstance: {fileID: 927708794685263450}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8485270855540871066 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8727517414348390848, guid: dbbb24367dd809f40a8b370b699c7028,
     type: 3}
   m_PrefabInstance: {fileID: 927708794685263450}
   m_PrefabAsset: {fileID: 0}

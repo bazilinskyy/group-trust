@@ -85,7 +85,7 @@ MonoBehaviour:
   m_radius: 0.3
   m_color:
     serializedVersion: 2
-    rgba: 4278321667
+    rgba: 4282394631
 --- !u!1 &510759243375576539
 GameObject:
   m_ObjectHideFlags: 0
@@ -221,7 +221,7 @@ MonoBehaviour:
   m_radius: 0.1
   m_color:
     serializedVersion: 2
-    rgba: 4278543116
+    rgba: 4293389302
 --- !u!114 &585916621719829302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -437,6 +437,13 @@ MonoBehaviour:
   Type: 2
   SyncTransforms:
   - {fileID: 1789823192781391934}
+  - {fileID: 4280091671799910133}
+  - {fileID: 5902651862827094172}
+  - {fileID: 4922314529685513227}
+  - {fileID: 9091500302008494899}
+  - {fileID: 8391831393875507518}
+  - {fileID: 8744335669624612434}
+  - {fileID: 7604087255358881092}
   _carBlinkers: {fileID: 0}
   stopLights: {fileID: 0}
   frontLights: {fileID: 0}
@@ -763,7 +770,7 @@ MonoBehaviour:
   m_radius: 0.1
   m_color:
     serializedVersion: 2
-    rgba: 4293053066
+    rgba: 4283592020
 --- !u!114 &3573032263462561463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -973,7 +980,7 @@ MonoBehaviour:
   m_radius: 0.1
   m_color:
     serializedVersion: 2
-    rgba: 4280822824
+    rgba: 4278190594
 --- !u!114 &3039575092530218418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1123,7 +1130,7 @@ MonoBehaviour:
   m_radius: 0.1
   m_color:
     serializedVersion: 2
-    rgba: 4281475900
+    rgba: 4285011751
 --- !u!1 &7661147631939441798
 GameObject:
   m_ObjectHideFlags: 0
