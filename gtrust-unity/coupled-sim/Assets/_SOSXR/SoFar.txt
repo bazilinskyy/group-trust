@@ -1,4 +1,20 @@
-﻿15-07-2024
+﻿17-07-2024
+
+Rig needed to go from inside the Prefab to getting spawned, but only on the local player. The wrong HMD kept getting linked to the wrong rig. 
+Turning off the 'remote' rig was niet helping out, since this was often the second instantiated rig, and the HMD would have bound to that one instead of to it's prior one. 
+This caused some headache, since a lot of components were relying on the instantiated rig, and those all needed to go and find the correct (!) rig.
+It had to look for a rig inside it's own hierarchy, but not being able to find the other rig (such as what would happen on the Host who has as a car also the rig of the Client in it's hierarchy). 
+So that needed to be searched for in a subsection of the hierarchy. 
+
+The transforms of the characters are not synced, which is still a bit of a mystery to me. Why is the position of the car proper being synced, but of the components inside the car, not? 
+
+    public Transform[] SyncTransforms; in PlayerAvatar?
+
+
+
+----
+
+15-07-2024
 
 Took me a long minute to get the old repo into the new repo. I wanted to have it copy the entire commit history, but that was not to be. I needed to have Francescos credentials for this, which I don't have. I tried to get it done with my own creds, but that was not working out either. The inelegant way was to get the folders from the original repo, and simply dump them into the folder here in the new repo. 
 

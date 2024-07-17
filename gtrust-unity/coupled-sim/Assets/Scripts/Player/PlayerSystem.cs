@@ -34,9 +34,9 @@ public class PlayerSystem : MonoBehaviour
 
 
     private InputMode PlayerInputMode = InputMode.VR;
-    [FormerlySerializedAs("_AvatarPrefab")] [SerializeField] private PlayerAvatar m_pedestrianPrefab;
+    [SerializeField] private PlayerAvatar m_pedestrianPrefab;
     [SerializeField] private PlayerAvatar[] m_passengerPrefabs;
-    [FormerlySerializedAs("_AvatarPrefabDriver")] [SerializeField] private PlayerAvatar[] m_driverPrefabs;
+    [SerializeField] private PlayerAvatar[] m_driverPrefabs;
 
 
     // [NonSerialized]
@@ -52,9 +52,9 @@ public class PlayerSystem : MonoBehaviour
     //[NonSerialized]
     public List<PlayerAvatar> Passengers = new();
 
-    private readonly List<AvatarPose> _poses = new();
+    [SerializeField] private List<AvatarPose> _poses = new();
 
-    private readonly PlayerAvatar[] Player2Avatar = new PlayerAvatar[UNetConfig.MaxPlayers];
+  [SerializeField]  private PlayerAvatar[] Player2Avatar = new PlayerAvatar[UNetConfig.MaxPlayers];
 
     private HMIManager _hmiManager;
     public PlayerAvatar PedestrianPrefab => m_pedestrianPrefab;
@@ -99,10 +99,11 @@ public class PlayerSystem : MonoBehaviour
             case SpawnPointType.PlayerControlledPedestrian:
                 return m_pedestrianPrefab;
             case SpawnPointType.PlayerControllingCar:
+                return m_driverPrefabs[carIdx]; // SOSXR
             case SpawnPointType.PlayerInAIControlledCar:
                 return m_driverPrefabs[carIdx];
             case SpawnPointType.PlayerPassivePassenger:
-                return m_passengerPrefabs[0];
+                return m_passengerPrefabs[0]; // SOSXR: Why only index 0?
             default:
                 Assert.IsFalse(true, $"Invalid SpawnPointType: {type}");
 
@@ -296,7 +297,8 @@ public class PlayerSystem : MonoBehaviour
         {
             _poses.Add(avatar.GetPose());
 
-            Debug.LogFormat("SOSXR: I'm gathering poses for avatar {0}. I think this only happens on the Host?", avatar.name);
+           
+            Debug.LogFormat("SOSXR: I'm gathering poses for avatar {0} with {1} LocalPositions. I think this only happens on the Host?", avatar.name,  _poses[^1].LocalPositions.Count);
         }
 
         return _poses;
