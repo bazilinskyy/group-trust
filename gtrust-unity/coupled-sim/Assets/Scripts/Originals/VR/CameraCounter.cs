@@ -39,6 +39,11 @@ public class CameraCounter : MonoBehaviour
 
     private void LateUpdate()
     {
+        if (_childCamera == null)
+        {
+            return;
+        }
+        
         var invertedPosition = -_childCamera.localPosition;
         transform.localPosition = invertedPosition;
     }
