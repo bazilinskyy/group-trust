@@ -158,9 +158,27 @@ public class PlayerSystem : MonoBehaviour
 
         // DisableRemoteXROriginParts(remotePlayer);
 
-        DisableRemoteXRRecenterer(remotePlayer);
-
+        // DisableRemoteXRRecenterer(remotePlayer);
+        
+        DestroyRemoteXRRecenterer(remotePlayer);
+        
+        
         remotePlayer.Initialize(true, InputMode.None, ControlMode.HostAI, spawnPoint.VehicleType);
+    }
+
+
+    private void DestroyRemoteXRRecenterer(PlayerAvatar remotePlayer)
+    {
+        var recenterer = remotePlayer.GetComponentInChildren<RecenterChildXROrigin>();
+
+        if (recenterer == null)
+        {
+            Debug.LogWarning("SOSXR: I couldn't find the remote RecenterChildXROrigin to destroy. This is not good.");
+
+            return;
+        }
+
+        Destroy(recenterer);
     }
 
 
@@ -170,12 +188,12 @@ public class PlayerSystem : MonoBehaviour
 
         if (recenterer == null)
         {
-            Debug.LogError("SOSXR: I couldn't find the remote RecenterXROrigin. This is not good.");
+            Debug.LogWarning("SOSXR: I couldn't find the remote RecenterChildXROrigin to disable. This is not good.");
 
             return;
         }
 
-        recenterer.enabled = false;                            
+        recenterer.enabled = false;
     }
 
 
@@ -195,8 +213,8 @@ public class PlayerSystem : MonoBehaviour
             child.gameObject.SetActive(false);
             Debug.Log("SOSXR: I'm disabling a child of the remote XROrigin. This is probably good.");
         }
-        
-        remoteXROrigin  .gameObject.SetActive(false);
+
+        remoteXROrigin.gameObject.SetActive(false);
     }
 
 
@@ -294,7 +312,7 @@ public class PlayerSystem : MonoBehaviour
             if (avatar != LocalPlayer)
             {
                 Avatars[i].ApplyPose(poses[i]);
-                
+
                 Debug.LogFormat("SOSXR: I'm applying poses for Avatar {0}, but not the local player. And only on Clients?", Avatars[i].name);
             }
         }
