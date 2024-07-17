@@ -8362,6 +8362,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8714987167690946039}
+  - component: {fileID: 6230360525223346777}
   m_Layer: 9
   m_Name: Driver
   m_TagString: Untagged
@@ -8386,6 +8387,20 @@ Transform:
   - {fileID: 5867536194972581800}
   m_Father: {fileID: 1789823192781391934}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6230360525223346777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2371688756578809180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be570d50e3924070bccc81cd9ccc08bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_recenterTo: {fileID: 4909784205585218830}
+  m_recenterKey: 256
 --- !u!1 &2485405892156156229
 GameObject:
   m_ObjectHideFlags: 0
@@ -14887,7 +14902,7 @@ PrefabInstance:
     - target: {fileID: 4764351552333431003, guid: dbbb24367dd809f40a8b370b699c7028,
         type: 3}
       propertyPath: m_color.rgba
-      value: 4279616378
+      value: 4284774711
       objectReference: {fileID: 0}
     - target: {fileID: 5335117400120193727, guid: dbbb24367dd809f40a8b370b699c7028,
         type: 3}
@@ -14964,6 +14979,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dbbb24367dd809f40a8b370b699c7028, type: 3}
+--- !u!4 &4909784205585218830 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5259338512305648468, guid: dbbb24367dd809f40a8b370b699c7028,
+    type: 3}
+  m_PrefabInstance: {fileID: 927708794685263450}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &5568419874118612190 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4726776730854374020, guid: dbbb24367dd809f40a8b370b699c7028,

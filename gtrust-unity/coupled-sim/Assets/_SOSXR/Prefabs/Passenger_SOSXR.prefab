@@ -85,7 +85,7 @@ MonoBehaviour:
   m_radius: 0.15
   m_color:
     serializedVersion: 2
-    rgba: 4280888861
+    rgba: 4285619314
 --- !u!1 &510759243375576539
 GameObject:
   m_ObjectHideFlags: 0
@@ -221,7 +221,7 @@ MonoBehaviour:
   m_radius: 0.1
   m_color:
     serializedVersion: 2
-    rgba: 4292713464
+    rgba: 4285804339
 --- !u!114 &585916621719829302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -306,6 +306,7 @@ GameObject:
   - component: {fileID: 1731229833398619712}
   - component: {fileID: 7263647346857764255}
   - component: {fileID: 7992445498551782146}
+  - component: {fileID: 5475745438380490210}
   m_Layer: 15
   m_Name: Passenger_SOSXR
   m_TagString: Untagged
@@ -589,6 +590,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5475745438380490210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1783928687406872520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be570d50e3924070bccc81cd9ccc08bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_recenterTo: {fileID: 4280091671799910133}
+  m_recenterKey: 256
 --- !u!1 &3119117780768409356
 GameObject:
   m_ObjectHideFlags: 0
@@ -748,7 +763,7 @@ MonoBehaviour:
   m_radius: 0.1
   m_color:
     serializedVersion: 2
-    rgba: 4279822417
+    rgba: 4289218320
 --- !u!114 &3573032263462561463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -958,7 +973,7 @@ MonoBehaviour:
   m_radius: 0.1
   m_color:
     serializedVersion: 2
-    rgba: 4293713135
+    rgba: 4284175954
 --- !u!114 &3039575092530218418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1108,7 +1123,7 @@ MonoBehaviour:
   m_radius: 0.1
   m_color:
     serializedVersion: 2
-    rgba: 4289704187
+    rgba: 4280887845
 --- !u!1 &7661147631939441798
 GameObject:
   m_ObjectHideFlags: 0
