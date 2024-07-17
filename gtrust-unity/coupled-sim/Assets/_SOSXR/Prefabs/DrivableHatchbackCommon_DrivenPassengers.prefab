@@ -4149,7 +4149,7 @@ MonoBehaviour:
   - {fileID: 1709340007734753065}
   - {fileID: 3142531112889070784}
   - {fileID: 4762488084450674328}
-  - {fileID: 1785887694706695708}
+  - {fileID: 2619456002469441999}
   _carBlinkers: {fileID: 1824734568522575002}
   stopLights: {fileID: 6700914382337255891}
   frontLights: {fileID: 4527356753851922199}
@@ -14988,7 +14988,7 @@ PrefabInstance:
     - target: {fileID: 4764351552333431003, guid: dbbb24367dd809f40a8b370b699c7028,
         type: 3}
       propertyPath: m_color.rgba
-      value: 4287981426
+      value: 4286628744
       objectReference: {fileID: 0}
     - target: {fileID: 5335117400120193727, guid: dbbb24367dd809f40a8b370b699c7028,
         type: 3}
@@ -15168,7 +15168,7 @@ MonoBehaviour:
   m_radius: 0.15
   m_color:
     serializedVersion: 2
-    rgba: 4278716424
+    rgba: 4283517000
 --- !u!1 &1445831409716139763 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1787720395961604265, guid: dbbb24367dd809f40a8b370b699c7028,
@@ -15190,7 +15190,7 @@ MonoBehaviour:
   m_radius: 0.15
   m_color:
     serializedVersion: 2
-    rgba: 4279774032
+    rgba: 4287830315
 --- !u!1 &4862565897515770530 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5738905134950493432, guid: dbbb24367dd809f40a8b370b699c7028,
@@ -15212,7 +15212,7 @@ MonoBehaviour:
   m_radius: 0.15
   m_color:
     serializedVersion: 2
-    rgba: 4278192640
+    rgba: 4279585158
 --- !u!4 &4909784205585218830 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5259338512305648468, guid: dbbb24367dd809f40a8b370b699c7028,
