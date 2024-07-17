@@ -85,7 +85,7 @@ MonoBehaviour:
   m_radius: 0.3
   m_color:
     serializedVersion: 2
-    rgba: 4279845183
+    rgba: 4286083133
 --- !u!1 &510759243375576539
 GameObject:
   m_ObjectHideFlags: 0
@@ -221,7 +221,7 @@ MonoBehaviour:
   m_radius: 0.1
   m_color:
     serializedVersion: 2
-    rgba: 4278846984
+    rgba: 4286726211
 --- !u!114 &585916621719829302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -374,7 +374,7 @@ MonoBehaviour:
     gameObjects: []
     monoBehaviours:
     - {fileID: 0}
-    - {fileID: 5245345278422529144}
+    - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
     collider: {fileID: 0}
@@ -386,7 +386,7 @@ MonoBehaviour:
     gameObjects: []
     monoBehaviours:
     - {fileID: 0}
-    - {fileID: 5245345278422529144}
+    - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
     collider: {fileID: 0}
@@ -763,7 +763,7 @@ MonoBehaviour:
   m_radius: 0.1
   m_color:
     serializedVersion: 2
-    rgba: 4278914567
+    rgba: 4278190081
 --- !u!114 &3573032263462561463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -973,7 +973,7 @@ MonoBehaviour:
   m_radius: 0.1
   m_color:
     serializedVersion: 2
-    rgba: 4287882213
+    rgba: 4281051296
 --- !u!114 &3039575092530218418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1123,7 +1123,7 @@ MonoBehaviour:
   m_radius: 0.1
   m_color:
     serializedVersion: 2
-    rgba: 4289765447
+    rgba: 4288154289
 --- !u!1 &7661147631939441798
 GameObject:
   m_ObjectHideFlags: 0
@@ -1133,7 +1133,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6085194420971212053}
-  - component: {fileID: 5245345278422529144}
   m_Layer: 15
   m_Name: CameraCounter
   m_TagString: Untagged
@@ -1156,20 +1155,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5702687424825841354}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5245345278422529144
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7661147631939441798}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae53c22364b386b4ba20adcaddd02770, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_recenterKey: 48
-  m_allowRecentering: 0
 --- !u!1 &7793626716925398184
 GameObject:
   m_ObjectHideFlags: 0
