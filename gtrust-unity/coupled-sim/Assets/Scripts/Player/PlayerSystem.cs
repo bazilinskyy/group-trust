@@ -158,7 +158,24 @@ public class PlayerSystem : MonoBehaviour
 
         // DisableRemoteXROriginParts(remotePlayer);
 
+        DisableRemoteXRRecenterer();
+
         remotePlayer.Initialize(true, InputMode.None, ControlMode.HostAI, spawnPoint.VehicleType);
+    }
+
+
+    private void DisableRemoteXRRecenterer(PlayerAvatar remotePlayer)
+    {
+        var recenterer = remotePlayer.GetComponentInChildren<RecenterXROrigin>();
+
+        if (recenterer == null)
+        {
+            Debug.LogError("SOSXR: I couldn't find the remote RecenterXROrigin. This is not good.");
+
+            return;
+        }
+
+        recenterer.enabled = false;                            
     }
 
 
