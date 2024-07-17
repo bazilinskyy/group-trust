@@ -158,7 +158,7 @@ public class PlayerSystem : MonoBehaviour
 
         // DisableRemoteXROriginParts(remotePlayer);
 
-        DisableRemoteXRRecenterer();
+        DisableRemoteXRRecenterer(remotePlayer);
 
         remotePlayer.Initialize(true, InputMode.None, ControlMode.HostAI, spawnPoint.VehicleType);
     }
