@@ -85,7 +85,7 @@ MonoBehaviour:
   m_radius: 0.15
   m_color:
     serializedVersion: 2
-    rgba: 4282888468
+    rgba: 4286809931
 --- !u!1 &510759243375576539
 GameObject:
   m_ObjectHideFlags: 0
@@ -221,7 +221,7 @@ MonoBehaviour:
   m_radius: 0.1
   m_color:
     serializedVersion: 2
-    rgba: 4280694149
+    rgba: 4278804317
 --- !u!114 &585916621719829302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -423,10 +423,10 @@ MonoBehaviour:
   Internal: {fileID: 0}
   External: {fileID: 0}
   m_instantiateXRRig: 0
-  m_xrRigPrefab: {fileID: 1422170957023196873, guid: a4af4edd0797b244e8f65279184c083e,
+  m_xrRigPrefab: {fileID: 9094068216743168109, guid: a4af4edd0797b244e8f65279184c083e,
     type: 3}
   cameras:
-  - {fileID: 0}
+  - {fileID: 3901573149800156883}
   HMISlots:
     Hood: {fileID: 0}
     Top: {fileID: 0}
@@ -1017,7 +1017,7 @@ MonoBehaviour:
   m_radius: 0.1
   m_color:
     serializedVersion: 2
-    rgba: 4279582509
+    rgba: 4279839322
 --- !u!114 &3573032263462561463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1225,7 +1225,7 @@ MonoBehaviour:
   m_radius: 0.1
   m_color:
     serializedVersion: 2
-    rgba: 4280226341
+    rgba: 4281116561
 --- !u!114 &3039575092530218418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1374,7 +1374,7 @@ MonoBehaviour:
   m_radius: 0.1
   m_color:
     serializedVersion: 2
-    rgba: 4286740324
+    rgba: 4284765817
 --- !u!1 &7661147631939441798
 GameObject:
   m_ObjectHideFlags: 0
@@ -4755,12 +4755,12 @@ PrefabInstance:
     - target: {fileID: 4458662237869418961, guid: a4af4edd0797b244e8f65279184c083e,
         type: 3}
       propertyPath: m_color.rgba
-      value: 4280974086
+      value: 4283519826
       objectReference: {fileID: 0}
     - target: {fileID: 5094274632154511347, guid: a4af4edd0797b244e8f65279184c083e,
         type: 3}
       propertyPath: m_color.rgba
-      value: 4278406790
+      value: 4280629008
       objectReference: {fileID: 0}
     - target: {fileID: 5793977135206799221, guid: a4af4edd0797b244e8f65279184c083e,
         type: 3}
