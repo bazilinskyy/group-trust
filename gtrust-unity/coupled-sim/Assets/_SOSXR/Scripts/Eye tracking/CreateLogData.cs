@@ -9,22 +9,21 @@ public class CreateLogData : MonoBehaviour
 {
     [SerializeField] private NullValueHandling m_nullValueHandling = NullValueHandling.Fill;
 
-    [SerializeField] private bool m_startEnabled = true;
     [SerializeField] private Camera m_camera;
     [SerializeField] private EyeTracking m_eyeTracking;
     [SerializeField] private EmperorsRating m_emperorsRating;
     [SerializeField] private bool m_useCustomLogPath = false;
-    [SerializeField] private string m_customLogPath = Application.dataPath + "/_SOSXR/Logs/";
     private static readonly string[] _columnNames = {"UnixTimeSeconds", "Frame", "CaptureTime", "LogTime", "HMDPosition", "HMDRotation", "GazeStatus", "CombinedGazeForward", "CombinedGazePosition", "InterPupillaryDistanceInMM", "LeftEyeStatus", "LeftEyeForward", "LeftEyePosition", "LeftPupilIrisDiameterRatio", "LeftPupilDiameterInMM", "LeftIrisDiameterInMM", "RightEyeStatus", "RightEyeForward", "RightEyePosition", "RightPupilIrisDiameterRatio", "RightPupilDiameterInMM", "RightIrisDiameterInMM", "FocusDistance", "FocusStability", "FocusName", "EmperorsRating - UnixTimeSeconds", "RatingHand", "CurrentRotation", "CurrentHumanReadableRotation"};
+    private readonly string _customLogPath = Application.dataPath + "/_SOSXR/Logs/";
     private List<GazeData> _dataSinceLastUpdate;
     private List<EyeMeasurements> _eyeMeasurementsSinceLastUpdate;
     private int _gazeDataCount = 0;
     private float _gazeTimer = 0f;
+    private bool _logData = true;
+    private bool _logInitialised;
     private StreamWriter _streamWriter;
     private const string _ValidString = "VALID";
     private const string _InvalidString = "INVALID";
-
-    public bool Logging { get; private set; } = false;
 
 
     private void Awake()
@@ -46,42 +45,21 @@ public class CreateLogData : MonoBehaviour
     }
 
 
-    private void Start()
+    public void TurnOnLogging()
     {
-        if (m_startEnabled)
-        {
-            StartLogging();
-        }
+        _logData = true;
     }
 
 
-    [ContextMenu(nameof(ToggleLogging))]
-    public void ToggleLogging()
+    [ContextMenu(nameof(InitialiseLog))]
+    private void InitialiseLog()
     {
-        if (Logging)
+        if (_logInitialised)
         {
-            StopLogging();
-        }
-        else
-        {
-            StartLogging();
-        }
-    }
-
-
-    [ContextMenu(nameof(StartLogging))]
-    private void StartLogging()
-    {
-        if (Logging)
-        {
-            Debug.LogWarning("Logging was on when StartLogging was called. No new log was started.");
-
             return;
         }
 
-        Logging = true;
-
-        var logPath = m_useCustomLogPath ? m_customLogPath : Application.dataPath + "/Logs/";
+        var logPath = m_useCustomLogPath ? _customLogPath : Application.dataPath + "/Logs/";
         Directory.CreateDirectory(logPath);
 
         var now = DateTime.Now;
@@ -92,26 +70,33 @@ public class CreateLogData : MonoBehaviour
 
         WriteLog(_columnNames);
         Debug.Log("Log file started at: " + path);
+
+        _logInitialised = true;
     }
 
 
-    [ContextMenu(nameof(StopLogging))]
-    public void StopLogging()
+    [ContextMenu(nameof(CloseLog))]
+    public void CloseLog()
     {
-        if (!Logging)
+        if (!_logInitialised)
         {
+            Debug.LogWarning("Log not initialised, will not close");
+
             return;
         }
 
-        if (_streamWriter != null)
+        if (_streamWriter == null)
         {
-            Debug.Log("Closing StreamWriter");
-            _streamWriter.Flush();
-            _streamWriter.Close();
-            _streamWriter = null;
+            Debug.LogWarning("StreamWriter is null");
+
+            return;
         }
 
-        Logging = false;
+        _streamWriter.Flush();
+        _streamWriter.Close();
+        _streamWriter = null;
+        _logInitialised = false;
+        _logData = false;
         Debug.Log("Logging ended");
     }
 
@@ -125,6 +110,13 @@ public class CreateLogData : MonoBehaviour
             return;
         }
 
+        if (!_logData)
+        {
+            return;
+        }
+
+        InitialiseLog();
+
         LogFrameData();
     }
 
@@ -134,16 +126,10 @@ public class CreateLogData : MonoBehaviour
     /// </summary>
     public void LogFrameData()
     {
-        if (!Logging)
-        {
-            return;
-        }
-
         _gazeTimer += Time.deltaTime;
 
         if (_gazeTimer >= 1.0f)
         {
-            // Debug.Log("Gaze data rows per second: " + _gazeDataCount);
             _gazeDataCount = 0;
             _gazeTimer = 0f;
         }
@@ -154,7 +140,6 @@ public class CreateLogData : MonoBehaviour
 
         for (var i = 0; i < dataCount; i++)
         {
-            // Debug.Log($"Logging data for frame {i}");
             CreateLog(_dataSinceLastUpdate[i], _eyeMeasurementsSinceLastUpdate[i]);
         }
     }
@@ -164,16 +149,10 @@ public class CreateLogData : MonoBehaviour
     {
         var logData = new string[29];
 
-        // SOSXR : UnixTimeSeconds
+        // Time
         logData[0] = DateTimeOffset.Now.ToUnixTimeSeconds().ToString();
-
-        // Gaze data frame number
         logData[1] = data.frameNumber.ToString();
-
-        // Gaze data capture time (nanoseconds)
         logData[2] = data.captureTime.ToString();
-
-        // Log time (milliseconds)
         logData[3] = (DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond).ToString();
 
         // HMD
@@ -226,9 +205,9 @@ public class CreateLogData : MonoBehaviour
 
     private void WriteLog(string[] values)
     {
-        if (!Logging || _streamWriter == null)
+        if (_streamWriter == null)
         {
-            Debug.LogWarning("Logging is not active or StreamWriter is null");
+            Debug.LogWarning("StreamWriter is null");
 
             return;
         }
@@ -265,7 +244,7 @@ public class CreateLogData : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        StopLogging(); // Since this is now MonoBehaviour, this can be here
+        CloseLog(); // Since this is now MonoBehaviour, this can be here
     }
 
 
