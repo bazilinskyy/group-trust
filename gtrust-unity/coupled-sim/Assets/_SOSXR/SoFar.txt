@@ -1,4 +1,11 @@
-﻿17-07-2024
+﻿18-07-2024
+In Windows Defender Firewall -> Set to Advanced Settings. Check Inbound connections. Filter by name. Scroll down to Unity. Select correct version of Editor. Check the entry for ' Public' which will have a red icon. Double click that one and set it to Allow. 
+
+
+
+---
+
+17-07-2024
 
 Rig needed to go from inside the Prefab to getting spawned, but only on the local player. The wrong HMD kept getting linked to the wrong rig. 
 Turning off the 'remote' rig was niet helping out, since this was often the second instantiated rig, and the HMD would have bound to that one instead of to it's prior one. 
