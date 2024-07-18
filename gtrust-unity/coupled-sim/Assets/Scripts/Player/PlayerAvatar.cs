@@ -122,17 +122,17 @@ public class PlayerAvatar : MonoBehaviour
 
     [Header("Sync these over the network")]
     public Transform[] SyncTransforms; // SOSXR : These are the transforms that are synced over the network
-    
+
     [Header("Other")]
     public Camera[] cameras;
     public HMIAnchors HMISlots;
     public AvatarType Type;
-    
+
     [SerializeField] private CarBlinkers _carBlinkers;
     public GameObject stopLights;
     public GameObject frontLights;
-    
-    
+
+
     private readonly List<Vector3> _pos = new();
     private readonly List<Quaternion> _rot = new();
     public CarBlinkers CarBlinkers => _carBlinkers;
@@ -191,8 +191,13 @@ public class PlayerAvatar : MonoBehaviour
             }
             else
             {
-                cameras[cameraIndex] = new GameObject().AddComponent<Camera>();
-                cameras[cameraIndex].gameObject.SetActive(true);
+                var go = new GameObject("SOSXR: Instantiated Normal Camera");
+                go.transform.parent = m_xrRigParent;
+                go.transform.localPosition = Vector3.zero;
+                go.transform.localRotation = Quaternion.identity;
+                go.transform.localScale = Vector3.one;
+                cameras[cameraIndex] = go.AddComponent<Camera>();
+                cameras[cameraIndex].nearClipPlane = 0.06f;
             }
         }
     }

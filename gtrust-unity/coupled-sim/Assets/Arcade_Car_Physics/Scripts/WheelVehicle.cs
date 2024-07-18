@@ -48,6 +48,9 @@ namespace VehicleBehaviour
         [SerializeField] private string blinkersLeftInput = "blinker_left";
         [SerializeField] private string blinkersRightInput = "blinker_right";
         [SerializeField] private string blinkersClearInput = "blinker_clear";
+        [SerializeField] private string forwardInput = "forward";
+        [SerializeField] private string reverseInput = "reverse";
+
         #pragma warning restore 0414
 
         /*
@@ -290,6 +293,8 @@ namespace VehicleBehaviour
         // Private variables set at the start
         private Rigidbody _rb;
         private WheelCollider[] wheels;
+        private bool reverse = false;
+
 
 
         // Init rigidbody, center of mass, wheels and more
@@ -324,7 +329,6 @@ namespace VehicleBehaviour
         }
 
 
-        private bool reverse = false;
 
 
         // Visual feedbacks and boost regen
@@ -350,16 +354,16 @@ namespace VehicleBehaviour
             // Get all the inputs!
             if (isPlayer)
             {
-                if (Input.GetButtonDown("forward"))
+                if (Input.GetButtonDown(forwardInput))
                 {
                     reverse = false;
                 }
-                else if (Input.GetButtonDown("reverse"))
+                else if (Input.GetButtonDown(reverseInput))
                 {
                     reverse = true;
                 }
 
-                if (Input.GetButtonDown("blinker_left"))
+                if (Input.GetButtonDown(blinkersLeftInput))
                 {
                     if (blinkers.State != BlinkerState.Left)
                     {
@@ -370,7 +374,7 @@ namespace VehicleBehaviour
                         blinkers.Stop();
                     }
                 }
-                else if (Input.GetButtonDown("blinker_right"))
+                else if (Input.GetButtonDown(blinkersRightInput))
                 {
                     if (blinkers.State != BlinkerState.Right)
                     {
@@ -381,7 +385,7 @@ namespace VehicleBehaviour
                         blinkers.Stop();
                     }
                 }
-                else if (Input.GetButtonDown("blinker_clear"))
+                else if (Input.GetButtonDown(blinkersClearInput))
                 {
                     blinkers.Stop();
                 }
