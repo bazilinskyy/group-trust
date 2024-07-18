@@ -5,8 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0588ed33-30a2-45ec-9206-a9228045be30" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Networking/Client.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Networking/Client.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Audio.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Audio/506019__klankbeeld__city-night-hum-07-160927_0989.flac" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Audio/506019__klankbeeld__city-night-hum-07-160927_0989.flac.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Audio/Car_Mixer.mixer" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Audio/Car_Mixer.mixer.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Audio/City_Ambiance_Mixer.mixer" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Audio/City_Ambiance_Mixer.mixer.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ProjectSettings/BurstAotSettings_Android.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ProjectSettings/BurstAotSettings_StandaloneWindows.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ProjectSettings/BurstAotSettings_WSAPlayer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.coupled-sim/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.coupled-sim/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Arcade_Car_Physics/Scripts/EngineSoundManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Arcade_Car_Physics/Scripts/EngineSoundManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Arcade_Car_Physics/Scripts/WheelVehicle.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Arcade_Car_Physics/Scripts/WheelVehicle.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Textures/Cars/DrivableCar/LeftRearMirror.renderTexture" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Textures/Cars/DrivableCar/LeftRearMirror.renderTexture" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Textures/Cars/DrivableCar/MiddleRearMirror.renderTexture" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Textures/Cars/DrivableCar/MiddleRearMirror.renderTexture" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Textures/Cars/DrivableCar/RightRearMirror.renderTexture" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Textures/Cars/DrivableCar/RightRearMirror.renderTexture" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/XR/Settings/OpenXR Package Settings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/XR/Settings/OpenXR Package Settings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_SOSXR/Prefabs/DrivableHatchbackCommon_DrivenPassengers.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_SOSXR/Prefabs/DrivableHatchbackCommon_DrivenPassengers.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_SOSXR/SoFar.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_SOSXR/SoFar.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Scenes/MainScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Scenes/MainScene.unity" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,6 +36,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/26de25f631c0411c9787870ebe3bd2043e00/48/98143759/WheelCollider.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/2d8783c7af0442318483a199a473c55b175e00/91/669403ab/Mathf.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/2ef0191b30684937a869061138f38973572e20/f8/018ed364/MemoryStream.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/56073df97ede4f769c2cc45d546d986d172200/f4/6abd940d/Object.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/PlayerSystem.cs" root0="FORCE_HIGHLIGHTING" />

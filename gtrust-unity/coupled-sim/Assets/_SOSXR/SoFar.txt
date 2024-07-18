@@ -12,6 +12,18 @@ G-Hub needs to be turned on for the car to get input from the steering wheel.
 Set the calibration of the Varjo to be 'never', and have Unity trigger it with a buttonpress (currently set to Keypad1)
 That was also why the eye tracking got randomly triggered previously: it used ot be on Spacebar. 
 
+In the Car there was a gameobject holding all the mirrors, and it was disabled, I enabled it.
+
+Speedometer into list of SynchyTransformy. 
+ 
+
+
+Lighthouses
+3 ppl test
+Noize
+
+Make City ambience noize loopable
+
 
 
 ---

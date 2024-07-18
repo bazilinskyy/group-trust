@@ -30,7 +30,7 @@ namespace VehicleBehaviour
         // If isPlayer is false inputs are ignored
         [SerializeField]
         private bool isPlayer = true;
-
+        
         public bool IsPlayer
         {
             get => isPlayer;
@@ -296,7 +296,6 @@ namespace VehicleBehaviour
         private bool reverse = false;
 
 
-
         // Init rigidbody, center of mass, wheels and more
         private void Start()
         {
@@ -329,8 +328,6 @@ namespace VehicleBehaviour
         }
 
 
-
-
         // Visual feedbacks and boost regen
         private void Update()
         {
@@ -352,43 +349,47 @@ namespace VehicleBehaviour
             }
 
             // Get all the inputs!
-            if (isPlayer)
+            if (!isPlayer)
             {
-                if (Input.GetButtonDown(forwardInput))
-                {
-                    reverse = false;
-                }
-                else if (Input.GetButtonDown(reverseInput))
-                {
-                    reverse = true;
-                }
+                return;
+            }
 
-                if (Input.GetButtonDown(blinkersLeftInput))
+            if (Input.GetButtonDown(forwardInput))
+            {
+                reverse = false;
+            }
+            else if (Input.GetButtonDown(reverseInput))
+            {
+                reverse = true;
+            }
+
+            if (Input.GetButtonDown(blinkersLeftInput))
+            {
+                if (blinkers.State != BlinkerState.Left)
                 {
-                    if (blinkers.State != BlinkerState.Left)
-                    {
-                        blinkers.StartLeftBlinkers();
-                    }
-                    else
-                    {
-                        blinkers.Stop();
-                    }
+                    blinkers.StartLeftBlinkers();
                 }
-                else if (Input.GetButtonDown(blinkersRightInput))
-                {
-                    if (blinkers.State != BlinkerState.Right)
-                    {
-                        blinkers.StartRightBlinkers();
-                    }
-                    else
-                    {
-                        blinkers.Stop();
-                    }
-                }
-                else if (Input.GetButtonDown(blinkersClearInput))
+                else
                 {
                     blinkers.Stop();
                 }
+            }
+
+            if (Input.GetButtonDown(blinkersRightInput))
+            {
+                if (blinkers.State != BlinkerState.Right)
+                {
+                    blinkers.StartRightBlinkers();
+                }
+                else
+                {
+                    blinkers.Stop();
+                }
+            }
+
+            if (Input.GetButtonDown(blinkersClearInput))
+            {
+                blinkers.Stop();
             }
         }
 
@@ -405,23 +406,9 @@ namespace VehicleBehaviour
 
             GatherInputs();
 
-            steeringWheelAngle = Mathf.Lerp(steeringWheelAngle, steering * steeringWheelMul, steerSpeed);
+            CalculateSteeringWheel();
 
-            if (steeringWheel != null)
-            {
-                steeringWheel.localRotation = Quaternion.AngleAxis(steeringWheelAngle, Vector3.forward);
-            }
-
-            // Direction
-            foreach (var wheel in turnWheel)
-            {
-                wheel.steerAngle = Mathf.Lerp(wheel.steerAngle, steering, steerSpeed);
-            }
-
-            foreach (var wheel in wheels)
-            {
-                wheel.brakeTorque = 0;
-            }
+            CalculateWheels();
 
             ApplyHandbrake();
 
@@ -442,6 +429,31 @@ namespace VehicleBehaviour
 
             // Downforce
             _rb.AddForce(-transform.up * (speed * downforce));
+        }
+
+
+        private void CalculateSteeringWheel()
+        {
+            steeringWheelAngle = Mathf.Lerp(steeringWheelAngle, steering * steeringWheelMul, steerSpeed);
+
+            if (steeringWheel != null)
+            {
+                steeringWheel.localRotation = Quaternion.AngleAxis(steeringWheelAngle, Vector3.forward);
+            }
+        }
+
+
+        private void CalculateWheels()
+        {
+            foreach (var wheel in turnWheel)
+            {
+                wheel.steerAngle = Mathf.Lerp(wheel.steerAngle, steering, steerSpeed);
+            }
+
+            foreach (var wheel in wheels)
+            {
+                wheel.brakeTorque = 0;
+            }
         }
 
 
@@ -517,7 +529,8 @@ namespace VehicleBehaviour
             {
                 _rb.AddForce(transform.forward * boostForce);
 
-                boost -= Time.fixedDeltaTime;
+                boost -= Time.fixedDeltaTime; // 0.02f;
+
 
                 if (boost < 0f)
                 {

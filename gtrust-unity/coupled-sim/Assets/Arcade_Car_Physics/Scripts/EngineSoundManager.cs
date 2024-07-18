@@ -27,13 +27,17 @@ namespace VehicleBehaviour
         [Range(0.0f, 1f)]
         public float volume = 1;
 
-        private AudioSource _source;
+        [SerializeField] private AudioSource m_source;
         private IVehicle _vehicle;
 
 
         private void Start()
         {
-            _source = GetComponent<AudioSource>();
+            if (m_source == null)
+            {
+                m_source = GetComponent<AudioSource>();
+            }
+
             var aiCar = GetComponent<AICar>();
 
             if (aiCar.isActiveAndEnabled)
@@ -49,34 +53,37 @@ namespace VehicleBehaviour
 
         private void Update()
         {
-            if (_vehicle.Handbrake && _source.clip == rolling)
+            if (_vehicle.Handbrake && m_source.clip == rolling)
             {
-                _source.volume = volume;
-                _source.clip = stopping;
-                _source.loop = false;
-                _source.Play();
+                m_source.volume = volume;
+                m_source.clip = stopping;
+                m_source.loop = false;
+                m_source.Play();
             }
 
-            if (!_vehicle.Handbrake && (_source.clip == stopping || _source.clip == null))
+            if (!_vehicle.Handbrake && (m_source.clip == stopping || m_source.clip == null))
             {
-                _source.volume = volume;
-                _source.clip = starting;
-                _source.Play();
-                _source.loop = false;
-                _source.pitch = 1;
+                m_source.volume = volume;
+                m_source.clip = starting;
+                m_source.Play();
+                m_source.loop = false;
+                m_source.pitch = 1;
             }
 
-            if (!_vehicle.Handbrake && !_source.isPlaying)
+            if (!_vehicle.Handbrake && !m_source.isPlaying)
             {
-                _source.volume = volume;
-                _source.clip = rolling;
-                _source.loop = true;
-                _source.Play();
+                Debug.LogFormat("SOSXR: Play that funky music white boy, play that funky music right. Handbrake: {0}, IsPlaying: {1}", _vehicle.Handbrake, m_source.isPlaying);
+                
+                m_source.volume = volume;
+                m_source.clip = rolling;
+                m_source.loop = true;
+                m_source.Play();
+
             }
 
-            if (_source.clip == rolling)
+            if (m_source.clip == rolling)
             {
-                _source.pitch = Mathf.Lerp(_source.pitch, minPitch + Mathf.Abs(_vehicle.Speed) / flatoutSpeed, pitchSpeed);
+                m_source.pitch = Mathf.Lerp(m_source.pitch, minPitch + Mathf.Abs(_vehicle.Speed) / flatoutSpeed, pitchSpeed);
             }
         }
     }

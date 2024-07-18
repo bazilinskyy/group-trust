@@ -3863,7 +3863,6 @@ GameObject:
   - component: {fileID: 7992445498551782146}
   - component: {fileID: 2478723328460268675}
   - component: {fileID: 2673223769286998360}
-  - component: {fileID: 9145836946652966720}
   m_Layer: 9
   m_Name: DrivableHatchbackCommon_DrivenPassengers
   m_TagString: ManualCar
@@ -3944,6 +3943,8 @@ MonoBehaviour:
   blinkersLeftInput: blinker_left
   blinkersRightInput: blinker_right
   blinkersClearInput: blinker_clear
+  forwardInput: forward
+  reverseInput: reverse
   turnInputCurve:
     serializedVersion: 2
     m_Curve:
@@ -4131,7 +4132,7 @@ MonoBehaviour:
     monoBehaviours: []
     collider: {fileID: 0}
   Internal: {fileID: 2478723328460268675}
-  External: {fileID: 9145836946652966720}
+  External: {fileID: 0}
   m_instantiateXRRig: 1
   m_xrRigPrefab: {fileID: 9094068216743168109, guid: a4af4edd0797b244e8f65279184c083e,
     type: 3}
@@ -4147,6 +4148,7 @@ MonoBehaviour:
   - {fileID: 8243639070531167431}
   - {fileID: 8485270855540871066}
   - {fileID: 209426147274557965}
+  - {fileID: 2357386276342029191}
   cameras:
   - {fileID: 0}
   HMISlots:
@@ -4245,9 +4247,10 @@ AudioSource:
   m_GameObject: {fileID: 1783928687406872520}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: f3ec7eab19d509a439d8ffcce0de6df0,
+    type: 2}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -4398,13 +4401,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46cf26a406bad0b4280494683f9c6af6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  starting: {fileID: 0}
+  starting: {fileID: 8300000, guid: 66753e6b7787e4d71b562b3ef3acac36, type: 3}
   rolling: {fileID: 8300000, guid: a2433afdf39a6f842a45e18593605af0, type: 3}
-  stopping: {fileID: 0}
+  stopping: {fileID: 8300000, guid: c9f12968f2e37440dbb06f2ac1cb1033, type: 3}
   flatoutSpeed: 120
   minPitch: 1
   pitchSpeed: 0.07
   volume: 1
+  m_source: {fileID: 7992445498551782146}
 --- !u!114 &2673223769286998360
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4423,25 +4427,6 @@ MonoBehaviour:
   DriverPuppet: {fileID: 4783791075495129227}
   PassengerPuppet: {fileID: 8129944699451714796}
   Label: {fileID: 4081566330483786554}
---- !u!114 &9145836946652966720
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1783928687406872520}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46cf26a406bad0b4280494683f9c6af6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  starting: {fileID: 0}
-  rolling: {fileID: 8300000, guid: 33d5f05eb46a3e345928831e0d00b15e, type: 3}
-  stopping: {fileID: 0}
-  flatoutSpeed: 120
-  minPitch: 1
-  pitchSpeed: 0.07
-  volume: 1
 --- !u!1 &1783933988476021450
 GameObject:
   m_ObjectHideFlags: 0
@@ -4729,7 +4714,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1789948238056324782
 Transform:
   m_ObjectHideFlags: 0
@@ -14992,7 +14977,7 @@ PrefabInstance:
     - target: {fileID: 4764351552333431003, guid: dbbb24367dd809f40a8b370b699c7028,
         type: 3}
       propertyPath: m_color.rgba
-      value: 4283646502
+      value: 4280495142
       objectReference: {fileID: 0}
     - target: {fileID: 5335117400120193727, guid: dbbb24367dd809f40a8b370b699c7028,
         type: 3}
@@ -15178,7 +15163,7 @@ MonoBehaviour:
   m_radius: 0.15
   m_color:
     serializedVersion: 2
-    rgba: 4278452740
+    rgba: 4289837217
 --- !u!1 &1445831409716139763 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1787720395961604265, guid: dbbb24367dd809f40a8b370b699c7028,
@@ -15200,7 +15185,7 @@ MonoBehaviour:
   m_radius: 0.15
   m_color:
     serializedVersion: 2
-    rgba: 4292664810
+    rgba: 4285801565
 --- !u!1 &4862565897515770530 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5738905134950493432, guid: dbbb24367dd809f40a8b370b699c7028,
@@ -15222,7 +15207,7 @@ MonoBehaviour:
   m_radius: 0.15
   m_color:
     serializedVersion: 2
-    rgba: 4293800736
+    rgba: 4287660699
 --- !u!4 &4909784205585218830 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5259338512305648468, guid: dbbb24367dd809f40a8b370b699c7028,
