@@ -29,7 +29,7 @@ public class Client : NetworkSystem
 
     private float _currentPing;
 
-    private string _ip = "192.168.1.11";
+    private string _ip = "192.168.1.12";
 
 
     public Client(LevelManager lvlManager, PlayerSystem playerSys, AICarSyncSystem aiCarSystem, WorldLogger logger, WorldLogger fixedLogger)
