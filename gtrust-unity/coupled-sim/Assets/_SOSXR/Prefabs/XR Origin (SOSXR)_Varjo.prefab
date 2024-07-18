@@ -2763,11 +2763,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 605578c30c1aa9947a4e2307894d492b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_canWeUseGazeKey: 57
-  m_calibrationRequestKey: 32
-  m_setOutputFilterTypeKey: 303
-  m_toggleGazeTarget: 13
-  m_toggleFixationPointKey: 53
+  m_canWeUseGazeKey: 261
+  m_calibrationRequestKey: 257
+  m_setOutputFilterTypeKey: 260
+  m_toggleGazeTarget: 258
+  m_toggleFixationPointKey: 259
   m_gazeDataSource: 0
   m_gazeCalibrationMode: 0
   m_gazeOutputFilterType: 1

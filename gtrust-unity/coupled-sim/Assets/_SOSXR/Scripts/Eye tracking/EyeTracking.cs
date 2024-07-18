@@ -98,23 +98,27 @@ public class EyeTracking : MonoBehaviour
         if (Input.GetKeyDown(m_toggleFixationPointKey))
         {
             m_fixationPointTransform.gameObject.SetActive(!m_fixationPointTransform.gameObject.activeInHierarchy);
+            
+            Debug.Log("SOSXR: Fixation point is now: " + (m_fixationPointTransform.gameObject.activeInHierarchy ? "visible" : "hidden"));
         }
 
         if (Input.GetKeyDown(m_calibrationRequestKey))
         {
             RequestGazeCalibration(m_gazeCalibrationMode);
+            
+            Debug.Log("SOSXR: Gaze calibration requested");
         }
 
         if (Input.GetKeyDown(m_setOutputFilterTypeKey))
         {
             SetGazeOutputFilterType(m_gazeOutputFilterType);
 
-            Debug.Log("Gaze output filter type is now: " + GetGazeOutputFilterType());
+            Debug.Log("SOSXR: Gaze output filter type is now: " + GetGazeOutputFilterType());
         }
 
         if (Input.GetKeyDown(m_canWeUseGazeKey))
         {
-            Debug.Log("Can we use gaze? " + CanWeUseGaze());
+            Debug.Log("SOSXR: Can we use gaze? " + CanWeUseGaze());
         }
 
         if (Input.GetKeyDown(m_toggleGazeTarget))
@@ -122,6 +126,12 @@ public class EyeTracking : MonoBehaviour
             if (m_gazeTarget.activeInHierarchy || (!m_gazeTarget.activeInHierarchy && CanWeUseGaze()))
             {
                 m_gazeTarget.SetActive(!m_gazeTarget.activeInHierarchy);
+                
+                Debug.Log("SOSXR: Gaze target is now: " + (m_gazeTarget.activeInHierarchy ? "visible" : "hidden"));
+            }
+            else
+            {
+                Debug.LogWarning("SOSXR: Gaze target is not visible because gaze is not allowed or calibrated");
             }
         }
 
