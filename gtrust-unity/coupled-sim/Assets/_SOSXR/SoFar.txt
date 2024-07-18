@@ -1,6 +1,13 @@
 ﻿18-07-2024
+To allow a connection between multiple devices:
 In Windows Defender Firewall -> Set to Advanced Settings. Check Inbound connections. Filter by name. Scroll down to Unity. Select correct version of Editor. Check the entry for ' Public' which will have a red icon. Double click that one and set it to Allow. 
+Don't try to make another Rule 'over' it, because those will only be conflicting. 
 
+I set all three computers to have all inbound connections for the Editor to be enabled. 
+
+Upgraded to 2022.3.37 because 05 was really too old. 
+
+G-Hub needs to be turned on for the car to get input from the steering wheel. 
 
 
 ---
