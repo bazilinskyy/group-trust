@@ -5,9 +5,13 @@ Don't try to make another Rule 'over' it, because those will only be conflicting
 
 I set all three computers to have all inbound connections for the Editor to be enabled. 
 
-Upgraded to 2022.3.37 because 05 was really too old. 
+Upgraded to 2022.3.37 because 2022.3.05 was really too old. 
 
 G-Hub needs to be turned on for the car to get input from the steering wheel. 
+
+Set the calibration of the Varjo to be 'never', and have Unity trigger it with a buttonpress (currently set to Keypad1)
+That was also why the eye tracking got randomly triggered previously: it used ot be on Spacebar. 
+
 
 
 ---

@@ -18,7 +18,6 @@ public class Client : NetworkSystem
     private readonly PlayerSystem _playerSys;
     private readonly WorldLogger _logger;
     private readonly WorldLogger _fixedTimeLogger;
-    private readonly HMIManager _hmiManager;
     private readonly VisualSyncManager _visualSyncManager;
     private float _lastPoseUpdateSent;
     private float _lastPingSent;
@@ -41,8 +40,8 @@ public class Client : NetworkSystem
         _client = new UNetClient();
         _client.Init();
 
-        _hmiManager = Object.FindObjectOfType<HMIManager>();
-        Assert.IsNotNull(_hmiManager, "Missing HMI manager");
+        var hmiManager = Object.FindObjectOfType<HMIManager>();
+        Assert.IsNotNull(hmiManager, "Missing HMI manager");
         _visualSyncManager = Object.FindObjectOfType<VisualSyncManager>();
         Assert.IsNotNull(_visualSyncManager, "Missing VS manager");
 
@@ -55,7 +54,7 @@ public class Client : NetworkSystem
         _msgDispatcher.AddStaticHandler((int) MsgId.S_AllReady, OnAllReady);
         _msgDispatcher.AddStaticHandler((int) MsgId.S_VisualSync, OnCustomMessage);
         _msgDispatcher.AddStaticHandler((int) MsgId.B_Ping, HandlePing);
-        _hmiManager.InitClient(_client, _msgDispatcher);
+        hmiManager.InitClient(_client, _msgDispatcher);
         aiCarSystem.InitClient(_msgDispatcher);
 
         _msgDispatcher.HandleConnect = () =>
@@ -120,10 +119,12 @@ public class Client : NetworkSystem
 
     public override void FixedUpdate()
     {
-        if (_currentState == NetState.InGame)
+        if (_currentState != NetState.InGame)
         {
-            _fixedTimeLogger.LogFrame(_currentPing, Time.fixedTime);
+            return;
         }
+
+        _fixedTimeLogger.LogFrame(_currentPing, Time.fixedTime);
     }
 
 
@@ -174,21 +175,23 @@ public class Client : NetworkSystem
     //sends position of the local player and pings the server
     private void UpdateGame()
     {
-        if (Time.realtimeSinceStartup - _lastPoseUpdateSent > PoseUpdateInterval)
+        if (Time.realtimeSinceStartup - _lastPoseUpdateSent < PoseUpdateInterval)
         {
-            var msg = new UpdateClientPose
-            {
-                Pose = _playerSys.LocalPlayer.GetPose()
-            };
+            return;
+        }
 
-            _client.SendUnreliable(msg);
-            _lastPoseUpdateSent = Time.realtimeSinceStartup;
+        var msg = new UpdateClientPose
+        {
+            Pose = _playerSys.LocalPlayer.GetPose()
+        };
 
-            if (_lastPingRespondedTo || Time.realtimeSinceStartup - _lastPingSent > PingTimeout)
-            {
-                _client.SendUnreliable(new PingMsg {PingId = _pingId++, Timestamp = Time.realtimeSinceStartup});
-                _lastPingSent = Time.realtimeSinceStartup;
-            }
+        _client.SendUnreliable(msg);
+        _lastPoseUpdateSent = Time.realtimeSinceStartup;
+
+        if (_lastPingRespondedTo || Time.realtimeSinceStartup - _lastPingSent > PingTimeout)
+        {
+            _client.SendUnreliable(new PingMsg {PingId = _pingId++, Timestamp = Time.realtimeSinceStartup});
+            _lastPingSent = Time.realtimeSinceStartup;
         }
     }
 
@@ -217,19 +220,18 @@ public class Client : NetworkSystem
         {
             case NetState.Disconnected:
             {
-                if (!_client.ConnectionEstablished)
+                if (_client.ConnectionEstablished)
                 {
-                    _ip = GUILayout.TextField(_ip);
-                    IPAddress addr;
+                    return;
+                }
 
-                    if (IPAddress.TryParse(_ip, out addr))
-                    {
-                        if (GUILayout.Button("Connect"))
-                        {
-                            _client.Connect(_ip);
-                            _currentState = NetState.Client_Connecting;
-                        }
-                    }
+                _ip = GUILayout.TextField(_ip);
+                IPAddress addr;
+
+                if (IPAddress.TryParse(_ip, out addr) && GUILayout.Button("Connect"))
+                {
+                    _client.Connect(_ip);
+                    _currentState = NetState.Client_Connecting;
                 }
 
                 break;
