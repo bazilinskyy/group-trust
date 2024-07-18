@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.XR;
 using static Varjo.XR.VarjoEyeTracking;
 using CommonUsages = UnityEngine.XR.CommonUsages;
@@ -18,12 +17,12 @@ public enum GazeDataSource
 public class EyeTracking : MonoBehaviour
 {
     [Header("KeyCodes")]
+    [SerializeField] private KeyCode m_calibrationRequestKey = KeyCode.Keypad1;
+    [SerializeField] private KeyCode m_toggleGazeTarget = KeyCode.Keypad2;
+    [SerializeField] private KeyCode m_toggleFixationPointKey = KeyCode.Keypad3;
+    [SerializeField] private KeyCode m_setOutputFilterTypeKey = KeyCode.Keypad4;
     [Tooltip("Will poll Varjo functions: IsGazeAllowed() and IsGazeCalibrated() simultaneously into one neat package")]
-    [SerializeField] private KeyCode m_canWeUseGazeKey = KeyCode.Alpha9;
-    [SerializeField] private KeyCode m_calibrationRequestKey = KeyCode.Space;
-    [SerializeField] private KeyCode m_setOutputFilterTypeKey = KeyCode.RightShift;
-    [SerializeField] private KeyCode m_toggleGazeTarget = KeyCode.Return;
-    [FormerlySerializedAs("m_toggleFixationPoint")] [SerializeField] private KeyCode m_toggleFixationPointKey = KeyCode.Alpha5;
+    [SerializeField] private KeyCode m_canWeUseGazeKey = KeyCode.Keypad5;
 
     [Header("Settings")]
     [SerializeField] private GazeDataSource m_gazeDataSource = GazeDataSource.InputSubsystem;
@@ -98,14 +97,14 @@ public class EyeTracking : MonoBehaviour
         if (Input.GetKeyDown(m_toggleFixationPointKey))
         {
             m_fixationPointTransform.gameObject.SetActive(!m_fixationPointTransform.gameObject.activeInHierarchy);
-            
+
             Debug.Log("SOSXR: Fixation point is now: " + (m_fixationPointTransform.gameObject.activeInHierarchy ? "visible" : "hidden"));
         }
 
         if (Input.GetKeyDown(m_calibrationRequestKey))
         {
             RequestGazeCalibration(m_gazeCalibrationMode);
-            
+
             Debug.Log("SOSXR: Gaze calibration requested");
         }
 
@@ -123,16 +122,9 @@ public class EyeTracking : MonoBehaviour
 
         if (Input.GetKeyDown(m_toggleGazeTarget))
         {
-            if (m_gazeTarget.activeInHierarchy || (!m_gazeTarget.activeInHierarchy && CanWeUseGaze()))
-            {
-                m_gazeTarget.SetActive(!m_gazeTarget.activeInHierarchy);
-                
-                Debug.Log("SOSXR: Gaze target is now: " + (m_gazeTarget.activeInHierarchy ? "visible" : "hidden"));
-            }
-            else
-            {
-                Debug.LogWarning("SOSXR: Gaze target is not visible because gaze is not allowed or calibrated");
-            }
+            m_gazeTarget.SetActive(!m_gazeTarget.activeInHierarchy);
+
+            Debug.Log("SOSXR: Gaze target is now: " + (m_gazeTarget.activeInHierarchy ? "visible" : "hidden"));
         }
 
         FocusName = _hit.collider != null ? _hit.collider.name : "NULL"; // With _hit.transform.name you'd get the info of the RigidBody, where we want info on the Collider. 
