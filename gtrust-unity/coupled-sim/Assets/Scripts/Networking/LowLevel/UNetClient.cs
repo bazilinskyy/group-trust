@@ -66,6 +66,11 @@ public class UNetClient
     //processing network messages comming from clients
     public void Update(MessageDispatcher dispatch)
     {
+        if (!ConnectionEstablished)
+        {
+            return;
+        }
+        
         Assert.IsTrue(ConnectionEstablished, "Update() should not be called before Connect()");
 
         m_Driver.ScheduleUpdate().Complete();
