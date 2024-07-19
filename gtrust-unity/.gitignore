@@ -7,8 +7,6 @@
 /[Ee]xperimentLogs/
 /[Uu]serSettings/
 
-# /[Ll]ogs/
-
 # Log files inside Unity project (disable during testing, re-enable during participant data collection!)
 # [Ll]ogs/
 
