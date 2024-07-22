@@ -5,8 +5,51 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0588ed33-30a2-45ec-9206-a9228045be30" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Scripts/SimpleHelpers.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Scripts/SimpleHelpers.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-07-22_17h30_192-168-1-11.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-07-22_17h30_192-168-1-11.csv.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-07-22_17h36_192-168-1-11.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-07-22_17h36_192-168-1-11.csv.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-07-22_17h48_192-168-1-11.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-07-22_17h48_192-168-1-11.csv.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-07-22_17h50_192-168-1-11.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-07-22_17h50_192-168-1-11.csv.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-07-22_18h04_192-168-1-11.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-07-22_18h04_192-168-1-11.csv.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-07-22_18h08_192-168-1-11.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-07-22_18h08_192-168-1-11.csv.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-07-22_18h09_192-168-1-11.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-07-22_18h09_192-168-1-11.csv.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-07-22_18h19_192-168-1-11.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-07-22_18h19_192-168-1-11.csv.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-07-22_18h21_192-168-1-11.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-07-22_18h21_192-168-1-11.csv.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-07-22_18h26_192-168-1-11.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-07-22_18h26_192-168-1-11.csv.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-07-22_18h38_192-168-1-11.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-07-22_18h38_192-168-1-11.csv.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-07-22_18h42_192-168-1-11.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-07-22_18h42_192-168-1-11.csv.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Scenes/VarjoTestScene 1.unity" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Scenes/VarjoTestScene 1.unity.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Scripts/Instantiator.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Scripts/Instantiator.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.coupled-sim/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.coupled-sim/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_SOSXR/Prefabs/DrivableHatchbackCommon_DrivenPassengers.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_SOSXR/Prefabs/DrivableHatchbackCommon_DrivenPassengers.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_SOSXR/Prefabs/ExperimentDefinition_3PerCar.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_SOSXR/Prefabs/ExperimentDefinition_3PerCar.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_SOSXR/Prefabs/Passenger_SOSXR.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_SOSXR/Prefabs/Passenger_SOSXR.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_SOSXR/Prefabs/XR Origin (SOSXR)_Varjo.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_SOSXR/Prefabs/XR Origin (SOSXR)_Varjo.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_SOSXR/Scripts/CopyPositionAndRotationOfTaggedTarget.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_SOSXR/Scripts/CopyPositionAndRotationOfTaggedTarget.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_SOSXR/Scripts/DelayedColliderEnabler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_SOSXR/Scripts/DelayedColliderEnabler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_SOSXR/Scripts/Eye tracking/CreateLogData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_SOSXR/Scripts/Eye tracking/CreateLogData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_SOSXR/Scripts/Eye tracking/EyeTracking.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_SOSXR/Scripts/Eye tracking/EyeTracking.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_SOSXR/Scripts/GizmoDrawer_WireSphere.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_SOSXR/Scripts/GizmoDrawer_WireSphere.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_SOSXR/Scripts/RecenterChildXROrigin.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_SOSXR/Scripts/RecenterChildXROrigin.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_SOSXR/Scripts/SimpleHelpers.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_SOSXR/Scripts/SimpleHelpers.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_SOSXR/SoFar.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_SOSXR/SoFar.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_SOSXR/Textures&amp;Materials/Target_Material.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_SOSXR/Textures&amp;Materials/Target_Material.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Scenes/MainScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Scenes/MainScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/DynamicsManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/DynamicsManager.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,10 +60,12 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/139c2424719c42c290d4b5921dc9d89d35f370/90/de34c5d3/IPAddress.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/26de25f631c0411c9787870ebe3bd2043e00/48/98143759/WheelCollider.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/2d8783c7af0442318483a199a473c55b175e00/91/669403ab/Mathf.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/2ef0191b30684937a869061138f38973572e20/f8/018ed364/MemoryStream.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/477fedca0519411db130fd12d5c46b611fe00/f4/b6557a63/Collider.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/51669a5956b8454aa9ca2c099e45bbe3f400/02/78fc4a75/Eyes.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/56073df97ede4f769c2cc45d546d986d172200/f4/6abd940d/Object.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/PlayerSystem.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
