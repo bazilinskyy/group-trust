@@ -10,6 +10,7 @@ public class CopyPositionAndRotationOfTaggedTarget : MonoBehaviour
     [SerializeField] private bool m_onlySearchInAncestralHierarchy = true;
     [SerializeField] private Transform m_rootTransform;
 
+
     private bool FoundTaggedTransform()
     {
         if (m_taggedTransform != null)

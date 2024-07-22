@@ -15,7 +15,7 @@ public class RecenterChildXROrigin : MonoBehaviour
     {
         if (_xrOrigin != null)
         {
-           //  return;
+            return;
         }
 
         _xrOrigin = GetComponentInChildren<XROrigin>();
@@ -46,7 +46,7 @@ public class RecenterChildXROrigin : MonoBehaviour
     private void Recenter(bool flatten)
     {
         GetRequiredComponents();
-        
+
         if (m_recenterTo == null || _xrCamera == null)
         {
             Debug.LogWarning("SOSXR: We can't recenter the position, because either the RecenterTo object or the _xrCamera is null");

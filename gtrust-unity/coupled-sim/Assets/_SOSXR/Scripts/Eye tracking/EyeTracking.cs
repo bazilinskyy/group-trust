@@ -26,29 +26,31 @@ public class EyeTracking : MonoBehaviour
 
     [Header("Settings")]
     [SerializeField] private GazeDataSource m_gazeDataSource = GazeDataSource.InputSubsystem;
-    [SerializeField] private GazeCalibrationMode m_gazeCalibrationMode = GazeCalibrationMode.Fast;
+    [SerializeField] private GazeCalibrationMode m_gazeCalibrationMode = GazeCalibrationMode.OneDot;
     [SerializeField] private GazeOutputFilterType m_gazeOutputFilterType = GazeOutputFilterType.Standard;
-    [SerializeField] private GazeOutputFrequency m_gazeOutputFrequency;
+    [SerializeField] private GazeOutputFrequency m_gazeOutputFrequency = GazeOutputFrequency.MaximumSupported;
+    [SerializeField] private Camera m_XRCamera;
 
-    [Space(15)]
+    [Header("Fixation point")]
     [SerializeField] private Transform m_fixationPointTransform;
+
+    [Header("Gaze target")]
     [Tooltip("Gaze point indicator")]
     [SerializeField] private GameObject m_gazeTarget;
+    [SerializeField] private MeshRenderer m_gazeRenderer;
     [Tooltip("Gaze ray radius")]
-    [SerializeField] private float m_gazeRadius = 0.01f;
+    [SerializeField] private float m_gazeTargetRadius = 0.01f;
     [Tooltip("Gaze point distance if not hit anything")]
-    [SerializeField] private float m_floatingGazeTargetDistance = 5f;
+    [SerializeField] private float m_noHitGazeTargetDistance = 15f;
     [Tooltip("Gaze target offset towards viewer")]
     [SerializeField] private float m_targetOffset = 0.2f;
 
     private readonly List<InputDevice> _devices = new();
-    private Camera _camera;
     private Vector3 _direction;
     private float _distance;
     private Eyes _eyes;
     private Vector3 _fixationPoint;
     private GazeData _gazeData;
-    private MeshRenderer _gazeRenderer;
     private RaycastHit _hit;
     private InputDevice _inputDevice;
     private Vector3 _leftEyeTrackingPosition;
@@ -59,13 +61,6 @@ public class EyeTracking : MonoBehaviour
 
     // SOSXR: Added FocusName property
     public string FocusName { get; private set; }
-
-
-    private void Awake()
-    {
-        _camera = transform.root.GetComponentInChildren<Camera>();
-        _gazeRenderer = m_gazeTarget.transform.root.GetComponentInChildren<MeshRenderer>();
-    }
 
 
     private void Start()
@@ -184,9 +179,9 @@ public class EyeTracking : MonoBehaviour
             m_fixationPointTransform.localPosition = _fixationPoint;
         }
 
-        _rayOrigin = _camera.transform.position;
+        _rayOrigin = m_XRCamera.transform.position;
 
-        _direction = (m_fixationPointTransform.position - _camera.transform.position).normalized;
+        _direction = (m_fixationPointTransform.position - m_XRCamera.transform.position).normalized;
     }
 
 
@@ -201,9 +196,9 @@ public class EyeTracking : MonoBehaviour
             return;
         }
 
-        _rayOrigin = _camera.transform.TransformPoint(_gazeData.gaze.origin); // Set gaze origin as raycast origin
+        _rayOrigin = m_XRCamera.transform.TransformPoint(_gazeData.gaze.origin); // Set gaze origin as raycast origin
 
-        _direction = _camera.transform.TransformDirection(_gazeData.gaze.forward); // Set gaze direction as raycast direction
+        _direction = m_XRCamera.transform.TransformDirection(_gazeData.gaze.forward); // Set gaze direction as raycast direction
 
         m_fixationPointTransform.position = _rayOrigin + _direction * _gazeData.focusDistance; // Fixation point can be calculated using ray origin, direction and focus distance
     }
@@ -211,7 +206,7 @@ public class EyeTracking : MonoBehaviour
 
     private void SphereCast()
     {
-        if (Physics.SphereCast(_rayOrigin, m_gazeRadius, _direction, out _hit)) // Raycast to world from XR Camera position towards fixation point
+        if (Physics.SphereCast(_rayOrigin, m_gazeTargetRadius, _direction, out _hit)) // Raycast to world from XR Camera position towards fixation point
         {
             m_gazeTarget.transform.position = _hit.point - _direction * m_targetOffset; // Put target on gaze raycast position with offset towards user
 
@@ -223,9 +218,9 @@ public class EyeTracking : MonoBehaviour
         }
         else // If gaze ray didn't hit anything, the gaze target is shown at fixed distance
         {
-            m_gazeTarget.transform.position = _rayOrigin + _direction * m_floatingGazeTargetDistance;
+            m_gazeTarget.transform.position = _rayOrigin + _direction * m_noHitGazeTargetDistance;
             m_gazeTarget.transform.LookAt(_rayOrigin, Vector3.up);
-            m_gazeTarget.transform.localScale = Vector3.one * m_floatingGazeTargetDistance;
+            m_gazeTarget.transform.localScale = Vector3.one * m_noHitGazeTargetDistance;
         }
     }
 }

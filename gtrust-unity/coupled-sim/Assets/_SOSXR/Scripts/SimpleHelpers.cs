@@ -13,10 +13,11 @@ public static class SimpleHelpers
             if (local.ToString().StartsWith(startsWith))
             {
                 Debug.Log(local);
+
                 return local.ToString();
             }
         }
-        
+
         return "No_IP_found";
     }
 }
