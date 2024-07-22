@@ -2,6 +2,8 @@
 
 Disabled gitignoring Logs because Jom needed logs to test their own pipeline. Uploaded all the prev logs to github. This feature needs be disabled when there's proefpersonen.
 
+Used REAPER to create a loopable verison of the city audioscape, and placed it instead of original.
+
 
 
 
