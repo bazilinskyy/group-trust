@@ -2,12 +2,24 @@
 
 Disabled gitignoring Logs because Jom needed logs to test their own pipeline. Uploaded all the prev logs to github. This feature needs be disabled when there's proefpersonen.
 
-Used REAPER to create a loopable verison of the city audioscape, and placed it instead of original.
+Used REAPER to create a loopable verison of the city audioscape, and placed it instead of original. Sounds quite nice. Alse upped the volume since it got downscaled on export from Reaper. 
 
-Since in previous testing the colliders that are used for the eyetracking on the avatars were causing the characters to be thrown violently from the car, I now try to disable in Prefab, only to re-enable 1 second after playing. 
+Since in previous testing the colliders that are used for the eyetracking on the avatars were causing the characters to be thrown violently from the car, I now try to disable in Prefab, only to re-enable 1 second after playing.
+This seems to work out pretty fine: the passenger is not hurled out of the car upon spwaning. 
 
+However: Don't look out of the window or you'll be toast. 
+ 
+This means we'll also need to do something with layers: Varjo has own layers, as does Rig, as does the Driver and Passneger. 
+The Rig and the car shouldn't collide: that causes the passenger to be thrown out of the car. 
+The Varjo and the Passenger + Car and Driver shoudl collide, otherwise no repsonse on the eyetrack.
 
+Major issue that took me 5 hours to figure out: another case of mistaken component. The eyetracker was broken... In the previous setup, the XR_Rig was already on the avatar. Now it gets spawned. When it was already on the avatar, the search starting at the 'root' of that gameobject was starting effectively from hte avatar on. 
+Now since it gets spawned, it started from whatever the 'new root' of the gameobject was: which could mean the car itself.... therefore the `transform.root.GetComponentInChildren<>(lalal); returned a completely different component than the intended one. 
+It didn't find the correct components for the eyetracker, namely the MAIN camera. Instead of finding us the MainCam, it found us one of the mirror cams....  Because of this, the calculation for the placement of the gazeTarget was off in some but not all directions (e.g. sideways was a mess, behind us was quite good, v confusing). 
+I was fully on the wrong warpath, thinking something in the calculation was fundamentally wrong, but not finding out where that may have gotten me astray. 
+Luckily, now fixed. 
 
+Made the Logs have much better names, it is now including a PC identifier. Currently that's the local IP, whcih may or may not be useful. But at least it's now obvious which PC made which log.
 
 
 ---
