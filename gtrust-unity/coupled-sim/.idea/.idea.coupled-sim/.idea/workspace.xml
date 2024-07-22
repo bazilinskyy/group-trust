@@ -5,13 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0588ed33-30a2-45ec-9206-a9228045be30" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Scripts/DelayedColliderEnabler.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Scripts/DelayedColliderEnabler.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.coupled-sim/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.coupled-sim/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_SOSXR/Prefabs/DrivableHatchbackCommon_DrivenPassengers.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_SOSXR/Prefabs/DrivableHatchbackCommon_DrivenPassengers.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_SOSXR/Prefabs/Driver_SOSXR.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_SOSXR/Prefabs/Driver_SOSXR.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_SOSXR/Prefabs/Passenger_SOSXR.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_SOSXR/Prefabs/Passenger_SOSXR.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_SOSXR/SoFar.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_SOSXR/SoFar.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Scripts/SimpleHelpers.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Scripts/SimpleHelpers.cs.meta" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

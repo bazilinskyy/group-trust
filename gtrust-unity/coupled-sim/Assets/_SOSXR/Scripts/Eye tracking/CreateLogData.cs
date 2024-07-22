@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Net;
 using UnityEngine;
 using static Varjo.XR.VarjoEyeTracking;
 
@@ -30,7 +31,7 @@ public class CreateLogData : MonoBehaviour
     {
         if (m_eyeTracking == null)
         {
-            m_eyeTracking = GetComponent<EyeTracking>();
+            m_eyeTracking = GetComponentInChildren<EyeTracking>();
         }
 
         if (m_camera == null)
@@ -40,7 +41,7 @@ public class CreateLogData : MonoBehaviour
 
         if (m_emperorsRating == null)
         {
-            m_emperorsRating = GetComponent<EmperorsRating>();
+            m_emperorsRating = GetComponentInChildren<EmperorsRating>();
         }
     }
 
@@ -63,7 +64,7 @@ public class CreateLogData : MonoBehaviour
         Directory.CreateDirectory(logPath);
 
         var now = DateTime.Now;
-        var fileName = $"{now.Year}-{now.Month:00}-{now.Day:00}-{now.Hour:00}-{now.Minute:00}";
+        var fileName = $"{now.Year}-{now.Month:00}-{now.Day:00}_{now.Hour:00}h{now.Minute:00}_{SimpleHelpers.GetLocalIP().Replace(".", "-")}";
 
         var path = logPath + fileName + ".csv";
         _streamWriter = new StreamWriter(path);
@@ -234,8 +235,6 @@ public class CreateLogData : MonoBehaviour
         }
 
         var line = string.Join(";", values); // Join all values with a semicolon
-
-        // Debug.Log("Writing line to log: " + line);
 
         _streamWriter.WriteLine(line);
         _streamWriter.Flush(); // Make sure to flush the stream writer to ensure data is written to the file
