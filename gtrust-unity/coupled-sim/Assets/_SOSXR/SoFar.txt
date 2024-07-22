@@ -4,6 +4,7 @@ Disabled gitignoring Logs because Jom needed logs to test their own pipeline. Up
 
 Used REAPER to create a loopable verison of the city audioscape, and placed it instead of original.
 
+Since in previous testing the colliders that are used for the eyetracking on the avatars were causing the characters to be thrown violently from the car, I now try to disable in Prefab, only to re-enable 1 second after playing. 
 
 
 
@@ -39,8 +40,8 @@ We'll need to check the lighthouse placement, and/or instellingen van Varjo omda
 Test with 2 ppl (one driver and one scared bijrijder went quite well). Will need to test with 3 people.
 
 
-
 ---
+
 
 17-07-2024
 

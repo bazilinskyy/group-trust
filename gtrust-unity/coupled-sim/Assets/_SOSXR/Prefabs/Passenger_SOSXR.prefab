@@ -85,7 +85,7 @@ MonoBehaviour:
   m_radius: 0.3
   m_color:
     serializedVersion: 2
-    rgba: 4282394631
+    rgba: 4280494635
 --- !u!1 &510759243375576539
 GameObject:
   m_ObjectHideFlags: 0
@@ -221,7 +221,7 @@ MonoBehaviour:
   m_radius: 0.1
   m_color:
     serializedVersion: 2
-    rgba: 4293389302
+    rgba: 4281808971
 --- !u!114 &585916621719829302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -307,6 +307,7 @@ GameObject:
   - component: {fileID: 7263647346857764255}
   - component: {fileID: 7992445498551782146}
   - component: {fileID: 5475745438380490210}
+  - component: {fileID: 4589240332097539009}
   m_Layer: 15
   m_Name: Passenger_SOSXR
   m_TagString: Untagged
@@ -428,13 +429,6 @@ MonoBehaviour:
   m_xrRigPrefab: {fileID: 9094068216743168109, guid: a4af4edd0797b244e8f65279184c083e,
     type: 3}
   m_xrRigParent: {fileID: 6085194420971212053}
-  cameras:
-  - {fileID: 0}
-  HMISlots:
-    Hood: {fileID: 0}
-    Top: {fileID: 0}
-    Windshield: {fileID: 0}
-  Type: 2
   SyncTransforms:
   - {fileID: 1789823192781391934}
   - {fileID: 4280091671799910133}
@@ -444,6 +438,13 @@ MonoBehaviour:
   - {fileID: 8391831393875507518}
   - {fileID: 8744335669624612434}
   - {fileID: 7604087255358881092}
+  cameras:
+  - {fileID: 0}
+  HMISlots:
+    Hood: {fileID: 0}
+    Top: {fileID: 0}
+    Windshield: {fileID: 0}
+  Type: 2
   _carBlinkers: {fileID: 0}
   stopLights: {fileID: 0}
   frontLights: {fileID: 0}
@@ -611,6 +612,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_recenterTo: {fileID: 4280091671799910133}
   m_recenterKey: 256
+--- !u!114 &4589240332097539009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1783928687406872520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73961cc4b14b4c39958f597c56a786df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_delay: 1
+  m_colliders:
+  - {fileID: 2921270495990113227}
+  - {fileID: 2987752281267685494}
 --- !u!1 &3119117780768409356
 GameObject:
   m_ObjectHideFlags: 0
@@ -770,7 +787,7 @@ MonoBehaviour:
   m_radius: 0.1
   m_color:
     serializedVersion: 2
-    rgba: 4283592020
+    rgba: 4283151025
 --- !u!114 &3573032263462561463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -980,7 +997,7 @@ MonoBehaviour:
   m_radius: 0.1
   m_color:
     serializedVersion: 2
-    rgba: 4278190594
+    rgba: 4283122130
 --- !u!114 &3039575092530218418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1130,7 +1147,7 @@ MonoBehaviour:
   m_radius: 0.1
   m_color:
     serializedVersion: 2
-    rgba: 4285011751
+    rgba: 4286415747
 --- !u!1 &7661147631939441798
 GameObject:
   m_ObjectHideFlags: 0
@@ -3485,10 +3502,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 0
   serializedVersion: 2
-  m_Radius: 0.2
-  m_Height: 1
+  m_Radius: 0.15
+  m_Height: 0.5
   m_Direction: 0
-  m_Center: {x: 0.25, y: 0, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8038360431899157912
 GameObject:
   m_ObjectHideFlags: 0
