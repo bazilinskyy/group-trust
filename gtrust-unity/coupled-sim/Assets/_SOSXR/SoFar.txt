@@ -1,21 +1,32 @@
-﻿18-07-2024
+﻿22-07-2024
 
-To allow a connection between multiple devices:
-In Windows Defender Firewall -> Set to Advanced Settings. Check Inbound connections. Filter by name. Scroll down to Unity. Select correct version of Editor. Check the entry for ' Public' which will have a red icon. Double click that one and set it to Allow. 
-Don't try to make another Rule 'over' it, because those will only be conflicting. 
+Disabled gitignoring Logs because Jom needed logs to test their own pipeline. Uploaded all the prev logs to github. This feature needs be disabled when there's proefpersonen.
 
-I set all three computers to have all inbound connections for the Editor to be enabled. 
+
+
+
+
+
+---
+
+18-07-2024
 
 Upgraded to 2022.3.37 because 2022.3.05 was really too old. 
 
+To allow a connection between multiple PCs
+In Windows Defender Firewall -> Set to Advanced Settings. Look at Inbound connections. Filter by name. Scroll down to Unity. Select correct version of Editor. Check the entry for ' Public' which will have a red icon. Double click that one and set it to Allow. 
+Don't try to make another Rule 'over' it, because that will be conflicting with the already existing 'deny' rule. 
+
+I set all three computers to have all inbound connections for the Editor (2022.3.37) to be enabled. 
+
 G-Hub needs to be turned on for the car to get input from the steering wheel. 
 
-Set the calibration of the Varjo to be 'never', and have Unity trigger it with a buttonpress (currently set to Keypad1)
+Set the eyetracking calibration of the Varjo to be 'never', and have Unity trigger it with a buttonpress (currently set to Keypad1)
 That was also why the eye tracking got randomly triggered previously: it used ot be on Spacebar. 
 
-In the Car there was a gameobject holding all the mirrors, and it was disabled, I enabled it.
+In the Car prefab there was a gameobject holding all the mirrors, and it was disabled (but got enabled on play), I enabled it by default.
 
-Speedometer into list of SynchyTransformy. 
+Added speedometer into list of SynchyTransformy. 
  
 City ambience noize is not yet loopable
 
