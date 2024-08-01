@@ -34,4 +34,14 @@ public class GimmeColliders : MonoBehaviour
             coll.enabled = true;
         }
     }
+
+
+    [ContextMenu(nameof(MakeMeshCollidersConvex))]
+    private void MakeMeshCollidersConvex()
+    {
+        foreach (var coll in m_meshColliders)
+        {
+            coll.convex = true;
+        }
+    }
 }
