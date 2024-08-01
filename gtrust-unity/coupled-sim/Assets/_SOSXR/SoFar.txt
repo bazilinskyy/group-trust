@@ -1,4 +1,23 @@
-﻿22-07-2024
+﻿01-08-2024
+
+Put an FPS counter on HMD
+
+FPS was (when happy) between 30-40. Not good enough.
+
+The Main scene has a tonnnnn of DrawCalls (734 if I'm not mistaken). Mostly due to Shadows. This can be greatly optimized, but however I don't have time to delve into this. I turned off all shadows from all the lightsources (come on... they were ALL set to Soft Shadows...?), and am rebaking the lightmaps.
+
+Baking lightmaps failed.
+
+Rebaked Occlusion Culling (4-0.2) since some of the buildings were still not working properly. 
+
+The system eats up 15gb of memory. Will install memory profiler to see if we can improve this. 
+
+
+
+
+-----
+
+22-07-2024
 
 Disabled gitignoring Logs because Jom needed logs to test their own pipeline. Uploaded all the prev logs to github. This feature needs be disabled when there's proefpersonen.
 

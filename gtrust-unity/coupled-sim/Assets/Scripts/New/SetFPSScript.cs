@@ -36,6 +36,7 @@ public class SetFPSScript : MonoBehaviour
 
     private void SetFPS()
     {
-        fps.text = "FPS: " + m_lastFramerate;
+        fps.text = "FPS: " + Mathf.Round(m_lastFramerate);
+        
     }
 }

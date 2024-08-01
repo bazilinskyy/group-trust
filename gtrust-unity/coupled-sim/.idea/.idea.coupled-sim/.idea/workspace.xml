@@ -5,51 +5,101 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0588ed33-30a2-45ec-9206-a9228045be30" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-07-22_17h30_192-168-1-11.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-07-22_17h30_192-168-1-11.csv.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-07-22_17h36_192-168-1-11.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-07-22_17h36_192-168-1-11.csv.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-07-22_17h48_192-168-1-11.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-07-22_17h48_192-168-1-11.csv.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-07-22_17h50_192-168-1-11.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-07-22_17h50_192-168-1-11.csv.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-07-22_18h04_192-168-1-11.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-07-22_18h04_192-168-1-11.csv.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-07-22_18h08_192-168-1-11.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-07-22_18h08_192-168-1-11.csv.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-07-22_18h09_192-168-1-11.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-07-22_18h09_192-168-1-11.csv.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-07-22_18h19_192-168-1-11.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-07-22_18h19_192-168-1-11.csv.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-07-22_18h21_192-168-1-11.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-07-22_18h21_192-168-1-11.csv.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-07-22_18h26_192-168-1-11.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-07-22_18h26_192-168-1-11.csv.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-07-22_18h38_192-168-1-11.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-07-22_18h38_192-168-1-11.csv.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-07-22_18h42_192-168-1-11.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-07-22_18h42_192-168-1-11.csv.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Scenes/VarjoTestScene 1.unity" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Scenes/VarjoTestScene 1.unity.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Scripts/Instantiator.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Scripts/Instantiator.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Documentation.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Documentation/TextMesh Pro User Guide 2016.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Documentation/TextMesh Pro User Guide 2016.pdf.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Fonts.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Fonts/LiberationSans - OFL.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Fonts/LiberationSans - OFL.txt.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Fonts/LiberationSans.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Fonts/LiberationSans.ttf.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Drop Shadow.mat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Drop Shadow.mat.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Outline.mat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Outline.mat.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/LineBreaking Following Characters.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/LineBreaking Following Characters.txt.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/LineBreaking Leading Characters.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/LineBreaking Leading Characters.txt.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Sprite Assets.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Sprite Assets/EmojiOne.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Sprite Assets/EmojiOne.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Style Sheets.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Style Sheets/Default Style Sheet.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Style Sheets/Default Style Sheet.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/TMP Settings.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/TMP Settings.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_Bitmap-Custom-Atlas.shader" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_Bitmap-Custom-Atlas.shader.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_Bitmap-Mobile.shader" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_Bitmap-Mobile.shader.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_Bitmap.shader" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_Bitmap.shader.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_SDF Overlay.shader" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_SDF Overlay.shader.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_SDF SSD.shader" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_SDF SSD.shader.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile Masking.shader" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile Masking.shader.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile Overlay.shader" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile Overlay.shader.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile SSD.shader" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile SSD.shader.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_SDF-Surface-Mobile.shader" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_SDF-Surface-Mobile.shader.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_SDF-Surface.shader" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_SDF-Surface.shader.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_SDF.shader" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_SDF.shader.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_Sprite.shader" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_Sprite.shader.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMPro.cginc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMPro.cginc.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMPro_Mobile.cginc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMPro_Mobile.cginc.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMPro_Properties.cginc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMPro_Properties.cginc.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMPro_Surface.cginc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMPro_Surface.cginc.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Sprites.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Sprites/EmojiOne Attribution.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Sprites/EmojiOne Attribution.txt.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Sprites/EmojiOne.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Sprites/EmojiOne.json.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Sprites/EmojiOne.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Sprites/EmojiOne.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-08-01_11h30_192-168-1-11.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-08-01_11h30_192-168-1-11.csv.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-08-01_11h57_192-168-1-11.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-08-01_11h57_192-168-1-11.csv.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-08-01_12h01_192-168-1-11.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-08-01_12h01_192-168-1-11.csv.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-08-01_12h04_192-168-1-11.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-08-01_12h04_192-168-1-11.csv.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-08-01_12h15_192-168-1-11.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-08-01_12h15_192-168-1-11.csv.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-08-01_12h17_192-168-1-11.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-08-01_12h17_192-168-1-11.csv.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-08-01_13h45_192-168-1-11.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-08-01_13h45_192-168-1-11.csv.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.coupled-sim/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.coupled-sim/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_SOSXR/Prefabs/DrivableHatchbackCommon_DrivenPassengers.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_SOSXR/Prefabs/DrivableHatchbackCommon_DrivenPassengers.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_SOSXR/Prefabs/ExperimentDefinition_3PerCar.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_SOSXR/Prefabs/ExperimentDefinition_3PerCar.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_SOSXR/Prefabs/Passenger_SOSXR.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_SOSXR/Prefabs/Passenger_SOSXR.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/New/SetFPSScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/New/SetFPSScript.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_SOSXR/Prefabs/XR Origin (SOSXR)_Varjo.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_SOSXR/Prefabs/XR Origin (SOSXR)_Varjo.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_SOSXR/Scripts/CopyPositionAndRotationOfTaggedTarget.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_SOSXR/Scripts/CopyPositionAndRotationOfTaggedTarget.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_SOSXR/Scripts/DelayedColliderEnabler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_SOSXR/Scripts/DelayedColliderEnabler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_SOSXR/Scripts/Eye tracking/CreateLogData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_SOSXR/Scripts/Eye tracking/CreateLogData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_SOSXR/Scripts/Eye tracking/EyeTracking.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_SOSXR/Scripts/Eye tracking/EyeTracking.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_SOSXR/Scripts/GizmoDrawer_WireSphere.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_SOSXR/Scripts/GizmoDrawer_WireSphere.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_SOSXR/Scripts/RecenterChildXROrigin.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_SOSXR/Scripts/RecenterChildXROrigin.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_SOSXR/Scripts/SimpleHelpers.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_SOSXR/Scripts/SimpleHelpers.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_SOSXR/SoFar.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_SOSXR/SoFar.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_SOSXR/Textures&amp;Materials/Target_Material.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_SOSXR/Textures&amp;Materials/Target_Material.mat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_Scenes/MainScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Scenes/MainScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/DynamicsManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/DynamicsManager.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Scenes/MainScene/OcclusionCullingData.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Scenes/MainScene/OcclusionCullingData.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
