@@ -21,7 +21,7 @@ Luckily, now fixed.
 
 Made the Logs have much better names, it is now including a PC identifier. Currently that's the local IP, whcih may or may not be useful. But at least it's now obvious which PC made which log.
 
-
+Will also rebake light since many issues with different light versions (?)
 ---
 
 18-07-2024
