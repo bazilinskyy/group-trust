@@ -12,7 +12,13 @@ Rebaked Occlusion Culling (4-0.2) since some of the buildings were still not wor
 
 The system eats up 15gb of memory. Will install memory profiler to see if we can improve this. 
 
+Disabled Rear Mirrors
+    Get's enabled automatically agian?
+    
+    
+Disabled GLASS... Why is there glass?
 
+NIGHT ENVIRONMENT BOEHNOOEH
 
 
 -----
