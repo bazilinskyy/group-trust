@@ -241,4 +241,5 @@ gtrust/analysis/octave-workspace
 gtrust/analysis/.autosave
 *.snap
 
-
+# Metas of the reflection probes
+*.exr.meta
