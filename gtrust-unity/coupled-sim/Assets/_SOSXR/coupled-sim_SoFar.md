@@ -27,7 +27,8 @@ Log visual sync if possible (?)
 
 Would be good to be able to have the eye tracking dot possible for recording, without participant seeing it. This can then be screen recorded for posterity.
 
-Install new PC with Varjo + Car
+Install new PC with Varjo + Car.
+Swap out Varjo AERO for other Aero that has been electrically checked.
 
 Still unclear on how/what kind of trust data is desired. Pavlo suggested that a hold/release of a button could indicate continuous trust/notrust. This would hopefully be alongside the Vector3/4 data, if possible. Maarten will check Emperor's rating, and change to allow Press/NoPress continuous __AFTER__ information from rest of team on what is the indention behind this.
 
