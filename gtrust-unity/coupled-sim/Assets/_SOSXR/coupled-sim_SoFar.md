@@ -1,34 +1,41 @@
 ---
 date_created: 2024-08-13
 date_modified: 2024-08-13
+date_deferred:
+date_due:
+archived: false
+tags: [Work/Meetingnotes, Work/Projects/SOLO/Francesco/Coupled_Sim, Work/DevLog, Programming/Unity]
 ---
 
-31-08-2024
+
+## 31-08-2024
 
 Disabled recurring Debug warnings about Lights not being part of car (since it's passenger)
 
-Meeting Pavlo & Jom (until 12:00):
+### Meeting Pavlo & Jom (until 12:00)
 
-
-Enable head colliders again (do check, since gave issues last time).
+#### THINGS TO DO
+Enable head colliders again (do check, since gave issues of violent flying last time).
 Do also torso
-Do hands if possible or elsewise steering wheel
+Do hands (if possible) or elsewise steering wheel
 
-Log a sync between devices possible (?)
-Log visual sync (?)
-See if eye tracking dot possible for recording, without participant seeing it
+Agreed not to create a unified log where all 3 PCs send over their log data to one central hub where it gets correlated. Pavlo was super insistent about this one, and worried that UNIX timestamp of the three logs would not be precise enough to combine the separate logs post hoc. Maarten does not have the time to organise this, and suggested that the UNIX timestamp should be precise enough since the logs happen every frame.
+
+As an alternative:
+Log a sync between devices if possible (?).
+Log visual sync if possible (?)
+
+Would be good to be able to have the eye tracking dot possible for recording, without participant seeing it. This can then be screen recorded for posterity.
 
 Install new PC with Varjo + Car
 
-Check Emperor's rating, change to Press/NoPress continuous.
+Still unclear on how/what kind of trust data is desired. Pavlo suggested that a hold/release of a button could indicate continuous trust/notrust. This would hopefully be alongside the Vector3/4 data, if possible. Maarten will check Emperor's rating, and change to allow Press/NoPress continuous __AFTER__ information from rest of team on what is the indention behind this.
 
-Put spedometer in synced Host/Client mode
+Put spedometer in synced Host/Client mode. It is currently not synced to Client.
 
-Check what happens with Avatar movement jerky headmotion.
+Check what happens with Avatar movement jerky headmotion. Pavlo noticed when sitting on the back seat that every minute or so the front _passenger_ jerked their head which didn't seem to correlate with normal head movent. Also passenger avatar is slightly through chair, but this may be due to not having used controllers/avatar hands.
 
-Enable mirrors for Clients
-
-
+Enable mirrors for Clients. On Client they are currently disabled. This looks weird.
 
 
 -----
