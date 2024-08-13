@@ -15,6 +15,14 @@ See if eye tracking dot possible for recording, without participant seeing it
 
 Install new PC with Varjo + Car
 
+Check Emperor's rating, change to Press/NoPress continuous.
+
+Put spedometer in synced Host/Client mode
+
+Check what happens with Avatar movement jerky headmotion. 
+
+Enable mirrors for Clients
+
 
 
 
