@@ -124,7 +124,7 @@ public class EyeTracking : MonoBehaviour
 
         FocusName = _hit.collider != null ? _hit.collider.name : "NULL"; // With _hit.transform.name you'd get the info of the RigidBody, where we want info on the Collider. 
 
-        Debug.LogFormat("We hit {0}", FocusName);
+        // Debug.LogFormat("We hit {0}", FocusName);
     }
 
 

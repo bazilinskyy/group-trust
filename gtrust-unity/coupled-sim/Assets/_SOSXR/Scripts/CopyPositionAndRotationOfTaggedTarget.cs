@@ -34,7 +34,7 @@ public class CopyPositionAndRotationOfTaggedTarget : MonoBehaviour
 
         if (m_taggedTransform == null)
         {
-            Debug.LogWarningFormat("SOSXR: We don't have anything in our scene with the tag {0}, are you sure that it is defined?", m_tagToSearchFor);
+            // Debug.LogWarningFormat("SOSXR: We don't have anything in our scene with the tag {0}, are you sure that it is defined?", m_tagToSearchFor);
         }
 
         return m_taggedTransform != null;

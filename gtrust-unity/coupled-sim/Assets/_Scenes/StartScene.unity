@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -323,7 +322,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd7c43c50f9a57640ae9a92d302b14e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerInputMode: 0
   m_pedestrianPrefab: {fileID: 114552724408261780, guid: 849e6abc46b6346d0b8b1d058d7ead46,
     type: 3}
   m_passengerPrefabs:
@@ -336,6 +334,11 @@ MonoBehaviour:
   Cars: []
   Pedestrians: []
   Passengers: []
+  Player2Avatar:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &301934535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -419,8 +422,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1256699368}
   - component: {fileID: 1256699367}
-  - component: {fileID: 1256699366}
-  - component: {fileID: 1256699365}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: Untagged
@@ -428,22 +429,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1256699365
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1256699364}
-  m_Enabled: 0
---- !u!124 &1256699366
-Behaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1256699364}
-  m_Enabled: 0
 --- !u!20 &1256699367
 Camera:
   m_ObjectHideFlags: 0
@@ -679,8 +664,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2060822772}
   - component: {fileID: 2060822771}
-  - component: {fileID: 2060822770}
-  - component: {fileID: 2060822769}
   m_Layer: 0
   m_Name: ClearCamera
   m_TagString: Untagged
@@ -688,22 +671,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &2060822769
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2060822768}
-  m_Enabled: 0
---- !u!124 &2060822770
-Behaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2060822768}
-  m_Enabled: 0
 --- !u!20 &2060822771
 Camera:
   m_ObjectHideFlags: 0

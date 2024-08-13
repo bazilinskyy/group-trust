@@ -1,3 +1,26 @@
+31-08-2024
+
+Disabled recurring Debug warnings about Lights not being part of car (since it's passenger)
+
+Meeting Pavlo & Jom (until 12:00): 
+
+
+Enable head colliders again (do check, since gave issues last time). 
+Do also torso
+Do hands if possible or elsewise steering wheel
+
+Log a sync between devices possible (?)
+Log visual sync (?)
+See if eye tracking dot possible for recording, without participant seeing it
+
+Install new PC with Varjo + Car
+
+
+
+
+-----
+
+
 01-08-2024
 
 
@@ -16,11 +39,9 @@ The system eats up 15gb of memory. Will install memory profiler to see if we can
 Disabled Rear Mirrors
     Get's enabled automatically agian?
     
-    
 Disabled GLASS... Why is there glass?
 
 NIGHT ENVIRONMENT BOEHNOOEH
-
 
 Turned off SideWalkEast Big Main
 

@@ -198,6 +198,7 @@ public class PlayerAvatar : MonoBehaviour
                 go.transform.localScale = Vector3.one;
                 cameras[cameraIndex] = go.AddComponent<Camera>();
                 cameras[cameraIndex].nearClipPlane = 0.06f;
+                go.AddComponent<AudioListener>();
             }
         }
     }
