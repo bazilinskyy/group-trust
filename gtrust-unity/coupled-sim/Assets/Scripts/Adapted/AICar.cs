@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using SOSXR;
 using UnityEngine;
 using UnityStandardAssets.Utility;
 
@@ -39,10 +40,12 @@ public class AICar : MonoBehaviour, IVehicle
     public bool WaitTrialX = false;
     public bool WaitTrialZ = false;
 
+    public WaypointProgressTracker WaypointProgressTracker;
     // Game related variables
-    public Transform target; // Target on waypoint circuit that cars will follow
-    private float accAfterYield;
+    [DisableEditing] public Transform target; // Target on waypoint circuit that cars will follow
     private readonly float conversion = 3.6f;
+    private readonly float tolerance = 0.05f; // Used to determine if the changed variable reached its target value. 2% seems to fit. (De Clercq)
+    private float accAfterYield;
     private float delta_distance;
     private bool InitiateAV;
 
@@ -62,7 +65,6 @@ public class AICar : MonoBehaviour, IVehicle
     private Rigidbody theRigidbody; // Variable for the rigid body this script is attached to
     private float Timer1;
     private float Timer2;
-    private readonly float tolerance = 0.05f; // Used to determine if the changed variable reached its target value. 2% seems to fit. (De Clercq)
 
     private float triggerlocation;
     private float yieldingTime;
@@ -94,6 +96,15 @@ public class AICar : MonoBehaviour, IVehicle
     }
 
 
+    private void Awake()
+    {
+        if (WaypointProgressTracker == null)
+        {
+            WaypointProgressTracker = GetComponent<WaypointProgressTracker>();
+        }
+    }
+
+
     // Use this for initialization
     private void Start()
     {
@@ -121,6 +132,19 @@ public class AICar : MonoBehaviour, IVehicle
 
     private void FixedUpdate()
     {
+        if (target == null)
+        {
+            target = WaypointProgressTracker.target;
+            Debug.Log("Had to get the Target from the WaypointProgressTracker");
+        }
+
+        if (target == null)
+        {
+            Debug.Log("Target is null");
+            return;
+            
+        }
+
         // Every physics calculation involves the orientation and speed of the object.
         var new_position = transform.InverseTransformPoint(target.position);
         var psi = Mathf.Asin(new_position.x / (Mathf.Pow(new_position.x * new_position.x + new_position.z * new_position.z, 0.5f) + 0.001f));

@@ -67,9 +67,9 @@ public class EmperorsRating : MonoBehaviour
     [Tooltip("Intensity of the active haptic pulse.")]
     [SerializeField] [Range(0.1f, 2f)] private float m_activeHapticsIntensity = 0.25f;
 
-    [Header("Rotation measurement settings")]
-    [Tooltip("Interval in seconds for measuring the controller rotation.")]
-    [SerializeField] [Range(0.001f, 0.5f)] private float m_rotationMeasureInterval = 0.01f;
+    // [Header("Rotation measurement settings")]
+    // [Tooltip("Interval in seconds for measuring the controller rotation.")]
+    // [SerializeField] [Range(0.001f, 0.5f)] private float m_rotationMeasureInterval = 0.01f;
 
 
     [Header("Debug: make up random measurements instead of controller rotations")]

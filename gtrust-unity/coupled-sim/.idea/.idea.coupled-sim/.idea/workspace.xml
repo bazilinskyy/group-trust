@@ -4,7 +4,42 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0588ed33-30a2-45ec-9206-a9228045be30" name="Changes" comment="" />
+    <list default="true" id="0588ed33-30a2-45ec-9206-a9228045be30" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Gizmos.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Gizmos/event.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Gizmos/event.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Gizmos/event_red.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Gizmos/event_red.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Gizmos/exclamation_mark.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Gizmos/exclamation_mark.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Gizmos/tick.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Gizmos/tick.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-09-11_11h28_192-168-1-11.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-09-11_11h28_192-168-1-11.csv.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-09-11_11h47_192-168-1-11.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-09-11_11h47_192-168-1-11.csv.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-09-11_12h01_192-168-1-11.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-09-11_12h01_192-168-1-11.csv.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-09-11_12h14_192-168-1-11.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-09-11_12h14_192-168-1-11.csv.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Scripts/GizmoDrawer_Obey.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Scripts/GizmoDrawer_Obey.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/StreetLights/CarStreetLight.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/StreetLights/CarStreetLight.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Adapted/AICar.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Adapted/AICar.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Networking/NetworkingManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Networking/NetworkingManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/New/SpeedSettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/New/SpeedSettings.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Originals/Cars/WaypointCircuit.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Originals/Cars/WaypointCircuit.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Originals/Cars/WaypointProgressTracker.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Originals/Cars/WaypointProgressTracker.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerSystem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_SOSXR/Prefabs/DrivableHatchbackCommon_DrivenPassengers.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_SOSXR/Prefabs/DrivableHatchbackCommon_DrivenPassengers.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_SOSXR/Prefabs/ExperimentDefinition_3PerCar.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_SOSXR/Prefabs/ExperimentDefinition_3PerCar.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_SOSXR/Prefabs/Obey.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_SOSXR/Prefabs/Obey.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_SOSXR/Scripts/EmperorsRating.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_SOSXR/Scripts/EmperorsRating.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_SOSXR/Scripts/EventsSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_SOSXR/Scripts/EventsSystem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_SOSXR/Scripts/GizmoDrawer_TrafficLight.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_SOSXR/Scripts/GizmoDrawer_TrafficLight.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_SOSXR/Scripts/Obey.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_SOSXR/Scripts/Obey.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_SOSXR/coupled-sim_SoFar.md" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_SOSXR/coupled-sim_SoFar.md" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -21,8 +56,11 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/477fedca0519411db130fd12d5c46b611fe00/f4/b6557a63/Collider.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/51669a5956b8454aa9ca2c099e45bbe3f400/02/78fc4a75/Eyes.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/56073df97ede4f769c2cc45d546d986d172200/f4/6abd940d/Object.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../coupled-sim/Assets/Scripts/New/SpeedSettings.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/PlayerSystem.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/_SOSXR/coupled-sim_SoFar.md" root0="FORCE_HIGHLIGHTING" root1="SKIP_HIGHLIGHTING" />
   </component>
+  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 8
@@ -92,6 +130,7 @@
     </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
   <component name="UnityProjectDiscoverer">
     <option name="hasUnityReference" value="true" />

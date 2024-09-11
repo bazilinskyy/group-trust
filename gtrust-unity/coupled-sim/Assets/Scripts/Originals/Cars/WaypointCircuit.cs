@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.IO;
+using System.Linq;
 using System.Text;
 using UnityEngine;
 #if UNITY_EDITOR
@@ -23,6 +24,12 @@ namespace UnityStandardAssets.Utility
 
         public Transform[] Waypoints => waypointList.items;
 
+
+        [ContextMenu(nameof(GetChildWaypoints))]
+        public void GetChildWaypoints()
+        {
+            waypointList.items = GetComponentsInChildren<SpeedSettings>().Select(s => s.transform).ToArray();
+        }
 
         // Use this for initialization
         private void Awake()

@@ -2,12 +2,12 @@ using System;
 using UnityEngine;
 
 
-public  class EventsSystem : MonoBehaviour
+public class EventsSystem : MonoBehaviour
 {
+    public static Action HaveArrived;
+    public static Action NearlyThere;
     public static Action OnOurWay;
     public static Action RanRedLight;
-    public static Action NearlyThere;
-    public static Action HaveArrived;
 
 
     public void InvokeOnOurWay()

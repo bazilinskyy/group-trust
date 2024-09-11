@@ -5,8 +5,8 @@ using UnityEngine;
 [ExecuteAlways]
 public class GizmoDrawer_TrafficLight : MonoBehaviour
 {
-    [SerializeField] private float m_addedHeight = 2.5f;
-    [SerializeField] private float m_radius = 0.25f;
+    [SerializeField] private float m_addedHeight = 5f;
+    [SerializeField] private float m_radius = 0.35f;
     private CarTrafficLight _carTrafficLight;
 
 

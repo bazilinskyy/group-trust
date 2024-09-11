@@ -1,6 +1,6 @@
 ﻿using System.Collections;
+using SOSXR;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 
 // This script was originally used by De Clercq. It has been omitted from the experiment of Kooijman.
@@ -19,32 +19,42 @@ public class SpeedSettings : MonoBehaviour
     [HideInInspector]
     public AICar targetAICar;
     //Simple Kinematics
-    [FormerlySerializedAs("WaypointNumber")]
-    public WaypointType Type = WaypointType.SetSpeedTarget;
-    public float speed = Defaults.Speed; //km/h
-    public float acceleration = Defaults.Acceleration; //m/s^2
-    public BlinkerState BlinkerState = BlinkerState.None;
+    
+
+    [Range(0, 80)] public float speed = Defaults.Speed; //km/h
+    [Range(1, 5)] public float acceleration = Defaults.Acceleration; //m/s^2
+    [Range(-5, -1)] public float brakingAcceleration = Defaults.Deceleration; //must be negative
+
+    [DisableEditing] public WaypointType Type = WaypointType.SetSpeedTarget;
+    [DisableEditing] public BlinkerState BlinkerState = BlinkerState.None;
 
     //Advanced Kinematics
-    public float jerk = Defaults.Jerk; //m/s^3
+    [DisableEditing] public float jerk = Defaults.Jerk; //m/s^3
     //public bool resetSpeedAfterStop = false;
     //Yielding
-    public bool causeToYield;
-    [FormerlySerializedAs("lookAtPlayerWhileYielding")]
-    public bool EyeContactWhileYielding;
-    [FormerlySerializedAs("lookAtPlayerAfterYielding")]
-    public bool EyeContactAfterYielding;
+    [DisableEditing] public bool causeToYield;
 
-    public float yieldTime;
-    public float brakingAcceleration; //must be negative
-    [FormerlySerializedAs("lookAtPedFromSeconds")]
-    public float YieldingEyeContactSince;
-    [FormerlySerializedAs("lookAtPedToSeconds")]
-    public float YieldingEyeContactUntil;
-    //Dynamics
-    [FormerlySerializedAs("customBehaviourData")] public CustomBehaviourData[] CustomBehaviourData;
+    [DisableEditing] public bool EyeContactWhileYielding;
 
+    [DisableEditing] public bool EyeContactAfterYielding;
+
+    [DisableEditing] public float yieldTime;
+    [DisableEditing] public float YieldingEyeContactSince;
+
+    [DisableEditing] public float YieldingEyeContactUntil;
+
+    private float _storedAcceleration;
+    private float _storedDeceleration;
     private float startTime;
+    //Dynamics
+    public CustomBehaviourData[] CustomBehaviourData { get; set; }
+
+
+    private void Start()
+    {
+        _storedAcceleration = acceleration;
+        _storedDeceleration = brakingAcceleration;
+    }
 
 
     private void OnTriggerEnter(Collider other)
@@ -54,6 +64,19 @@ public class SpeedSettings : MonoBehaviour
         if (aiCar == null || (targetAICar != null && targetAICar != aiCar))
         {
             return;
+        }
+
+        if (aiCar.speed > speed)
+        {
+            acceleration = _storedDeceleration;
+        }
+        else if (aiCar.speed < speed)
+        {
+            acceleration = _storedAcceleration;
+        }
+        else
+        {
+            acceleration = _storedAcceleration;
         }
 
         if (other.gameObject.CompareTag("ManualCar") && causeToYield)
@@ -66,9 +89,12 @@ public class SpeedSettings : MonoBehaviour
             }
         }
 
-        foreach (var bd in CustomBehaviourData)
+        if (CustomBehaviourData != null && CustomBehaviourData.Length != 0)
         {
-            aiCar.TriggerCustomBehaviours(bd);
+            foreach (var bd in CustomBehaviourData)
+            {
+                aiCar.TriggerCustomBehaviours(bd);
+            }
         }
     }
 
@@ -121,13 +147,16 @@ public class SpeedSettings : MonoBehaviour
         return result;
     }
 
-    public static class Defaults
-    {
-        public const int WaypointType = 1;
-        public const float Speed = 5;
-        public const float Acceleration = 5;
-        public const float Jerk = 0;
-        public const int BlinkerState = 0;
-        public const float Deceleration = -3;
-    }
+
+
+public static class Defaults
+{
+    public const int WaypointType = 1;
+    public const float Speed = 5;
+    public const float Acceleration = 5;
+    public const float Jerk = 0;
+    public const int BlinkerState = 0;
+    public const float Deceleration = -3;
+}
+
 }

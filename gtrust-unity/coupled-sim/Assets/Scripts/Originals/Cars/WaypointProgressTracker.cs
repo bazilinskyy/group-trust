@@ -1,3 +1,4 @@
+using SOSXR;
 using UnityEngine;
 
 
@@ -39,7 +40,7 @@ namespace UnityStandardAssets.Utility
 
         [SerializeField] private float pointToPointThreshold = 4;
 
-        public Transform target;
+        [DisableEditing] public Transform target;
         private Vector3 lastPosition; // Used to calculate current speed (since we may not have a rigidbody component)
 
         private float progressDistance; // The progress round the route, used in smooth mode.
@@ -88,6 +89,24 @@ namespace UnityStandardAssets.Utility
 
         private void Update()
         {
+            if (circuit == null)
+            {
+                circuit = FindObjectOfType<WaypointCircuit>();
+            }
+
+            if (circuit == null)
+            {
+                return;
+            }
+
+            if (target == null)
+            {
+                Debug.LogWarning("WaypointProgressTracker target is null, probably because Init was not called.");
+
+                return;
+            }
+
+
             if (progressStyle == ProgressStyle.SmoothAlongRoute)
             {
                 // determine the position we should currently be aiming for
@@ -98,6 +117,7 @@ namespace UnityStandardAssets.Utility
                     speed = Mathf.Lerp(speed, (lastPosition - transform.position).magnitude / Time.deltaTime,
                         Time.deltaTime);
                 }
+
 
                 target.position =
                     circuit.GetRoutePoint(progressDistance + lookAheadForTargetOffset + lookAheadForTargetFactor * speed)
@@ -154,10 +174,15 @@ namespace UnityStandardAssets.Utility
             if (Application.isPlaying && enabled)
             {
                 Gizmos.color = Color.green;
-                Gizmos.DrawLine(transform.position, target.position);
+
+                if (target != null)
+                {
+                    Gizmos.DrawLine(transform.position, target.position);
+                    Gizmos.DrawLine(target.position, target.position + target.forward);
+                }
+
                 Gizmos.DrawWireSphere(circuit.GetRoutePosition(progressDistance), 1);
                 Gizmos.color = Color.yellow;
-                Gizmos.DrawLine(target.position, target.position + target.forward);
             }
         }
     }

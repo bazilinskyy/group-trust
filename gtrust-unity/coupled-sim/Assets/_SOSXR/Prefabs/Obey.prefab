@@ -42,7 +42,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 9017391957425672210}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae35bb5bd919c1848a8e6e3d011d4134, type: 3}
+  m_Script: {fileID: 11500000, guid: 05f1ce17098b4400850eeb9c8a2cdbc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_acceleration: 2
@@ -50,6 +50,7 @@ MonoBehaviour:
   m_deceleration: -3
   m_obey: 1
   m_colliderSize: {x: 20, y: 2, z: 2}
+  IsManuallyDrivenCar: 0
 --- !u!114 &-5762148752882733550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59,6 +60,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 9017391957425672210}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b85a9112fdfa9e4ba854eb8110ea77d, type: 3}
+  m_Script: {fileID: 11500000, guid: 3456a257a5f44b17a443cbba866e22e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

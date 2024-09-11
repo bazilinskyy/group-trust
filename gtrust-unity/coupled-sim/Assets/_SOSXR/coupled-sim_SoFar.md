@@ -8,9 +8,21 @@ tags: [Work/Meetingnotes, Work/Projects/SOLO/Francesco/Coupled_Sim, Work/DevLog,
 ---
 # 11-09-2024
 
-Was supposed to have a meeting with Jom and Ugne but they cancelled last minute due to planned train strikes this morning. 
+Was supposed to have a meeting with Jom and Ugne but they cancelled last minute due to planned train strikes this morning. Haven't heard from them re the 'roadworks'.
 
-Will get the Obey from `coupled-sim` Bachelor's branch so that we can actually have any automated cars respond to the traffic lights. 
+Will get the Obey from `coupled-sim` Bachelor's branch so that we can actually have any automated cars respond to the traffic lights. I want to have the Prefab especially since that was quite useful IIRC.
+
+I also want to get from the other `coupled-sim` how it operates with the self-driven version. Does that have a waypointsystem, and how does that operate? Yes waypoint system. This is quite convenient actually. Will need to figure out what makes it tick so that it can come cleanly into this repo. 
+
+Ik moet er voor zorgen dat alle Obey's uit zijn als het een Manual Car is, en aan zijn als het een AI car is. Or at least that the Obeys don't affect the manually driven car. 
+
+To my knowledge moeten de AI car en de Manual Car vanaf hetzelfde punt starten, dus bij deze. Amend that: they shouldn't come from exactly the same point, because then they get spawned in the same thing, causing chaos. 
+
+I added a basic waypoint route to test how the AI cars are faring. None are driving yet by themselves. With some coaxing I can get them to drive and stop for the Obey traffic lights, but that's not yet the same as driving for themselves. For instance, they don't want to restart driving once they've had to stop for a traffic light. 
+
+Will look into this more another day. 
+
+Will contact the students re a new appointment. 
 
 
 

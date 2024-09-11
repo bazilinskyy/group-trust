@@ -145,10 +145,22 @@ public class PlayerSystem : MonoBehaviour
         {
             Debug.LogWarning("I found too many layerchangers");
         }
+        else if (layerChanger.Length == 0)
+        {
+            Debug.LogWarning("I didn't find a layerchanger");
+        }
         else
         {
-            Debug.Log("I found the exact good amount of layerchangers");
-            layerChanger[0].SetLayer();
+            if (layerChanger[0] == null)
+            {
+                Debug.LogWarning("I found a null layerchanger");
+            }
+            else
+            {
+                Debug.Log("I found a good layerchanger");
+                layerChanger[0].SetLayer();
+            }
+            
         }
     }
 
