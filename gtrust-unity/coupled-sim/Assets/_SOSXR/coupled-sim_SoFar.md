@@ -6,15 +6,22 @@ date_due:
 archived: false
 tags: [Work/Meetingnotes, Work/Projects/SOLO/Francesco/Coupled_Sim, Work/DevLog, Programming/Unity]
 ---
+# 11-09-2024
+
+Was supposed to have a meeting with Jom and Ugne but they cancelled last minute due to planned train strikes this morning. 
+
+Will get the Obey from `coupled-sim` Bachelor's branch so that we can actually have any automated cars respond to the traffic lights. 
 
 
-## 31-08-2024
+
+
+# 31-08-2024
 
 Disabled recurring Debug warnings about Lights not being part of car (since it's passenger)
 
-### Meeting Pavlo & Jom (until 12:00)
+## Meeting Pavlo & Jom (until 12:00)
 
-#### THINGS TO DO
+### THINGS TO DO
 Enable head colliders again (do check, since gave issues of violent flying last time).
 Do also torso
 Do hands (if possible) or elsewise steering wheel

@@ -432,12 +432,12 @@ namespace UnityStandardAssets.Utility.Inspector
                 {
                     //Debug.LogWarning("Circuit could not be fully deserialized. Fill customBehaviourData with: " + customBehaviourDataString);
                     var ids = customBehaviourDataString.Split("%");
-                    speedSettings.customBehaviourData = new CustomBehaviourData[ids.Length];
+                    speedSettings.CustomBehaviourData = new CustomBehaviourData[ids.Length];
 
                     for (var j = 0; j < ids.Length; j++)
                     {
                         var id = ids[j].Split("#")[1];
-                        speedSettings.customBehaviourData[j] = EditorUtility.InstanceIDToObject(int.Parse(id)) as CustomBehaviourData;
+                        speedSettings.CustomBehaviourData[j] = EditorUtility.InstanceIDToObject(int.Parse(id)) as CustomBehaviourData;
                     }
                 }
 

@@ -42,7 +42,7 @@ public class SpeedSettings : MonoBehaviour
     [FormerlySerializedAs("lookAtPedToSeconds")]
     public float YieldingEyeContactUntil;
     //Dynamics
-    public CustomBehaviourData[] customBehaviourData;
+    [FormerlySerializedAs("customBehaviourData")] public CustomBehaviourData[] CustomBehaviourData;
 
     private float startTime;
 
@@ -66,7 +66,7 @@ public class SpeedSettings : MonoBehaviour
             }
         }
 
-        foreach (var bd in customBehaviourData)
+        foreach (var bd in CustomBehaviourData)
         {
             aiCar.TriggerCustomBehaviours(bd);
         }
@@ -108,7 +108,7 @@ public class SpeedSettings : MonoBehaviour
     {
         var result = "";
 
-        foreach (var cbd in customBehaviourData)
+        foreach (var cbd in CustomBehaviourData)
         {
             if (!string.IsNullOrWhiteSpace(result))
             {
@@ -121,7 +121,6 @@ public class SpeedSettings : MonoBehaviour
         return result;
     }
 
-
     public static class Defaults
     {
         public const int WaypointType = 1;
@@ -129,5 +128,6 @@ public class SpeedSettings : MonoBehaviour
         public const float Acceleration = 5;
         public const float Jerk = 0;
         public const int BlinkerState = 0;
+        public const float Deceleration = -3;
     }
 }
