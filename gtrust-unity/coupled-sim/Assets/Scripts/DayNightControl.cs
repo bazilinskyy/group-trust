@@ -27,6 +27,9 @@ public class DayNightControl : MonoBehaviour
     public Material daySkybox;
     public Material nightSkybox;
 
+    [Header("SOSXR")]
+    [SerializeField] private bool m_changeSkybox = false;
+
 
     public void InitNight()
     {
@@ -66,6 +69,9 @@ public class DayNightControl : MonoBehaviour
 
     private void ChangeSkybox(Material data)
     {
-        RenderSettings.skybox = data;
+        if (m_changeSkybox)
+        {
+            RenderSettings.skybox = data;
+        }
     }
 }

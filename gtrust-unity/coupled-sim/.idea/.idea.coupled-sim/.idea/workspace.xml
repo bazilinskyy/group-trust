@@ -5,16 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0588ed33-30a2-45ec-9206-a9228045be30" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Prefabs/DrivableHatchbackCommon_DrivenPassengers_Automated.prefab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Prefabs/DrivableHatchbackCommon_DrivenPassengers_Automated.prefab.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Prefabs/DrivableHatchbackCommon_DrivenPassengers_Manual.prefab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Prefabs/DrivableHatchbackCommon_DrivenPassengers_Manual.prefab.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.coupled-sim/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.coupled-sim/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_SOSXR/Prefabs/DrivableHatchbackCommon_DrivenPassengers.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_SOSXR/Prefabs/DrivableHatchbackCommon_DrivenPassengers.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Adapted/AICar.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Adapted/AICar.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/DayNightControl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/DayNightControl.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Logging/WorldLogging.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Logging/WorldLogging.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/New/SpeedSettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/New/SpeedSettings.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_SOSXR/Prefabs/DrivableHatchbackCommon_DrivenPassengers_Automated.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_SOSXR/Prefabs/DrivableHatchbackCommon_DrivenPassengers_Automated.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_SOSXR/Prefabs/DrivableHatchbackCommon_DrivenPassengers_Manual.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_SOSXR/Prefabs/DrivableHatchbackCommon_DrivenPassengers_Manual.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_SOSXR/Prefabs/ExperimentDefinition_3PerCar.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_SOSXR/Prefabs/ExperimentDefinition_3PerCar.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_SOSXR/Scripts/ExtensionMethods.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_SOSXR/Scripts/ExtensionMethods.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_SOSXR/Scripts/GizmoDrawer_Waypoint.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_SOSXR/Scripts/GizmoDrawer_Waypoint.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_SOSXR/Scripts/Obey.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_SOSXR/Scripts/Obey.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_SOSXR/coupled-sim_SoFar.md" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_SOSXR/coupled-sim_SoFar.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Scenes/StartScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Scenes/StartScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Scenes/MainScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Scenes/MainScene.unity" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,6 +38,7 @@
     <setting file="file://$PROJECT_DIR$/../../../coupled-sim/Assets/Scripts/New/SpeedSettings.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/PlayerSystem.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_SOSXR/coupled-sim_SoFar.md" root0="FORCE_HIGHLIGHTING" root1="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.autodesk.fbx@4.2.1/Tests/Editor/UnitTests/FbxQuaternionTest.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{

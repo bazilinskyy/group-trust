@@ -3863,6 +3863,7 @@ GameObject:
   - component: {fileID: 7992445498551782146}
   - component: {fileID: 2478723328460268675}
   - component: {fileID: 2673223769286998360}
+  - component: {fileID: 3077568460225074110}
   m_Layer: 9
   m_Name: DrivableHatchbackCommon_DrivenPassengers_Manual
   m_TagString: ManualCar
@@ -4188,8 +4189,8 @@ MonoBehaviour:
   WaitInputX: 0
   WaitTrialX: 0
   WaitTrialZ: 0
-  WaypointProgressTracker: {fileID: 1279804933039176866}
   target: {fileID: 0}
+  m_showAngularVelocity: 0
 --- !u!114 &1279804933039176866
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4428,6 +4429,27 @@ MonoBehaviour:
   DriverPuppet: {fileID: 4783791075495129227}
   PassengerPuppet: {fileID: 8129944699451714796}
   Label: {fileID: 4081566330483786554}
+--- !u!65 &3077568460225074110
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1783928687406872520}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.5, y: 0.175, z: 2.73}
+  m_Center: {x: 0, y: 0.125, z: 0}
 --- !u!1 &1783933988476021450
 GameObject:
   m_ObjectHideFlags: 0
@@ -14888,17 +14910,17 @@ PrefabInstance:
     - target: {fileID: 4241356954099940039, guid: dbbb24367dd809f40a8b370b699c7028,
         type: 3}
       propertyPath: m_color.rgba
-      value: 4282784295
+      value: 4286615611
       objectReference: {fileID: 0}
     - target: {fileID: 4764351552333431003, guid: dbbb24367dd809f40a8b370b699c7028,
         type: 3}
       propertyPath: m_color.rgba
-      value: 4291305697
+      value: 4284892861
       objectReference: {fileID: 0}
     - target: {fileID: 5618562545090067431, guid: dbbb24367dd809f40a8b370b699c7028,
         type: 3}
       propertyPath: m_color.rgba
-      value: 4282586688
+      value: 4279515370
       objectReference: {fileID: 0}
     - target: {fileID: 6596234522564231215, guid: dbbb24367dd809f40a8b370b699c7028,
         type: 3}
@@ -14963,7 +14985,7 @@ PrefabInstance:
     - target: {fileID: 7622501045102464231, guid: dbbb24367dd809f40a8b370b699c7028,
         type: 3}
       propertyPath: m_color.rgba
-      value: 4279211657
+      value: 4278321666
       objectReference: {fileID: 0}
     - target: {fileID: 9155366706085362843, guid: dbbb24367dd809f40a8b370b699c7028,
         type: 3}

@@ -87,6 +87,8 @@ public class Obey : MonoBehaviour
                 {
                     otherSpeedSettings.enabled = false;
 
+                    otherSpeedSettings.gameObject.SetActive(false);
+
                     Debug.Log("One other SpeedSetting component was in my way, I disabled it."); // This needed doing because otherwise that other speedsetter would interfere, and make the car accelerate for instance when it should stop for red light
                 }
             }
@@ -148,6 +150,8 @@ public class Obey : MonoBehaviour
         {
             Debug.LogFormat("We're not listening to this traffic light here! We're bad bad drivers. The light is now {0}", m_carTrafficLight.State.ToString());
         }
+
+        Debug.Log("We entered the collider of the traffic light. This is where we'd start to slow down, or speed up, depending on the light state.");
     }
 
 
@@ -185,6 +189,10 @@ public class Obey : MonoBehaviour
 
                 // Debug.Log("This could also be a place to add multiple functions for other light states. Like what to do when light was Yellow? Is not a traffic violation, but might be something interesting anyway.");
             }
+        }
+        else
+        {
+            Debug.Log("We exited the collider of the traffic light. This is where we'd start to speed up again, or slow down, depending on the light state.");
         }
     }
 }

@@ -13,6 +13,14 @@ tags: [Work/Meetingnotes, Work/Projects/SOLO/Francesco/Coupled_Sim, Work/DevLog,
 
 Index 1 on the Managers > Player System > Driver Prefabs used to be "DrivableSmartCommon-no_driver", now replaced with copy of the manual car, now called "DrivableHatchbackCommon_DrivenPassengers_Automated". But maybe it should be Index 2?
 
+Copied AICar script from bachelors
+
+Added collider to car
+
+Speed setting and acceleration setting was a bit confusing. Apparently there's another SpeedSetter in the scene, that was messing everything up. These were the "BrakeX_WaitInput" and the "BrakeZ_StartTrial".
+
+Finally got auto driving working, at least some of the time. Needs more testing! Sometimes the car veers of elsewhere and crashes and/or flies across. 
+
 
 
 # 11-09-2024

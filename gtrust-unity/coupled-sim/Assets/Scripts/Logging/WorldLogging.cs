@@ -220,7 +220,7 @@ public class WorldLogger
                 writer.Write(rb.velocity);
                 var ai = driver.GetComponent<AICar>();
                 Assert.IsNotNull(ai);
-                writer.Write(ai.speed);
+                writer.Write(ai.Speed);
                 writer.Write(ai.state == AICar.CarState.BRAKING);
                 writer.Write(ai.state == AICar.CarState.STOPPED);
                 writer.Write(ai.state == AICar.CarState.TAKEOFF);

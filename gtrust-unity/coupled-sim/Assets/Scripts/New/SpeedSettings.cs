@@ -19,7 +19,7 @@ public class SpeedSettings : MonoBehaviour
     [HideInInspector]
     public AICar targetAICar;
     //Simple Kinematics
-    
+
 
     [Range(0, 80)] public float speed = Defaults.Speed; //km/h
     [Range(1, 5)] public float acceleration = Defaults.Acceleration; //m/s^2
@@ -66,17 +66,20 @@ public class SpeedSettings : MonoBehaviour
             return;
         }
 
-        if (aiCar.speed > speed)
+        if (aiCar.Speed > speed)
         {
             acceleration = _storedDeceleration;
+            Debug.Log("Decelerating");
         }
-        else if (aiCar.speed < speed)
+        else if (aiCar.Speed < speed)
         {
             acceleration = _storedAcceleration;
+            Debug.Log("Accelerating");
         }
         else
         {
             acceleration = _storedAcceleration;
+            Debug.Log("Maintaining speed");
         }
 
         if (other.gameObject.CompareTag("ManualCar") && causeToYield)
@@ -148,15 +151,13 @@ public class SpeedSettings : MonoBehaviour
     }
 
 
-
-public static class Defaults
-{
-    public const int WaypointType = 1;
-    public const float Speed = 5;
-    public const float Acceleration = 5;
-    public const float Jerk = 0;
-    public const int BlinkerState = 0;
-    public const float Deceleration = -3;
-}
-
+    public static class Defaults
+    {
+        public const int WaypointType = 1;
+        public const float Speed = 5;
+        public const float Acceleration = 5;
+        public const float Jerk = 0;
+        public const int BlinkerState = 0;
+        public const float Deceleration = -3;
+    }
 }

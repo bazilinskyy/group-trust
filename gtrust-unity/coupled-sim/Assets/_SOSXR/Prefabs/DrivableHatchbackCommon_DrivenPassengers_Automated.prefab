@@ -3863,6 +3863,7 @@ GameObject:
   - component: {fileID: 7992445498551782146}
   - component: {fileID: 2478723328460268675}
   - component: {fileID: 2673223769286998360}
+  - component: {fileID: -4164740112370799893}
   m_Layer: 9
   m_Name: DrivableHatchbackCommon_DrivenPassengers_Automated
   m_TagString: ManualCar
@@ -4189,8 +4190,8 @@ MonoBehaviour:
   WaitInputX: 0
   WaitTrialX: 0
   WaitTrialZ: 0
-  WaypointProgressTracker: {fileID: 1279804933039176866}
   target: {fileID: 0}
+  m_showAngularVelocity: 0
 --- !u!114 &1279804933039176866
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4429,6 +4430,27 @@ MonoBehaviour:
   DriverPuppet: {fileID: 4783791075495129227}
   PassengerPuppet: {fileID: 8129944699451714796}
   Label: {fileID: 4081566330483786554}
+--- !u!65 &-4164740112370799893
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1783928687406872520}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.5, y: 0.175, z: 2.73}
+  m_Center: {x: 0, y: 0.125, z: 0}
 --- !u!1 &1783933988476021450
 GameObject:
   m_ObjectHideFlags: 0

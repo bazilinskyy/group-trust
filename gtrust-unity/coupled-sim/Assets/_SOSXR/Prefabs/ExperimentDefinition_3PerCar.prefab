@@ -79,10 +79,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdcba68cb9a148908d52cf6220f8199d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_radius: 0.25
+  m_radius: 1
   m_color:
     serializedVersion: 2
-    rgba: 4279603113
+    rgba: 4279179271
 --- !u!1 &142311562002471530
 GameObject:
   m_ObjectHideFlags: 0
@@ -112,7 +112,7 @@ Transform:
   m_GameObject: {fileID: 142311562002471530}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -228, y: 1, z: 15.7}
+  m_LocalPosition: {x: -228.41, y: 1, z: 22.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1378,7 +1378,7 @@ Transform:
   m_GameObject: {fileID: 1462550528955909019}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -212.5, y: 1, z: 10}
+  m_LocalPosition: {x: -199.08, y: 1, z: 10.19}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2063,7 +2063,7 @@ Transform:
   m_GameObject: {fileID: 2621693465667741055}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -225.7, y: 1, z: 10}
+  m_LocalPosition: {x: -225.86, y: 1, z: 9.87}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2160,7 +2160,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2815826181675721001
 Transform:
   m_ObjectHideFlags: 0
@@ -2211,8 +2211,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetAICar: {fileID: 0}
   speed: 0
-  acceleration: -2
-  brakingAcceleration: 0
+  acceleration: 1
+  brakingAcceleration: -1
   Type: 1
   BlinkerState: 0
   jerk: -6
@@ -2269,7 +2269,7 @@ MonoBehaviour:
   m_radius: 0.25
   m_color:
     serializedVersion: 2
-    rgba: 4286816153
+    rgba: 4279961881
 --- !u!1 &3090127906602693112
 GameObject:
   m_ObjectHideFlags: 0
@@ -2426,7 +2426,7 @@ MonoBehaviour:
   m_radius: 0.25
   m_color:
     serializedVersion: 2
-    rgba: 4282197775
+    rgba: 4279831826
 --- !u!1 &3279082257886624912
 GameObject:
   m_ObjectHideFlags: 0
@@ -2829,7 +2829,7 @@ Transform:
   m_GameObject: {fileID: 3915324643476740861}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -219.3, y: 1, z: 10}
+  m_LocalPosition: {x: -213.58, y: 1, z: 9.84}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2938,7 +2938,7 @@ Transform:
   m_GameObject: {fileID: 4360703320359522900}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -4.99, y: 1, z: 10}
+  m_LocalPosition: {x: -21.94, y: 1, z: 9.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3265,7 +3265,7 @@ Transform:
   m_GameObject: {fileID: 4816142471905792123}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -228, y: 1, z: 19.7}
+  m_LocalPosition: {x: -228.26, y: 1, z: 32.23}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4428,7 +4428,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8609029755401214846
 Transform:
   m_ObjectHideFlags: 0
@@ -4479,8 +4479,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetAICar: {fileID: 0}
   speed: 0
-  acceleration: -2
-  brakingAcceleration: 0
+  acceleration: 1
+  brakingAcceleration: -1
   Type: 1
   BlinkerState: 0
   jerk: -6
@@ -4644,7 +4644,7 @@ Transform:
   m_GameObject: {fileID: 6752333726513688824}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -228, y: 1, z: 12.1}
+  m_LocalPosition: {x: -228.54, y: 1, z: 12.46}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4916,7 +4916,7 @@ MonoBehaviour:
   m_radius: 0.25
   m_color:
     serializedVersion: 2
-    rgba: 4292204740
+    rgba: 4289492086
 --- !u!1 &7930942599048659865
 GameObject:
   m_ObjectHideFlags: 0
@@ -5291,7 +5291,7 @@ MonoBehaviour:
   m_radius: 0.25
   m_color:
     serializedVersion: 2
-    rgba: 4281415474
+    rgba: 4278519555
 --- !u!1 &8148448507556185481
 GameObject:
   m_ObjectHideFlags: 0

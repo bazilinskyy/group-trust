@@ -9,6 +9,7 @@ public class GizmoDrawer_Waypoint : MonoBehaviour
     [SerializeField] private Color m_startPointColor = Color.green;
     [SerializeField] private Color m_pathColor = Color.blue;
     [SerializeField] private Color m_pointColor = Color.yellow;
+    [SerializeField] private Color m_disabledPointColor = Color.black;
     [SerializeField] private Color m_endPointColor = Color.red;
     [SerializeField] private bool m_loopToStart;
     private WaypointCircuit _waypointCircuit;
@@ -41,11 +42,16 @@ public class GizmoDrawer_Waypoint : MonoBehaviour
                 Gizmos.DrawLine(_waypointCircuit.Waypoints[i].transform.position, _waypointCircuit.Waypoints[i + 1].transform.position);
             }
 
-
+           
             if (i == 0)
             {
                 Gizmos.color = m_startPointColor;
                 Gizmos.DrawCube(_waypointCircuit.Waypoints[i].transform.position, Vector3.one * 2);
+            }
+            else if (!_waypointCircuit.Waypoints[i].gameObject.activeInHierarchy)
+            {
+                Gizmos.color = m_disabledPointColor;
+                Gizmos.DrawSphere(_waypointCircuit.Waypoints[i].transform.position, 0.25f);
             }
             else
             {
