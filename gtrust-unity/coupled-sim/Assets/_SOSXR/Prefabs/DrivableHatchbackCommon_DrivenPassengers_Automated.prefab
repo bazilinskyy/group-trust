@@ -3864,7 +3864,7 @@ GameObject:
   - component: {fileID: 2478723328460268675}
   - component: {fileID: 2673223769286998360}
   m_Layer: 9
-  m_Name: DrivableHatchbackCommon_DrivenPassengers
+  m_Name: DrivableHatchbackCommon_DrivenPassengers_Automated
   m_TagString: ManualCar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4150,6 +4150,7 @@ MonoBehaviour:
   - {fileID: 209426147274557965}
   - {fileID: 2357386276342029191}
   cameras:
+  - {fileID: 0}
   - {fileID: 0}
   HMISlots:
     Hood: {fileID: 1018005857743138705}
@@ -14888,17 +14889,17 @@ PrefabInstance:
     - target: {fileID: 4241356954099940039, guid: dbbb24367dd809f40a8b370b699c7028,
         type: 3}
       propertyPath: m_color.rgba
-      value: 4282784295
+      value: 4281417471
       objectReference: {fileID: 0}
     - target: {fileID: 4764351552333431003, guid: dbbb24367dd809f40a8b370b699c7028,
         type: 3}
       propertyPath: m_color.rgba
-      value: 4291305697
+      value: 4287695416
       objectReference: {fileID: 0}
     - target: {fileID: 5618562545090067431, guid: dbbb24367dd809f40a8b370b699c7028,
         type: 3}
       propertyPath: m_color.rgba
-      value: 4282586688
+      value: 4281277777
       objectReference: {fileID: 0}
     - target: {fileID: 6596234522564231215, guid: dbbb24367dd809f40a8b370b699c7028,
         type: 3}
@@ -14963,7 +14964,7 @@ PrefabInstance:
     - target: {fileID: 7622501045102464231, guid: dbbb24367dd809f40a8b370b699c7028,
         type: 3}
       propertyPath: m_color.rgba
-      value: 4279211657
+      value: 4278916891
       objectReference: {fileID: 0}
     - target: {fileID: 9155366706085362843, guid: dbbb24367dd809f40a8b370b699c7028,
         type: 3}

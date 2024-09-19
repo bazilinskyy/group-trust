@@ -6,6 +6,15 @@ date_due:
 archived: false
 tags: [Work/Meetingnotes, Work/Projects/SOLO/Francesco/Coupled_Sim, Work/DevLog, Programming/Unity]
 ---
+
+
+# 19-09-2024
+
+
+Index 1 on the Managers > Player System > Driver Prefabs used to be "DrivableSmartCommon-no_driver", now replaced with copy of the manual car, now called "DrivableHatchbackCommon_DrivenPassengers_Automated". But maybe it should be Index 2?
+
+
+
 # 11-09-2024
 
 Was supposed to have a meeting with Jom and Ugne but they cancelled last minute due to planned train strikes this morning. Haven't heard from them re the 'roadworks'.
