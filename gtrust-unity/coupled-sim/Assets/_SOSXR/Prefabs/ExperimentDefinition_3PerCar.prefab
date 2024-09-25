@@ -61,7 +61,7 @@ Transform:
   m_GameObject: {fileID: 1311683244}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -22.27, y: 0, z: 9.94}
+  m_LocalPosition: {x: -4, y: 0, z: 9.94}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -82,7 +82,7 @@ MonoBehaviour:
   m_radius: 1
   m_color:
     serializedVersion: 2
-    rgba: 4279646499
+    rgba: 4284371809
 --- !u!1 &142311562002471530
 GameObject:
   m_ObjectHideFlags: 0
@@ -2124,7 +2124,7 @@ GameObject:
   - component: {fileID: 89640435007566345}
   - component: {fileID: 2816677570816598251}
   m_Layer: 0
-  m_Name: Passenger_Backseat
+  m_Name: Passenger_Back_seat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2160,7 +2160,7 @@ MonoBehaviour:
   m_radius: 0.25
   m_color:
     serializedVersion: 2
-    rgba: 4294022344
+    rgba: 4286619837
 --- !u!1 &3090127906602693112
 GameObject:
   m_ObjectHideFlags: 0
@@ -2317,7 +2317,7 @@ MonoBehaviour:
   m_radius: 0.25
   m_color:
     serializedVersion: 2
-    rgba: 4279251235
+    rgba: 4278781705
 --- !u!1 &3279082257886624912
 GameObject:
   m_ObjectHideFlags: 0
@@ -2828,7 +2828,7 @@ Transform:
   m_GameObject: {fileID: 4360703320359522900}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -21.49, y: 1, z: 9.75}
+  m_LocalPosition: {x: -4.41, y: 1, z: 9.82}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4512,8 +4512,32 @@ MonoBehaviour:
     HoodHMI: {fileID: 0}
     carIdx: 1
     SpawnPoint:
-      Point: {fileID: 1311683245}
+      Point: {fileID: 571469619656576747}
       Type: 2
+      CameraIndex: 1
+      VehicleType: 1
+    AutonomousPath: {fileID: 8043761391078894673}
+    AutonomousIsYielding: 1
+  - Name: Automated - Front Passenger
+    TopHMI: {fileID: 0}
+    WindshieldHMI: {fileID: 0}
+    HoodHMI: {fileID: 0}
+    carIdx: 1
+    SpawnPoint:
+      Point: {fileID: 2616189901370565436}
+      Type: 3
+      CameraIndex: 1
+      VehicleType: 1
+    AutonomousPath: {fileID: 8043761391078894673}
+    AutonomousIsYielding: 1
+  - Name: Automated - Backseat Passenger
+    TopHMI: {fileID: 0}
+    WindshieldHMI: {fileID: 0}
+    HoodHMI: {fileID: 0}
+    carIdx: 1
+    SpawnPoint:
+      Point: {fileID: 89640435007566345}
+      Type: 3
       CameraIndex: 1
       VehicleType: 1
     AutonomousPath: {fileID: 8043761391078894673}
@@ -4824,7 +4848,7 @@ MonoBehaviour:
   m_radius: 0.25
   m_color:
     serializedVersion: 2
-    rgba: 4278322691
+    rgba: 4281816676
 --- !u!1 &7930942599048659865
 GameObject:
   m_ObjectHideFlags: 0
@@ -5163,7 +5187,7 @@ GameObject:
   - component: {fileID: 2616189901370565436}
   - component: {fileID: 2299038053523415606}
   m_Layer: 0
-  m_Name: Passenger_FrontSeat
+  m_Name: Passenger_Front_seat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5199,7 +5223,7 @@ MonoBehaviour:
   m_radius: 0.25
   m_color:
     serializedVersion: 2
-    rgba: 4278331417
+    rgba: 4278913300
 --- !u!1 &8148448507556185481
 GameObject:
   m_ObjectHideFlags: 0

@@ -4050,6 +4050,7 @@ MonoBehaviour:
   driftIntensity: 0.5
   centerOfMass: {fileID: 6415234130277066749}
   downforce: 9
+  throttle: 0
   handbrake: 0
   allowDrift: 1
   speed: 0
@@ -4176,8 +4177,6 @@ MonoBehaviour:
   playerAvatar: {fileID: 7263647346857764255}
   jerk: 2
   turn_rate_degree: 360
-  speed: 0
-  acceleration: 0
   t: 0
   HasPitch: 1
   modelElements:
@@ -4190,6 +4189,8 @@ MonoBehaviour:
   WaitTrialX: 0
   WaitTrialZ: 0
   target: {fileID: 0}
+  set_acceleration: 0
+  set_speed: 0
   m_showAngularVelocity: 0
 --- !u!114 &1279804933039176866
 MonoBehaviour:
@@ -4240,6 +4241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f21b587b2a8e7c4e9f55f86ff600bdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_useHMIS: 0
 --- !u!82 &7992445498551782146
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4446,7 +4448,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1.5, y: 0.175, z: 2.73}
   m_Center: {x: 0, y: 0.125, z: 0}

@@ -366,14 +366,14 @@ public class AICar : MonoBehaviour, IVehicle
                     shouldYield = true;
                     state = CarState.BRAKING;
 
-                    Debug.Log("Yielding. Set acceleration: " + set_acceleration);
+                    //Debug.Log("Yielding. Set acceleration: " + set_acceleration);
                 }
                 else
                 {
                     set_speed = speedSettings.speed;
                     set_acceleration = speedSettings.acceleration;
 
-                    Debug.Log("Set acceleration: " + set_acceleration);
+                    //Debug.Log("Set acceleration: " + set_acceleration);
                 }
             }
             else if (speedSettings.Type == SpeedSettings.WaypointType.Delete)

@@ -228,6 +228,12 @@ public class Host : NetworkSystem
 
             for (var i = 0; i < roles.Length; i++)
             {
+                if (i % 3 == 0) // SOSXR: 3 roles per row
+                {
+                    GUILayout.EndHorizontal();
+                    GUILayout.BeginHorizontal();
+                }
+
                 if (GUILayout.Button(roles[i].Name))
                 {
                     host._playerRoles[player] = i;

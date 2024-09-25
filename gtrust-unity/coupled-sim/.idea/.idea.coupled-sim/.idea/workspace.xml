@@ -5,9 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0588ed33-30a2-45ec-9206-a9228045be30" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-09-25_11h26_192-168-1-11.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-09-25_11h26_192-168-1-11.csv.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.coupled-sim/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.coupled-sim/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Arcade_Car_Physics/Scripts/WheelVehicle.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Arcade_Car_Physics/Scripts/WheelVehicle.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Car/ClientHMIController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Car/ClientHMIController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Adapted/AICar.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Adapted/AICar.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Networking/Host.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Networking/Host.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_SOSXR/Prefabs/DrivableHatchbackCommon_DrivenPassengers_Manual.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_SOSXR/Prefabs/DrivableHatchbackCommon_DrivenPassengers_Manual.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_SOSXR/Prefabs/ExperimentDefinition_3PerCar.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_SOSXR/Prefabs/ExperimentDefinition_3PerCar.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_SOSXR/coupled-sim_SoFar.md" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_SOSXR/coupled-sim_SoFar.md" afterDir="false" />
     </list>
