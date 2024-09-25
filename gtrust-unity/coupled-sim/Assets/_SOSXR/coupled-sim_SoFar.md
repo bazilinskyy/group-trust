@@ -17,14 +17,12 @@ Car went up a wall when coming back to the start of the test-route
 Changed box collider on Waypoints to Sphere Colliders (these also needed to be Triggers, duh)
 This seems to work for now. It could be that simply in the process of doing so I've set them to be at better positions.
 
-## Others
-Toggled the HMIs to be off (done in ClientHMIController.cs)
+The Car still ran into the wall after the first loop, on entering the first of the Waypoints, even with the SphereColliders.
+Jom suggested to put the starting point a little further away from the corner, and to have it further away from the endpoint.
+This seemed to work during 3+ tests
 
 
-## WIP
-Also have the driven participant not be tied to the wheel but be able to move their hands
-
-Also there's going to need to be a similar situation to the driven version, where there can be participants in passenger chair and back seat.
+## Adding Autonomous Roles
 
 Setting a new 'Role' is done in the Experiment Definition under 'Roles'
 - Removed 'Pedestrian' role
@@ -34,7 +32,17 @@ Setting a new 'Role' is done in the Experiment Definition under 'Roles'
 - Created new Roles: Automated Fron Passenger / Backseat Passenger, with same spawn points to the Manual version, used same settings as Manual (Passive Passenger)
 - Set camera index of all Autonomous to 0 (was 1), just like it is in Manual
 
+
+## Others
+Toggled the HMIs to be off (done in ClientHMIController.cs)
 In de Manual car moet er geen BoxCollider op de main prefab parent (aan) staan. Deze is alleen nodig (en ook echt nodig) op de Automated car
+
+
+## WIP
+Also have the driven participant not be tied to the wheel but be able to move their hands
+
+
+
 
 
 # 19-09-2024
