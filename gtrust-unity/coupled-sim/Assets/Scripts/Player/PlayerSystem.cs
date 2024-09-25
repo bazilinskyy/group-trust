@@ -77,6 +77,12 @@ public class PlayerSystem : MonoBehaviour
         var aiCar = LocalPlayer.GetComponent<AICar>();
         var tracker = LocalPlayer.GetComponent<WaypointProgressTracker>();
         // Assert.IsNotNull(tracker);
+
+        if (aiCar == null || tracker == null)
+        {
+            return;
+        }
+        
         aiCar.enabled = true;
         tracker.enabled = true;
 
