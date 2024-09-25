@@ -77,11 +77,11 @@ public class Obey : MonoBehaviour
                 continue;
             }
 
-            var theirBox = speedSettings.GetComponent<BoxCollider>();
+            var theirCollider = speedSettings.GetComponent<Collider>();
 
-            if (theirBox.bounds.Intersects(_boxCollider.bounds))
+            if (theirCollider.bounds.Intersects(_boxCollider.bounds))
             {
-                var otherSpeedSettings = theirBox.gameObject.GetComponent<SpeedSettings>();
+                var otherSpeedSettings = theirCollider.gameObject.GetComponent<SpeedSettings>();
 
                 if (otherSpeedSettings != null)
                 {
