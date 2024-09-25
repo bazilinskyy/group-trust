@@ -151,7 +151,7 @@ public class Obey : MonoBehaviour
             Debug.LogFormat("We're not listening to this traffic light here! We're bad bad drivers. The light is now {0}", m_carTrafficLight.State.ToString());
         }
 
-        Debug.Log("We entered the collider of the traffic light. This is where we'd start to slow down, or speed up, depending on the light state.");
+        // Debug.Log("We entered the collider of the traffic light. This is where we'd start to slow down, or speed up, depending on the light state.");
     }
 
 

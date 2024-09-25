@@ -69,17 +69,17 @@ public class SpeedSettings : MonoBehaviour
         if (aiCar.Speed > speed)
         {
             acceleration = _storedDeceleration;
-            Debug.Log("Decelerating");
+            //Debug.Log("Decelerating");
         }
         else if (aiCar.Speed < speed)
         {
             acceleration = _storedAcceleration;
-            Debug.Log("Accelerating");
+            //Debug.Log("Accelerating");
         }
         else
         {
             acceleration = _storedAcceleration;
-            Debug.Log("Maintaining speed");
+            //Debug.Log("Maintaining speed");
         }
 
         if (other.gameObject.CompareTag("ManualCar") && causeToYield)
