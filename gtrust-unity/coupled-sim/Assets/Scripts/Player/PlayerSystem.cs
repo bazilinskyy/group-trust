@@ -38,7 +38,7 @@ public class PlayerSystem : MonoBehaviour
     [SerializeField] private PlayerAvatar[] m_passengerPrefabs;
     [SerializeField] private PlayerAvatar[] m_driverPrefabs;
 
-
+[TagSelector] [SerializeField] private string m_carTag = "ManualCar";
     // [NonSerialized]
     public PlayerAvatar LocalPlayer;
 
@@ -254,8 +254,7 @@ public class PlayerSystem : MonoBehaviour
 
         if (prefab.Type == AvatarType.Driven_Passenger)
         {
-            var carTag = "ManualCar";
-            var drivenCar = GameObject.FindGameObjectWithTag(carTag);
+            var drivenCar = GameObject.FindGameObjectWithTag(m_carTag);
 
             if (drivenCar != null)
             {
@@ -263,7 +262,9 @@ public class PlayerSystem : MonoBehaviour
             }
             else
             {
-                Debug.LogErrorFormat("SOSXR: For avatar {0} we're supposed to find a car with the tag {1}, but we couldn't find one in the scene. This is not good.", avatar.name, carTag);
+                Debug.LogErrorFormat("SOSXR: For avatar {0} we're supposed to find a car with the tag {1}, but we couldn't find one in the scene. This is not good.", avatar.name, m_carTag);
+
+                return avatar;
             }
         }
 

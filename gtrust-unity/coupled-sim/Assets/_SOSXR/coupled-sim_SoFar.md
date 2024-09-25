@@ -29,9 +29,10 @@ Also there's going to need to be a similar situation to the driven version, wher
 Setting a new 'Role' is done in the Experiment Definition under 'Roles'
 - Removed 'Pedestrian' role
 - Removed HMIs from Automated
-- Renamed to: Manual && Automated
+- Renamed to: Manual (instead of Driven) && Automated
 - Spwawn point for 'driver' in automated car was called 'AI_Passenger'. I set it to identical spawn points of the Manual version (transform of 'Car + Driver')
-- Created new Roles: Automated Fron Passenger / Backseat Passenger, with same spawn points to the Manual version
+- Created new Roles: Automated Fron Passenger / Backseat Passenger, with same spawn points to the Manual version, used same settings as Manual (Passive Passenger)
+- Set camera index of all Autonomous to 0 (was 1), just like it is in Manual
 
 In de Manual car moet er geen BoxCollider op de main prefab parent (aan) staan. Deze is alleen nodig (en ook echt nodig) op de Automated car
 

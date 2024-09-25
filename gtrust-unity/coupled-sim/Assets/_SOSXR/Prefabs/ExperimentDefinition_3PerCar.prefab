@@ -82,7 +82,7 @@ MonoBehaviour:
   m_radius: 1
   m_color:
     serializedVersion: 2
-    rgba: 4284371809
+    rgba: 4281756273
 --- !u!1 &142311562002471530
 GameObject:
   m_ObjectHideFlags: 0
@@ -2160,7 +2160,7 @@ MonoBehaviour:
   m_radius: 0.25
   m_color:
     serializedVersion: 2
-    rgba: 4286619837
+    rgba: 4280963582
 --- !u!1 &3090127906602693112
 GameObject:
   m_ObjectHideFlags: 0
@@ -2317,7 +2317,7 @@ MonoBehaviour:
   m_radius: 0.25
   m_color:
     serializedVersion: 2
-    rgba: 4278781705
+    rgba: 4284373609
 --- !u!1 &3279082257886624912
 GameObject:
   m_ObjectHideFlags: 0
@@ -4514,7 +4514,7 @@ MonoBehaviour:
     SpawnPoint:
       Point: {fileID: 571469619656576747}
       Type: 2
-      CameraIndex: 1
+      CameraIndex: 0
       VehicleType: 1
     AutonomousPath: {fileID: 8043761391078894673}
     AutonomousIsYielding: 1
@@ -4526,7 +4526,7 @@ MonoBehaviour:
     SpawnPoint:
       Point: {fileID: 2616189901370565436}
       Type: 3
-      CameraIndex: 1
+      CameraIndex: 0
       VehicleType: 1
     AutonomousPath: {fileID: 8043761391078894673}
     AutonomousIsYielding: 1
@@ -4538,7 +4538,7 @@ MonoBehaviour:
     SpawnPoint:
       Point: {fileID: 89640435007566345}
       Type: 3
-      CameraIndex: 1
+      CameraIndex: 0
       VehicleType: 1
     AutonomousPath: {fileID: 8043761391078894673}
     AutonomousIsYielding: 1
@@ -4848,7 +4848,7 @@ MonoBehaviour:
   m_radius: 0.25
   m_color:
     serializedVersion: 2
-    rgba: 4281816676
+    rgba: 4282070581
 --- !u!1 &7930942599048659865
 GameObject:
   m_ObjectHideFlags: 0
@@ -5223,7 +5223,7 @@ MonoBehaviour:
   m_radius: 0.25
   m_color:
     serializedVersion: 2
-    rgba: 4278913300
+    rgba: 4278323985
 --- !u!1 &8148448507556185481
 GameObject:
   m_ObjectHideFlags: 0
