@@ -141,8 +141,8 @@ public class Obey : MonoBehaviour
 
         if (!aiCar.isActiveAndEnabled)
         {
-            Debug.LogError("AICar was found, but is not active");
-
+            Debug.LogWarning("AICar was found, but is not active");
+            
             return;
         }
 

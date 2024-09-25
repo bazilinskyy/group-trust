@@ -36,7 +36,7 @@ Setting a new 'Role' is done in the Experiment Definition under 'Roles'
 ## Others
 Toggled the HMIs to be off (done in ClientHMIController.cs)
 In de Manual car moet er geen BoxCollider op de main prefab parent (aan) staan. Deze is alleen nodig (en ook echt nodig) op de Automated car
-
+Check that in the Console is an option to do 'Error Pause', this pauses the game when hitting a `Debug.LogError("")`, but none of the above levels. Could be useful, but to me it's confusing: I turned it off. 
 
 ## WIP
 Also have the driven participant not be tied to the wheel but be able to move their hands
