@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0588ed33-30a2-45ec-9206-a9228045be30" name="Changes" comment="" />
+    <list default="true" id="0588ed33-30a2-45ec-9206-a9228045be30" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.coupled-sim/.idea/projectSettingsUpdater.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.coupled-sim/.idea/projectSettingsUpdater.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.coupled-sim/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.coupled-sim/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Car/ClientHMIController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Car/ClientHMIController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_SOSXR/Prefabs/ExperimentDefinition_3PerCar.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_SOSXR/Prefabs/ExperimentDefinition_3PerCar.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_SOSXR/Scripts/Obey.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_SOSXR/Scripts/Obey.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_SOSXR/coupled-sim_SoFar.md" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_SOSXR/coupled-sim_SoFar.md" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -41,22 +48,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;SOSXR&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;
-  },
-  &quot;keyToStringList&quot;: {
-    &quot;rider.external.source.directories&quot;: [
-      &quot;C:\\Users\\Walker_DrivingSim\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\DecompilerCache&quot;,
-      &quot;C:\\Users\\Walker_DrivingSim\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\SourcesCache&quot;,
-      &quot;C:\\Users\\Walker_DrivingSim\\AppData\\Local\\Symbols\\src&quot;
-    ]
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "SOSXR",
+    "ignore.virus.scanning.warn.message": "true",
+    "settings.editor.selected.configurable": "preferences.keymap"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2022.3.37f1\Editor\Unity.exe" />
@@ -106,6 +106,7 @@
   <component name="UnityUnitTestConfiguration" currentTestLauncher="Both" />
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <option name="LOCAL_CHANGES_DETAILS_PREVIEW_SHOWN" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
 </project>
