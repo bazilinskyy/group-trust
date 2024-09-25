@@ -32,7 +32,7 @@ Transform:
   - {fileID: 8769864853207741435}
   - {fileID: 1311683245}
   - {fileID: 9168689610437224543}
-  - {fileID: 571469619656576747}
+  - {fileID: 3311624392851354254}
   m_Father: {fileID: 7609667120526454229}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1311683244
@@ -82,7 +82,7 @@ MonoBehaviour:
   m_radius: 1
   m_color:
     serializedVersion: 2
-    rgba: 4293851557
+    rgba: 4279646499
 --- !u!1 &142311562002471530
 GameObject:
   m_ObjectHideFlags: 0
@@ -2124,7 +2124,7 @@ GameObject:
   - component: {fileID: 89640435007566345}
   - component: {fileID: 2816677570816598251}
   m_Layer: 0
-  m_Name: Driven_Backseat
+  m_Name: Passenger_Backseat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2138,12 +2138,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2773336481460991637}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1}
+  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -3.7700005, y: 0, z: 9.94}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 571469619656576747}
+  m_Father: {fileID: 3311624392851354254}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!114 &2816677570816598251
 MonoBehaviour:
@@ -2160,7 +2160,7 @@ MonoBehaviour:
   m_radius: 0.25
   m_color:
     serializedVersion: 2
-    rgba: 4289505712
+    rgba: 4294022344
 --- !u!1 &3090127906602693112
 GameObject:
   m_ObjectHideFlags: 0
@@ -2317,7 +2317,7 @@ MonoBehaviour:
   m_radius: 0.25
   m_color:
     serializedVersion: 2
-    rgba: 4294496461
+    rgba: 4279251235
 --- !u!1 &3279082257886624912
 GameObject:
   m_ObjectHideFlags: 0
@@ -4380,6 +4380,40 @@ MonoBehaviour:
   yieldTime: 0
   YieldingEyeContactSince: 0
   YieldingEyeContactUntil: 0
+--- !u!1 &6534927416142574910
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3311624392851354254}
+  m_Layer: 0
+  m_Name: Car + Passengers SpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3311624392851354254
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6534927416142574910}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 571469619656576747}
+  - {fileID: 2616189901370565436}
+  - {fileID: 89640435007566345}
+  m_Father: {fileID: 935614564}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6692014269374732414
 GameObject:
   m_ObjectHideFlags: 0
@@ -4436,7 +4470,7 @@ MonoBehaviour:
   Name: 3 Per Car
   Scene: MainScene
   Roles:
-  - Name: Driver
+  - Name: Manual - Driver
     TopHMI: {fileID: 0}
     WindshieldHMI: {fileID: 0}
     HoodHMI: {fileID: 0}
@@ -4448,7 +4482,7 @@ MonoBehaviour:
       VehicleType: 0
     AutonomousPath: {fileID: 0}
     AutonomousIsYielding: 0
-  - Name: Driven - Passenger
+  - Name: Manual - Front Passenger
     TopHMI: {fileID: 0}
     WindshieldHMI: {fileID: 0}
     HoodHMI: {fileID: 0}
@@ -4460,7 +4494,7 @@ MonoBehaviour:
       VehicleType: 0
     AutonomousPath: {fileID: 0}
     AutonomousIsYielding: 0
-  - Name: Driven - Backseat
+  - Name: Manual - Backseat Passenger
     TopHMI: {fileID: 0}
     WindshieldHMI: {fileID: 0}
     HoodHMI: {fileID: 0}
@@ -4472,12 +4506,10 @@ MonoBehaviour:
       VehicleType: 0
     AutonomousPath: {fileID: 0}
     AutonomousIsYielding: 0
-  - Name: Automated - Passenger
-    TopHMI: {fileID: 114674626593462642, guid: 9eaaf159fd53e9043a6a0f42f3729fa0, type: 3}
-    WindshieldHMI: {fileID: 114674626593462642, guid: 9eaaf159fd53e9043a6a0f42f3729fa0,
-      type: 3}
-    HoodHMI: {fileID: 114674626593462642, guid: 9eaaf159fd53e9043a6a0f42f3729fa0,
-      type: 3}
+  - Name: Automated - Driver
+    TopHMI: {fileID: 0}
+    WindshieldHMI: {fileID: 0}
+    HoodHMI: {fileID: 0}
     carIdx: 1
     SpawnPoint:
       Point: {fileID: 1311683245}
@@ -4486,18 +4518,6 @@ MonoBehaviour:
       VehicleType: 1
     AutonomousPath: {fileID: 8043761391078894673}
     AutonomousIsYielding: 1
-  - Name: Pedestrian
-    TopHMI: {fileID: 0}
-    WindshieldHMI: {fileID: 0}
-    HoodHMI: {fileID: 0}
-    carIdx: 0
-    SpawnPoint:
-      Point: {fileID: 9168689610437224543}
-      Type: 0
-      CameraIndex: 0
-      VehicleType: 0
-    AutonomousPath: {fileID: 0}
-    AutonomousIsYielding: 0
   PointsOfInterest: []
   CarSpawners:
   - {fileID: 8156635355818172248}
@@ -4768,7 +4788,7 @@ GameObject:
   - component: {fileID: 571469619656576747}
   - component: {fileID: 5477595725360610884}
   m_Layer: 0
-  m_Name: Driver
+  m_Name: Car + Driver
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4782,14 +4802,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7533570759686457814}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -4.77, y: 0, z: 9.94}
+  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -4.7700005, y: 0, z: 9.94}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2616189901370565436}
-  - {fileID: 89640435007566345}
-  m_Father: {fileID: 935614564}
+  m_Children: []
+  m_Father: {fileID: 3311624392851354254}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!114 &5477595725360610884
 MonoBehaviour:
@@ -4806,7 +4824,7 @@ MonoBehaviour:
   m_radius: 0.25
   m_color:
     serializedVersion: 2
-    rgba: 4292606823
+    rgba: 4278322691
 --- !u!1 &7930942599048659865
 GameObject:
   m_ObjectHideFlags: 0
@@ -5145,7 +5163,7 @@ GameObject:
   - component: {fileID: 2616189901370565436}
   - component: {fileID: 2299038053523415606}
   m_Layer: 0
-  m_Name: Driven_Passenger
+  m_Name: Passenger_FrontSeat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5159,12 +5177,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8065187189252779656}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.369, y: 0, z: -0.3}
+  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -4.47, y: 0, z: 10.31}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 571469619656576747}
+  m_Father: {fileID: 3311624392851354254}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!114 &2299038053523415606
 MonoBehaviour:
@@ -5181,7 +5199,7 @@ MonoBehaviour:
   m_radius: 0.25
   m_color:
     serializedVersion: 2
-    rgba: 4280098077
+    rgba: 4278331417
 --- !u!1 &8148448507556185481
 GameObject:
   m_ObjectHideFlags: 0

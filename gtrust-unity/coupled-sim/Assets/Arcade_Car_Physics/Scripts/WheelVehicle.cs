@@ -4,6 +4,7 @@
  * This is distributed under the MIT Licence (see LICENSE.md for details)
  */
 
+using SOSXR;
 using UnityEngine;
 #if MULTIOSCONTROLS
     using MOSC;
@@ -30,7 +31,7 @@ namespace VehicleBehaviour
         // If isPlayer is false inputs are ignored
         [SerializeField]
         private bool isPlayer = true;
-        
+
         public bool IsPlayer
         {
             get => isPlayer;
@@ -202,7 +203,7 @@ namespace VehicleBehaviour
         }
 
         // When IsPlayer is false you can use this to control the throttle
-        private float throttle;
+        [SerializeField] [DisableEditing] private float throttle;
 
         public float Throttle
         {
@@ -224,7 +225,7 @@ namespace VehicleBehaviour
         public bool Drift { get; set; }
 
         // Use this to read the current car speed (you'll need this to make a speedometer)
-        [SerializeField] private float speed = 0.0f;
+        [SerializeField] [DisableEditing] private float speed = 0.0f;
         public float Speed => speed;
 
         [Header("Particles")]
@@ -499,6 +500,8 @@ namespace VehicleBehaviour
                     wheel.motorTorque = 0.0001f;
                     wheel.brakeTorque = brakeForce;
                 }
+
+                Debug.Log("Handbrake");
 
                 return;
             }

@@ -33,6 +33,12 @@ public class ClientHMIController : MonoBehaviour
     /// </summary>
     private void ToggleHMIs()
     {
+        if (_avatar.HMISlots.TopHMI == null || _avatar.HMISlots.HoodHMI == null || _avatar.HMISlots.WindshieldHMI == null)
+        {
+            enabled = m_useHMIS;
+            return;
+        }
+        
         _avatar.HMISlots.TopHMI.gameObject.SetActive(m_useHMIS);
         _avatar.HMISlots.HoodHMI.gameObject.SetActive(m_useHMIS);
         _avatar.HMISlots.WindshieldHMI.gameObject.SetActive(m_useHMIS);

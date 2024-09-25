@@ -7,6 +7,30 @@ archived: false
 tags: [Work/Meetingnotes, Work/Projects/SOLO/Francesco/Coupled_Sim, Work/DevLog, Programming/Unity]
 ---
 
+# 25-09-2024
+
+
+## Autonomous Driving
+Today we're going to need to test the Autonomous Driving thing. IDK why it sometimes flies off into oblivion.
+
+Car went up a wall when coming back to the start of the test-route
+Changed box collider on Waypoints to Sphere Colliders (these also needed to be Triggers, duh)
+This seems to work for now. It could be that simply in the process of doing so I've set them to be at better positions.
+
+## Others
+Toggled the HMIs to be off (done in ClientHMIController.cs)
+
+
+## WIP
+Also have the driven participant not be tied to the wheel but be able to move their hands
+
+Also there's going to need to be a similar situation to the driven version, where there can be participants in passenger chair and back seat.
+
+Setting a new 'Role' is done in the Experiment Definition under 'Roles'
+- Removed 'Pedestrian' role
+- Removed HMIs from Automated
+- Renamed to: Manual && Automated
+
 
 # 19-09-2024
 
