@@ -4,6 +4,8 @@
 //allows controlling HMI state with keyboard buttons
 public class ClientHMIController : MonoBehaviour
 {
+    [SerializeField] private bool m_useHMIS = false; // SOSXR
+
     private PlayerAvatar _avatar;
     private HMIManager _manager;
 
@@ -17,6 +19,24 @@ public class ClientHMIController : MonoBehaviour
     public void Init(HMIManager manager)
     {
         _manager = manager;
+    }
+
+
+    private void OnEnable()
+    {
+        ToggleHMIs();
+    }
+
+
+    /// <summary>
+    ///     SOSXR: we only want to show the HMIs when the HMI is enabled, and we're not using the HMIs in this experiment
+    /// </summary>
+    private void ToggleHMIs()
+    {
+        _avatar.HMISlots.TopHMI.gameObject.SetActive(m_useHMIS);
+        _avatar.HMISlots.HoodHMI.gameObject.SetActive(m_useHMIS);
+        _avatar.HMISlots.WindshieldHMI.gameObject.SetActive(m_useHMIS);
+        enabled = m_useHMIS;
     }
 
 
