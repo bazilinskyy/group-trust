@@ -5,7 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0588ed33-30a2-45ec-9206-a9228045be30" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Barmetler/RoadSystem/Demo/Scenes/ExampleSystem/LightingData.asset.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_SOSXR/coupled-sim_SoFar.md" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_SOSXR/coupled-sim_SoFar.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_UsedAssets/Gas Station/Countryside gas station/DemoScenes/Desert style demo/Demo/LightingData.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_UsedAssets/Gas Station/Countryside gas station/DemoScenes/Main Demo/Demo/LightingData.asset.meta" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
