@@ -17,6 +17,7 @@ Installed driving steering wheel
 Staticified IP (192.168.1.13), and set Firewall settings to connect (tested, worked)
 Changed default IP address for Client to connect to, to this new machine.
 
+Will get the environment now
 
 
 
