@@ -17,10 +17,35 @@ Installed driving steering wheel
 Staticified IP (192.168.1.13), and set Firewall settings to connect (tested, worked)
 Changed default IP address for Client to connect to, to this new machine.
 
-Will get the environment now, because they were in a different project.
-Imported perfectly. 
+Will get the environment that Jom made now, because they were in a different project.
+Imported perfectly. Added the environment to `SOSXR` branch. 
+This means that the `Roadworks` branch, and the branch `SOSXR_BeforeEnvironmentMerge` are now no longer needed.
+Not sure on the `Routes` branch, I think that still needs syncing. 
 
+On running: it is a bit slow in the editor. 12 FPS not doing anything.
+Going through the scene in the Scene view is painfully slow. 
+- Made everything in this scene to be 'static' -- Still 12FPS
+- Bake occlusion culling with default parameters: 28 FPS
+- There's quite a lot of opaque geometry that needs rendering
+- Trees: Turned off 
+  - Turned off Ambient Occlusion
+  - Set Shadow Strength to 0 (was 0.8)
+  - Set cast shadow off
+- Removed all windows and glass (except cars)
+- Still 30FPS. 
+  - Now a lot of rendering goes to shadows. 
+  - Will now bake the lights and GI. This will take all night. 
+    - Baking was much faster than I thought, took about half an hour. 
+    - FPS is now 45 at most parts (in the Editor then), 30 sometimes. 
+    - Will have to test tomorrow if this is good enough. 
+  - Set Pixel Light Count to 2 (was 4)
+  - Set Realtime Reflection Probes off (was on)
+  - Much better now: 90FPS in the city in some parts, and still 45FPS in the countryside. 
+  - I think there may be a little too many trees. 
+    - Disabling them does give us a little better results in the out-of-city environment, but that's not a viable option. 
+- Set the culling dist at 250 (was 500) just makes it weird, doesn't improve the FPS. Put back to 500. 
 
+I'll leave it for now. 
 
 
 # 25-09-2024

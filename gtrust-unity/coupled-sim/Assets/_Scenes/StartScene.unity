@@ -96,7 +96,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: a47367df9fa8b2b4a91bf38fbdad935e,
+    type: 2}
   m_LightingSettings: {fileID: 1350413387}
 --- !u!196 &4
 NavMeshSettings:
@@ -329,6 +330,7 @@ MonoBehaviour:
   m_driverPrefabs:
   - {fileID: 7263647346857764255, guid: ba9c2aba43b784b49a04ac58e6872831, type: 3}
   - {fileID: 7263647346857764255, guid: 45835706a180da2479ac68cbf4bff94c, type: 3}
+  m_carTag: ManualCar
   LocalPlayer: {fileID: 0}
   Avatars: []
   Cars: []
