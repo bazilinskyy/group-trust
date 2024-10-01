@@ -28,7 +28,7 @@ public class Client : NetworkSystem
 
     private float _currentPing;
 
-    private string _ip = "192.168.1.12";
+    private string _defaultIP = "192.168.1.13";
 
 
     public Client(LevelManager lvlManager, PlayerSystem playerSys, AICarSyncSystem aiCarSystem, WorldLogger logger, WorldLogger fixedLogger)
@@ -225,12 +225,12 @@ public class Client : NetworkSystem
                     return;
                 }
 
-                _ip = GUILayout.TextField(_ip);
+                _defaultIP = GUILayout.TextField(_defaultIP);
                 IPAddress addr;
 
-                if (IPAddress.TryParse(_ip, out addr) && GUILayout.Button("Connect"))
+                if (IPAddress.TryParse(_defaultIP, out addr) && GUILayout.Button("Connect"))
                 {
-                    _client.Connect(_ip);
+                    _client.Connect(_defaultIP);
                     _currentState = NetState.Client_Connecting;
                 }
 

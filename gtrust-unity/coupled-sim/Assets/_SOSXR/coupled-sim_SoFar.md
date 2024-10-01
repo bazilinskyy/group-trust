@@ -7,6 +7,20 @@ archived: false
 tags: [Work/Meetingnotes, Work/Projects/SOLO/Francesco/Coupled_Sim, Work/DevLog, Programming/Unity]
 ---
 
+# 01-10-2024
+
+Added new PC with Varjo Aero
+Installed required software
+Added Francesco_Walker acct
+Downloaded repo
+Installed driving steering wheel
+Staticified IP (192.168.1.13), and set Firewall settings to connect (tested, worked)
+Changed default IP address for Client to connect to, to this new machine.
+
+
+
+
+
 # 25-09-2024
 
 
