@@ -394,7 +394,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2357386276342029191
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1119,7 +1119,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2537471312934173635
 Transform:
   m_ObjectHideFlags: 0
@@ -2946,8 +2946,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   carBody: {fileID: 1731229833398619712}
   speedometerText: {fileID: 1824514232604949120}
-  pivot: {fileID: 2537471312934173635}
-  pivotMinSpeedAngle: 0
+  pivot: {fileID: 2357386276342029191}
+  pivotMinSpeedAngle: 120
   pivotMaxSpeedAngle: -120
   maxSpeed: 160
 --- !u!1 &1783828615946342976
@@ -4184,7 +4184,7 @@ MonoBehaviour:
   - {fileID: 8243639070531167431}
   - {fileID: 8485270855540871066}
   - {fileID: 209426147274557965}
-  - {fileID: 2537471312934173635}
+  - {fileID: 2357386276342029191}
   cameras:
   - {fileID: 0}
   - {fileID: 0}
@@ -15052,17 +15052,17 @@ PrefabInstance:
     - target: {fileID: 4241356954099940039, guid: dbbb24367dd809f40a8b370b699c7028,
         type: 3}
       propertyPath: m_color.rgba
-      value: 4291837796
+      value: 4285902275
       objectReference: {fileID: 0}
     - target: {fileID: 4764351552333431003, guid: dbbb24367dd809f40a8b370b699c7028,
         type: 3}
       propertyPath: m_color.rgba
-      value: 4279966996
+      value: 4290266535
       objectReference: {fileID: 0}
     - target: {fileID: 5618562545090067431, guid: dbbb24367dd809f40a8b370b699c7028,
         type: 3}
       propertyPath: m_color.rgba
-      value: 4288816717
+      value: 4289837480
       objectReference: {fileID: 0}
     - target: {fileID: 6596234522564231215, guid: dbbb24367dd809f40a8b370b699c7028,
         type: 3}
@@ -15127,7 +15127,7 @@ PrefabInstance:
     - target: {fileID: 7622501045102464231, guid: dbbb24367dd809f40a8b370b699c7028,
         type: 3}
       propertyPath: m_color.rgba
-      value: 4282958555
+      value: 4283650397
       objectReference: {fileID: 0}
     - target: {fileID: 9155366706085362843, guid: dbbb24367dd809f40a8b370b699c7028,
         type: 3}
