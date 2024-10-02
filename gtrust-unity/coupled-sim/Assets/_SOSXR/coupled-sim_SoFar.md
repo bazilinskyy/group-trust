@@ -15,12 +15,15 @@ tags: [Work/Meetingnotes, Work/Projects/SOLO/Francesco/Coupled_Sim, Work/DevLog,
 - [x] Check textures roadworks
 - [x] Make skybox smaller (was 32mb, now 8mb)
 - [x] Disabled reflection probes 
-- [ ] Check further why there's such low FPS
+- [x] Check further why there's such low FPS
 - [x] Reduce texture sizes
 - [ ] Fix Emperor's Data handedness: make it work for both hands.
+- [x] Turn off FPS counter
+- [x] Turn off GazeTarget
+- [x] Enlargen clippignplane (was 500, now 750)
 - [ ] Create branch for Jom/Ugne to continue work in
 - [ ] Turn off second monitor. 
-- 
+- File `EyeTracking Keycodes` shows which keycode is used for what eyetracking system. You should turn off the eyetracking calibration in Varjo, and request it using the keycode
 
 # 01-10-2024
 

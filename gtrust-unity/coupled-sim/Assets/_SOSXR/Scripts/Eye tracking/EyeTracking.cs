@@ -154,7 +154,7 @@ public class EyeTracking : MonoBehaviour
 
         GetDevice();
 
-        m_gazeTarget.SetActive(true);
+        // m_gazeTarget.SetActive(true);
 
         if (m_gazeDataSource == GazeDataSource.InputSubsystem)
         {
