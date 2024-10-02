@@ -2411,7 +2411,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0d2ea648eb94807aa655c56aadd515c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RatingHand: 0
+  m_controllers:
+  - {fileID: 13685700616780326}
+  - {fileID: 5434353922336957095}
+  m_buttonPressRefs:
+  - {fileID: -2946921572223811912, guid: e83993518ed9ae54188f0ecaad73bd34, type: 3}
+  - {fileID: -1336355139137886794, guid: e83993518ed9ae54188f0ecaad73bd34, type: 3}
+  m_buttonReleaseRefs:
+  - {fileID: -103791890421675425, guid: e83993518ed9ae54188f0ecaad73bd34, type: 3}
+  - {fileID: 7862927886206012239, guid: e83993518ed9ae54188f0ecaad73bd34, type: 3}
   m_leftController: {fileID: 13685700616780326}
   m_leftButtonPressRef: {fileID: -2946921572223811912, guid: e83993518ed9ae54188f0ecaad73bd34,
     type: 3}
@@ -2434,10 +2442,7 @@ MonoBehaviour:
   m_activeHapticsIntensity: 1
   m_debug: 0
   CurrentRating:
-    RatingHand: 0
     CurrentUnixTimeSeconds: 0
-    CurrentRotation: {x: 0, y: 0, z: 0, w: 0}
-    CurrentHumanReadableRotation: {x: 0, y: 0, z: 0}
 --- !u!114 &1012226702218296314
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -11,20 +11,21 @@ tags: [Work/Meetingnotes, Work/Projects/SOLO/Francesco/Coupled_Sim, Work/DevLog,
 - [x] Remove animation from tree
 - [x] Put billboard in front of City to try to help the occlusion culling
 - [x] Driver HMD head
-- [x] ~~Emperor's Rating unto button~~ Not doing this since the rating as is can work fine for the trust/no-trust situation. You tell your participant to press+hold the button for when they trust (or don't trust). It will log a timestamp every frame that it's held down. Use this as your ongoing measure of trust (or no trust). You can afterwards discard the rotational data, if you're not using this. 
+- [x] ~~Emperor's Rating unto button~~ Not doing this since the rating as is can work fine for the trust/no-trust situation. You tell your participant to press+hold the button for when they trust (or don't trust). It will log a timestamp every frame that it's held down. Use this as your ongoing measure of trust (or no trust).
 - [x] Check textures roadworks
 - [x] Make skybox smaller (was 32mb, now 8mb)
 - [x] Disabled reflection probes 
 - [x] Check further why there's such low FPS
 - [x] Reduce texture sizes
-- [ ] Fix Emperor's Data handedness: make it work for both hands.
+- [x] Fix Emperor's Data handedness: make it work for both hands.
 - [x] Turn off FPS counter
 - [x] Turn off GazeTarget
 - [x] Enlargen clippignplane (was 500, now 750)
 - [ ] Create branch for Jom/Ugne to continue work in
 - [ ] Turn off second monitor. 
-- File `EyeTracking Keycodes` shows which keycode is used for what eyetracking system. You should turn off the eyetracking calibration in Varjo, and request it using the keycode
 
+- File `EyeTracking Keycodes` shows which keycode is used for what eyetracking system. You should turn off the eyetracking calibration in Varjo, and request it using the keycode
+- Amended Emperor's Rating. It now takes input from either hand (not both at the same time). Hold down the trigger to indicate what you want them to indicate, keep holding it. Release to indicate the opposite of before (e.g. hold to trust, release to dispair). It no longer logs the rotational data. 
 # 01-10-2024
 
 Added new PC with Varjo Aero

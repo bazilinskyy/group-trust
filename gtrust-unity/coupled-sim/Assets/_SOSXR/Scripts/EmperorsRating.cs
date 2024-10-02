@@ -1,55 +1,29 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
-using Random = UnityEngine.Random;
-
-
-// Enumeration to specify the handedness of the controller used for the rating
-public enum Handedness
-{
-    Right,
-    Left
-}
 
 
 [Serializable]
 public struct Rating
 {
     [Header("Don't edit these manually")]
-    public Handedness RatingHand;
     public long CurrentUnixTimeSeconds;
-    public Quaternion CurrentRotation;
-    public Vector3 CurrentHumanReadableRotation;
 }
 
 
 /// <summary>
-///     The emperor's rating handles the input from an XR controller allows a participant to rate something with a value
-///     going from 0 (excellent), to 180 (not so excellent) via rotation and button presses.
-///     It's called the emperor's rating due to the semblance of thumbs-up / thumbs-down in the Arena.
 ///     The class handles setting a haptic reminder every X seconds, so that participants don't forget to provide a rating.
-///     Then they press and hold a button (suggested is to use the trigger), while rotating the controller around the
-///     length-wise axis.
-///     Testing should indicate whether this axis is the one desired, or that another axis should be measured instead.
+///     Then they press and hold a button (suggested is to use the trigger), to indicate trust / no trust
 /// </summary>
 public class EmperorsRating : MonoBehaviour
 {
-    [Tooltip("With what hand should we do the rating?")]
-    public Handedness RatingHand = Handedness.Right;
-
-    [Header("Input References: Left")]
-    [SerializeField] private XRBaseController m_leftController;
-    [SerializeField] private InputActionReference m_leftButtonPressRef;
-    [SerializeField] private InputActionReference m_leftButtonReleaseRef;
-    [SerializeField] private InputActionReference m_leftRotateRef;
-
-    [Header("Input References: Right")]
-    [SerializeField] private XRBaseController m_rightController;
-    [SerializeField] private InputActionReference m_rightButtonPressRef;
-    [SerializeField] private InputActionReference m_rightButtonReleaseRef;
-    [SerializeField] private InputActionReference m_rightRotateRef;
+    [Header("Both hands: left first, then right")]
+    [SerializeField] private List<XRBaseController> m_controllers;
+    [SerializeField] private List<InputActionReference> m_buttonPressRefs;
+    [SerializeField] private List<InputActionReference> m_buttonReleaseRefs;
 
     [Header("Reminder Haptics")]
     [Tooltip("Seconds between haptic reminders.")]
@@ -67,51 +41,19 @@ public class EmperorsRating : MonoBehaviour
     [Tooltip("Intensity of the active haptic pulse.")]
     [SerializeField] [Range(0.1f, 2f)] private float m_activeHapticsIntensity = 0.25f;
 
-    // [Header("Rotation measurement settings")]
-    // [Tooltip("Interval in seconds for measuring the controller rotation.")]
-    // [SerializeField] [Range(0.001f, 0.5f)] private float m_rotationMeasureInterval = 0.01f;
-
-
     [Header("Debug: make up random measurements instead of controller rotations")]
     [SerializeField] private bool m_debug = true;
 
     public Rating CurrentRating = new();
 
-    private InputAction _buttonPressAction;
-    private InputAction _buttonReleaseAction;
-
-    private XRBaseController _controller;
     private Coroutine _hapticsActiveCR;
-
     private Coroutine _hapticsReminderCR;
     private Coroutine _measureRotationCR;
-    private InputAction _rotationAction;
 
 
     private void Awake()
     {
-        Setup();
         CurrentRating = new Rating();
-    }
-
-
-    [ContextMenu(nameof(Setup))]
-    private void Setup()
-    {
-        if (RatingHand == Handedness.Right) // Selects the characteristics based on the hand chosen.
-        {
-            _buttonPressAction = m_rightButtonPressRef.action;
-            _buttonReleaseAction = m_rightButtonReleaseRef.action;
-            _rotationAction = m_rightRotateRef.action;
-            _controller = m_rightController;
-        }
-        else if (RatingHand == Handedness.Left)
-        {
-            _buttonPressAction = m_leftButtonPressRef.action;
-            _buttonReleaseAction = m_leftButtonReleaseRef.action;
-            _rotationAction = m_leftRotateRef.action;
-            _controller = m_leftController;
-        }
     }
 
 
@@ -128,21 +70,29 @@ public class EmperorsRating : MonoBehaviour
 
     private void OnEnable()
     {
-        _buttonPressAction.performed += ButtonPressed;
-        _buttonReleaseAction.performed += ButtonReleased;
+        foreach (var buttonPressRef in m_buttonPressRefs)
+        {
+            buttonPressRef.action.performed += ButtonPressed;
+            buttonPressRef.action.Enable();
+        }
 
-        _buttonPressAction.Enable();
-        _buttonReleaseAction.Enable();
-        _rotationAction.Enable();
+        foreach (var buttonReleaseRef in m_buttonReleaseRefs)
+        {
+            buttonReleaseRef.action.performed += ButtonReleased;
+            buttonReleaseRef.action.Enable();
+        }
 
-        HapticTest();
+        Haptic(); // Test
     }
 
 
-    [ContextMenu(nameof(HapticTest))]
-    private void HapticTest()
+    [ContextMenu(nameof(Haptic))]
+    private void Haptic(float amplitude = 1, float duration = 1)
     {
-        _controller.SendHapticImpulse(1, 1);
+        foreach (var controller in m_controllers)
+        {
+            controller.SendHapticImpulse(amplitude, duration);
+        }
     }
 
 
@@ -154,7 +104,7 @@ public class EmperorsRating : MonoBehaviour
         for (;;)
         {
             yield return new WaitForSeconds(interval);
-            _controller.SendHapticImpulse(amplitude, duration);
+            Haptic(amplitude, duration);
         }
     }
 
@@ -203,22 +153,9 @@ public class EmperorsRating : MonoBehaviour
         {
             CurrentRating = new Rating();
             CurrentRating.CurrentUnixTimeSeconds = DateTimeOffset.Now.ToUnixTimeSeconds();
-            CurrentRating.RatingHand = RatingHand;
-            CurrentRating.CurrentRotation = m_debug ? GetRandomQuaternion() : _rotationAction.ReadValue<Quaternion>();
-            CurrentRating.CurrentHumanReadableRotation = CurrentRating.CurrentRotation.eulerAngles;
 
             yield return null;
         }
-    }
-
-
-    /// <summary>
-    ///     For debug purposes
-    /// </summary>
-    /// <returns></returns>
-    private Quaternion GetRandomQuaternion()
-    {
-        return Quaternion.Euler(Random.Range(0f, 360), Random.Range(0f, 360), Random.Range(0f, 360));
     }
 
 
@@ -265,14 +202,20 @@ public class EmperorsRating : MonoBehaviour
     /// </summary>
     private void OnDisable()
     {
-        _buttonPressAction.performed -= ButtonPressed;
-        _buttonReleaseAction.performed -= ButtonReleased;
+        foreach (var buttonPressRef in m_buttonPressRefs)
+        {
+            buttonPressRef.action.performed -= ButtonPressed;
+            buttonPressRef.action.Disable();
+        }
 
-        _buttonPressAction.Disable();
-        _buttonReleaseAction.Disable();
-        _rotationAction.Disable();
+        foreach (var buttonReleaseRef in m_buttonReleaseRefs)
+        {
+            buttonReleaseRef.action.performed -= ButtonReleased;
+            buttonReleaseRef.action.Disable();
+        }
 
         StopAllCoroutines();
+
         _hapticsActiveCR = null;
         _measureRotationCR = null;
         _hapticsReminderCR = null;

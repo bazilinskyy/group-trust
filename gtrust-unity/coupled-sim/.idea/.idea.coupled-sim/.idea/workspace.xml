@@ -5,11 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0588ed33-30a2-45ec-9206-a9228045be30" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Media/EyeTracking keycodes.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Media/EyeTracking keycodes.png.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.coupled-sim/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.coupled-sim/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_SOSXR/Prefabs/XR Origin (SOSXR)_Varjo.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_SOSXR/Prefabs/XR Origin (SOSXR)_Varjo.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_SOSXR/Scripts/Eye tracking/EyeTracking.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_SOSXR/Scripts/Eye tracking/EyeTracking.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_SOSXR/Scripts/EmperorsRating.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_SOSXR/Scripts/EmperorsRating.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_SOSXR/Scripts/Eye tracking/CreateLogData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_SOSXR/Scripts/Eye tracking/CreateLogData.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_SOSXR/coupled-sim_SoFar.md" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_SOSXR/coupled-sim_SoFar.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

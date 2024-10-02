@@ -147,7 +147,7 @@ public class CreateLogData : MonoBehaviour
 
     private void CreateLog(GazeData data, EyeMeasurements eyeMeasurements)
     {
-        var logData = new string[29];
+        var logData = new string[26];
 
         // Time
         logData[0] = DateTimeOffset.Now.ToUnixTimeSeconds().ToString();
@@ -192,13 +192,8 @@ public class CreateLogData : MonoBehaviour
 
         // SOSXR 
         logData[24] = m_eyeTracking.FocusName;
-
-        // SOSXR : Emperor's Rating
         logData[25] = m_emperorsRating.CurrentRating.CurrentUnixTimeSeconds.ToString();
-        logData[26] = m_emperorsRating.CurrentRating.RatingHand.ToString();
-        logData[27] = m_emperorsRating.CurrentRating.CurrentRotation.ToString("F3");
-        logData[28] = m_emperorsRating.CurrentRating.CurrentHumanReadableRotation.ToString("F3");
-
+        
         WriteLog(logData);
     }
 
