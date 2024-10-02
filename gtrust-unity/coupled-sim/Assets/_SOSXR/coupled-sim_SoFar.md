@@ -9,13 +9,18 @@ tags: [Work/Meetingnotes, Work/Projects/SOLO/Francesco/Coupled_Sim, Work/DevLog,
 
 # 02-10-2024
 - [x] Remove animation from tree
-- [x] Put billboard in front of City
-- [ ] Check further the low FPS 
+- [x] Put billboard in front of City to try to help the occlusion culling
 - [x] Driver HMD head
-- [ ] Create branch for Jom/Ugne to continue work in
-- [x] Emperor's Rating unto button
-- [ ] Fix Emperor's Data handedness: make it work for both hands. 
+- [x] ~~Emperor's Rating unto button~~ Not doing this since the rating as is can work fine for the trust/no-trust situation. You tell your participant to press+hold the button for when they trust (or don't trust). It will log a timestamp every frame that it's held down. Use this as your ongoing measure of trust (or no trust). You can afterwards discard the rotational data, if you're not using this. 
 - [x] Check textures roadworks
+- [x] Make skybox smaller (was 32mb, now 8mb)
+- [x] Disabled reflection probes 
+- [ ] Check further why there's such low FPS
+- [x] Reduce texture sizes
+- [ ] Fix Emperor's Data handedness: make it work for both hands.
+- [ ] Create branch for Jom/Ugne to continue work in
+- [ ] Turn off second monitor. 
+- 
 
 # 01-10-2024
 
