@@ -272,6 +272,9 @@ public class PlayerSystem : MonoBehaviour
 
                 return avatar;
             }
+
+            drivenCar.GetComponentInChildren<Speedometer>().enabled = false;
+            Debug.Log("SOSXR: I'm disabling the Speedometer for the driven car. This is probably good, although not very pretty.");
         }
 
         var cameraSetup = spawnPoint.Point.GetComponent<CameraSetup>();

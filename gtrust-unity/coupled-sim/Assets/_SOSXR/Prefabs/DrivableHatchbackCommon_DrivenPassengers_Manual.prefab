@@ -3017,9 +3017,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 714dcd86769921345a0786e011d20ae9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  carBody: {fileID: 0}
-  speedometerText: {fileID: 0}
-  pivot: {fileID: 0}
+  carBody: {fileID: 1731229833398619712}
+  speedometerText: {fileID: 1824514232604949120}
+  pivot: {fileID: 1922731486893463960}
   pivotMinSpeedAngle: 0
   pivotMaxSpeedAngle: -120
   maxSpeed: 160
@@ -15050,17 +15050,17 @@ PrefabInstance:
     - target: {fileID: 4241356954099940039, guid: dbbb24367dd809f40a8b370b699c7028,
         type: 3}
       propertyPath: m_color.rgba
-      value: 4289110950
+      value: 4280271357
       objectReference: {fileID: 0}
     - target: {fileID: 4764351552333431003, guid: dbbb24367dd809f40a8b370b699c7028,
         type: 3}
       propertyPath: m_color.rgba
-      value: 4280361764
+      value: 4279973425
       objectReference: {fileID: 0}
     - target: {fileID: 5618562545090067431, guid: dbbb24367dd809f40a8b370b699c7028,
         type: 3}
       propertyPath: m_color.rgba
-      value: 4292778090
+      value: 4290277576
       objectReference: {fileID: 0}
     - target: {fileID: 6596234522564231215, guid: dbbb24367dd809f40a8b370b699c7028,
         type: 3}
@@ -15125,7 +15125,7 @@ PrefabInstance:
     - target: {fileID: 7622501045102464231, guid: dbbb24367dd809f40a8b370b699c7028,
         type: 3}
       propertyPath: m_color.rgba
-      value: 4281941570
+      value: 4280297751
       objectReference: {fileID: 0}
     - target: {fileID: 9155366706085362843, guid: dbbb24367dd809f40a8b370b699c7028,
         type: 3}
