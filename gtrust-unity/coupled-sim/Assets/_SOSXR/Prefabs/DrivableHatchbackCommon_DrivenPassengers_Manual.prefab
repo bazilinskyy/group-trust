@@ -394,7 +394,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2357386276342029191
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1195,6 +1195,111 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1075301811273236557}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &1126251182341964815
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5927286401246999145}
+  - component: {fileID: 7640377106703730701}
+  - component: {fileID: 6780994517367838918}
+  - component: {fileID: 4442145319419823672}
+  m_Layer: 9
+  m_Name: Cube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5927286401246999145
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1126251182341964815}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.0026933798, y: -0.024065364, z: 0.26383564, w: 0.9642637}
+  m_LocalPosition: {x: -0.0074, y: -0.0044, z: -0.0004}
+  m_LocalScale: {x: 0.05, y: 0.005, z: 0.005}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1922731486893463960}
+  m_LocalEulerAnglesHint: {x: 1.025, y: -2.579, z: 30.582}
+--- !u!33 &7640377106703730701
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1126251182341964815}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &6780994517367838918
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1126251182341964815}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &4442145319419823672
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1126251182341964815}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -2854,6 +2959,7 @@ RectTransform:
   - {fileID: 2007606033762621796}
   - {fileID: 4526281054104382309}
   - {fileID: 4878432727526097520}
+  - {fileID: 1922731486893463960}
   m_Father: {fileID: 2006495294663358178}
   m_LocalEulerAnglesHint: {x: 1.492, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2911,10 +3017,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 714dcd86769921345a0786e011d20ae9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  carBody: {fileID: 1731229833398619712}
-  speedometerText: {fileID: 1824514232604949120}
-  pivot: {fileID: 2357386276342029191}
-  pivotMinSpeedAngle: 120
+  carBody: {fileID: 0}
+  speedometerText: {fileID: 0}
+  pivot: {fileID: 0}
+  pivotMinSpeedAngle: 0
   pivotMaxSpeedAngle: -120
   maxSpeed: 160
 --- !u!1 &1783828615946342976
@@ -4150,7 +4256,7 @@ MonoBehaviour:
   - {fileID: 8243639070531167431}
   - {fileID: 8485270855540871066}
   - {fileID: 209426147274557965}
-  - {fileID: 2357386276342029191}
+  - {fileID: 1922731486893463960}
   cameras:
   - {fileID: 0}
   HMISlots:
@@ -13482,6 +13588,38 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &8036736965176642102
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1922731486893463960}
+  m_Layer: 9
+  m_Name: Object_Pivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1922731486893463960
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8036736965176642102}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5927286401246999145}
+  m_Father: {fileID: 2006651054109490556}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8117776913428456263
 GameObject:
   m_ObjectHideFlags: 0
@@ -14912,17 +15050,17 @@ PrefabInstance:
     - target: {fileID: 4241356954099940039, guid: dbbb24367dd809f40a8b370b699c7028,
         type: 3}
       propertyPath: m_color.rgba
-      value: 4286615611
+      value: 4289110950
       objectReference: {fileID: 0}
     - target: {fileID: 4764351552333431003, guid: dbbb24367dd809f40a8b370b699c7028,
         type: 3}
       propertyPath: m_color.rgba
-      value: 4284892861
+      value: 4280361764
       objectReference: {fileID: 0}
     - target: {fileID: 5618562545090067431, guid: dbbb24367dd809f40a8b370b699c7028,
         type: 3}
       propertyPath: m_color.rgba
-      value: 4279515370
+      value: 4292778090
       objectReference: {fileID: 0}
     - target: {fileID: 6596234522564231215, guid: dbbb24367dd809f40a8b370b699c7028,
         type: 3}
@@ -14987,7 +15125,7 @@ PrefabInstance:
     - target: {fileID: 7622501045102464231, guid: dbbb24367dd809f40a8b370b699c7028,
         type: 3}
       propertyPath: m_color.rgba
-      value: 4278321666
+      value: 4281941570
       objectReference: {fileID: 0}
     - target: {fileID: 9155366706085362843, guid: dbbb24367dd809f40a8b370b699c7028,
         type: 3}
