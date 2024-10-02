@@ -7,6 +7,14 @@ archived: false
 tags: [Work/Meetingnotes, Work/Projects/SOLO/Francesco/Coupled_Sim, Work/DevLog, Programming/Unity]
 ---
 
+# 02-10-2024
+- [x] Remove animation from tree
+- [x] Put billboard in front of City
+- [ ] Driver HMD head
+- [ ] Create branch for Jom/Ugne to continue work in
+- [ ] Emperor's Rating unto button
+- [x] Check textures roadworks
+
 # 01-10-2024
 
 Added new PC with Varjo Aero
