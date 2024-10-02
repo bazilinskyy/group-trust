@@ -135,6 +135,12 @@ public class PlayerSystem : MonoBehaviour
             hmiControl.Init(_hmiManager);
         }
 
+        if (spawnPoint.Type == SpawnPointType.PlayerControllingCar)
+        {
+            LocalPlayer.GetComponentInChildren<Speedometer>().enabled = true;
+            Debug.Log("SOSXR: I'm enabling the Speedometer for the driven car. This is probably good, although not very pretty.");
+        }
+
         ChangeLayerForFace();
     }
 
@@ -272,9 +278,6 @@ public class PlayerSystem : MonoBehaviour
 
                 return avatar;
             }
-
-            drivenCar.GetComponentInChildren<Speedometer>().enabled = false;
-            Debug.Log("SOSXR: I'm disabling the Speedometer for the driven car. This is probably good, although not very pretty.");
         }
 
         var cameraSetup = spawnPoint.Point.GetComponent<CameraSetup>();
