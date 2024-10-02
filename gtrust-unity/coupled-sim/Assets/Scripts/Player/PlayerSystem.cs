@@ -135,7 +135,7 @@ public class PlayerSystem : MonoBehaviour
             hmiControl.Init(_hmiManager);
         }
 
-        if (spawnPoint.Type == SpawnPointType.PlayerControllingCar)
+        if (spawnPoint.Type is SpawnPointType.PlayerControllingCar or SpawnPointType.PlayerInAIControlledCar)
         {
             LocalPlayer.GetComponentInChildren<Speedometer>().enabled = true;
             Debug.Log("SOSXR: I'm enabling the Speedometer for the driven car. This is probably good, although not very pretty.");
