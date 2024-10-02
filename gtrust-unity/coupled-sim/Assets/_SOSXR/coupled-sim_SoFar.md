@@ -26,6 +26,10 @@ tags: [Work/Meetingnotes, Work/Projects/SOLO/Francesco/Coupled_Sim, Work/DevLog,
 
 - File `EyeTracking Keycodes` shows which keycode is used for what eyetracking system. You should turn off the eyetracking calibration in Varjo, and request it using the keycode
 - Amended Emperor's Rating. It now takes input from either hand (not both at the same time). Hold down the trigger to indicate what you want them to indicate, keep holding it. Release to indicate the opposite of before (e.g. hold to trust, release to dispair). It no longer logs the rotational data. 
+- Spedometer networked by having the Speedometer.cs only enabled on the Driver, the Client receives the rotation of the speedometer by network transform. 
+- Explained to Jom how to make his own waypoint circuit
+
+
 # 01-10-2024
 
 Added new PC with Varjo Aero

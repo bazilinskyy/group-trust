@@ -82,7 +82,7 @@ MonoBehaviour:
   m_radius: 1
   m_color:
     serializedVersion: 2
-    rgba: 4290074175
+    rgba: 4278452995
 --- !u!1 &142311562002471530
 GameObject:
   m_ObjectHideFlags: 0
@@ -1596,7 +1596,7 @@ Transform:
   m_GameObject: {fileID: 1499453262635065968}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -95.8, y: 1, z: 130.6}
+  m_LocalPosition: {x: -95.93, y: 1, z: 130.21}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2160,7 +2160,7 @@ MonoBehaviour:
   m_radius: 0.25
   m_color:
     serializedVersion: 2
-    rgba: 4288320416
+    rgba: 4292456587
 --- !u!1 &3090127906602693112
 GameObject:
   m_ObjectHideFlags: 0
@@ -2317,7 +2317,7 @@ MonoBehaviour:
   m_radius: 0.25
   m_color:
     serializedVersion: 2
-    rgba: 4285087774
+    rgba: 4284108123
 --- !u!1 &3279082257886624912
 GameObject:
   m_ObjectHideFlags: 0
@@ -4848,7 +4848,7 @@ MonoBehaviour:
   m_radius: 0.25
   m_color:
     serializedVersion: 2
-    rgba: 4289044421
+    rgba: 4287644985
 --- !u!1 &7930942599048659865
 GameObject:
   m_ObjectHideFlags: 0
@@ -5096,7 +5096,7 @@ Transform:
   m_GameObject: {fileID: 7976340605809763968}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -41.4, y: 1, z: 130.1}
+  m_LocalPosition: {x: -88.88, y: 1, z: 134.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5223,7 +5223,7 @@ MonoBehaviour:
   m_radius: 0.25
   m_color:
     serializedVersion: 2
-    rgba: 4281128201
+    rgba: 4284431116
 --- !u!1 &8148448507556185481
 GameObject:
   m_ObjectHideFlags: 0
@@ -5580,7 +5580,7 @@ Transform:
   m_GameObject: {fileID: 9088921838771901879}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -32.56, y: 1, z: 129.56}
+  m_LocalPosition: {x: -38.72, y: 1, z: 131.57}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5764,6 +5764,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7609667120526454229}
     m_Modifications:
+    - target: {fileID: 7207229644113195034, guid: 132bebb0650c6984a9b02d142e538bde,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7207718017691476130, guid: 132bebb0650c6984a9b02d142e538bde,
         type: 3}
       propertyPath: m_Name
