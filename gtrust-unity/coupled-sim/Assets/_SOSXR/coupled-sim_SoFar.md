@@ -10,9 +10,11 @@ tags: [Work/Meetingnotes, Work/Projects/SOLO/Francesco/Coupled_Sim, Work/DevLog,
 # 02-10-2024
 - [x] Remove animation from tree
 - [x] Put billboard in front of City
-- [ ] Driver HMD head
+- [ ] Check further the low FPS 
+- [x] Driver HMD head
 - [ ] Create branch for Jom/Ugne to continue work in
-- [ ] Emperor's Rating unto button
+- [x] Emperor's Rating unto button
+- [ ] Fix Emperor's Data handedness: make it work for both hands. 
 - [x] Check textures roadworks
 
 # 01-10-2024
