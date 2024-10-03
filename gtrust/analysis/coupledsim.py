@@ -74,10 +74,7 @@ class CoupledSim:
                         dict_row = {}
                         # load data from a single row into a list
                         # list_row = json.loads(row)
-                        # if found quaternion in data
-                        if 1==1:
-                            bla = list()
-                            self.quaternion_to_digit(bla)
+
                 else:
                     continue
             # turn into pandas dataframe
@@ -103,10 +100,6 @@ class CoupledSim:
         self.heroku_data = df
         # return df with data
         return df
-
-    def quaternion_to_digit(self, quaternion):
-        logger.info('To implement quaternion_to_digit.')
-        pass
 
     def filter_data(self, df):
         """Filtering of data not implemented.
