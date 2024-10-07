@@ -12,7 +12,7 @@ LOAD_P = False  # load pickle files with data
 SAVE_CSV = True  # load csv files with data
 FILTER_DATA = True  # filter Appen and heroku data
 CLEAN_DATA = False  # clean Appen data
-SHOW_OUTPUT = False  # should figures be plotted
+SHOW_OUTPUT = True  # should figures be plotted
 
 
 if __name__ == '__main__':

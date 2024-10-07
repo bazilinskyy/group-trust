@@ -81,10 +81,6 @@ class CoupledSim:
                 df = self.filter_data(df)
             # sort columns alphabetically
             df = df.reindex(sorted(df.columns), axis=1)
-            # # move pp_id to the front
-            # pp_id_col = df['pp_id']
-            # df.drop(labels=['pp_id'], axis=1, inplace=True)
-            # df.insert(0, 'pp_id', pp_id_col)
         # save to pickle
         if self.save_p:
             gt.common.save_to_p(self.file_p, df, 'sim data')
