@@ -40,11 +40,12 @@ class CoupledSim:
                     old_shape,
                     self.sim_data.shape)
 
-    def read_data(self, filter_data=True):
+    def read_data(self, filter_data=True, clean_data=True):
         """Read data into an attribute.
 
         Args:
             filter_data (bool, optional): flag for filtering data.
+            clean_data (bool, optional): clean data.
 
         Returns:
             dataframe: updated dataframe.
@@ -55,26 +56,39 @@ class CoupledSim:
         # process data
         else:
             # read files with sim data one by one
+            # TODO: check what's best, combining all pp into 1 dataframe or have individual dataframe
             data_list = []
             data_dict = {}  # dictionary with data
             # iterate over files in the directory
             for file in os.listdir(self.files_data):
-                # todo: iterate over csv files in the directory 
+                # TODO: iterate over csv files in the directory 
                 filename = os.fsdecode(file)
                 if filename.endswith('.csv'): 
                     logger.info('Reading sim data from {}.', os.path.join(self.files_data, filename))
-                    f = open(os.path.join(self.files_data, filename), 'r')
-                    # add data from the file to the dictionary
-                    data_list += f.readlines()
-                    f.close()
-                    # read rows in data
-                    for row in tqdm(data_list):  # tqdm adds progress bar
-                        logger.debug('To implement going over rows of data.')
-                        # use dict to store data
-                        dict_row = {}
-                        # load data from a single row into a list
-                        # list_row = json.loads(row)
-
+                    # load from csv
+                    df = pd.read_csv(os.path.join(self.files_data, filename), sep=';')
+                    print(df.head)
+                    # TODO: @Jom, see if any of these Padnas methods are useful, below
+                    # # drop legacy worker code column
+                    # df = df.drop('inoutstartend', axis=1)
+                    # # drop _gold columns
+                    # df = df.drop((x for x in df.columns.tolist() if '_gold' in x), axis=1)
+                    # # replace linebreaks
+                    # df = df.replace('\n', '', regex=True)
+                    # # rename columns to readable names
+                    # df.rename(columns=self.columns_mapping, inplace=True)
+                    # # convert to time
+                    # df['start'] = pd.to_datetime(df['start'])
+                    # df['end'] = pd.to_datetime(df['end'])
+                    # df['time'] = (df['end'] - df['start']) / pd.Timedelta(seconds=1)
+                    # # remove underscores in the beginning of column name
+                    # df.columns = df.columns.str.lstrip('_')
+                    # clean data
+                    if clean_data:
+                        df = self.clean_data(df)
+                    # filter data
+                    if filter_data:
+                        df = self.filter_data(df)
                 else:
                     continue
             # turn into pandas dataframe

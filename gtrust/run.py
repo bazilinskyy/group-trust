@@ -11,8 +11,8 @@ SAVE_P = True  # save pickle files with data
 LOAD_P = False  # load pickle files with data
 SAVE_CSV = True  # load csv files with data
 FILTER_DATA = True  # filter Appen and heroku data
-CLEAN_DATA = True  # clean Appen data
-SHOW_OUTPUT = True  # should figures be plotted
+CLEAN_DATA = False  # clean Appen data
+SHOW_OUTPUT = False  # should figures be plotted
 
 
 if __name__ == '__main__':
@@ -23,7 +23,7 @@ if __name__ == '__main__':
                                   load_p=LOAD_P,
                                   save_csv=SAVE_CSV)
     # read simulator data
-    sim_data = csim.read_data(filter_data=FILTER_DATA)
+    sim_data = csim.read_data(filter_data=FILTER_DATA, clean_data=CLEAN_DATA)
 
     logger.info('Data from {} participants included in analysis.', sim_data.shape[0])
     # update original data files
