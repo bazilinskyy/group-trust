@@ -194,6 +194,9 @@ dist
 *.sublime-project
 *.sublime-workspace
 
+# idea  project files
+.idea/
+
 # Instance specific files
 config
 secret
