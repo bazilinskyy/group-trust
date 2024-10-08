@@ -5,6 +5,7 @@ from tqdm import tqdm
 import json
 
 import gtrust as gt
+from gtrust.run import SHOW_OUTPUT
 
 logger = gt.CustomLogger(__name__)  # use custom logger
 
@@ -81,6 +82,31 @@ class CoupledSim:
                 df = self.filter_data(df)
             # sort columns alphabetically
             df = df.reindex(sorted(df.columns), axis=1)
+
+            # keypresses
+            if 'EmperorsRating - UnixTimeSeconds' in self.sim_data:
+                # record given keypresses
+                responses = pd.DataFrame['EmperorsRating - UnixTimeSeconds']
+                logger.debug('Found {} points in keypress data.',
+                             len(responses))
+                # extract pressed keys and rt values
+                key = [point['key'] for point in responses]
+                rt = [point['rt'] for point in responses]
+                # check if values were recorded previously
+               # if stim_name + '-key' not in dict_row.keys():
+                    # first value
+               #    dict_row[stim_name + '-key'] = key
+               # else:
+                    # previous values found
+               #     dict_row[stim_name + '-key'].extend(key)
+                # check if values were recorded previously
+               # if stim_name + '-rt' not in dict_row.keys():
+                    # first value
+               #     dict_row[stim_name + '-rt'] = rt
+               # else:
+               #     # previous values found
+               #     dict_row[stim_name + '-rt'].extend(rt)
+
         # save to pickle
         if self.save_p:
             gt.common.save_to_p(self.file_p, df, 'sim data')
