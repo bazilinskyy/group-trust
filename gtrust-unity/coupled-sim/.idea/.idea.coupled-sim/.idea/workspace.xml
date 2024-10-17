@@ -5,72 +5,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0588ed33-30a2-45ec-9206-a9228045be30" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-09_12h45_192-168-1-11.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-09_12h45_192-168-1-11.csv.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-09_12h52_192-168-1-11.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-09_12h52_192-168-1-11.csv.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-09_13h00_192-168-1-11.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-09_13h00_192-168-1-11.csv.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-09_13h04_192-168-1-11.csv.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-09_13h13_192-168-1-11.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-09_13h13_192-168-1-11.csv.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-09_13h19_192-168-1-11.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-09_13h19_192-168-1-11.csv.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-09_13h25_192-168-1-11.csv.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-09_14h18_192-168-1-11.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-09_14h18_192-168-1-11.csv.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-09_14h22_192-168-1-11.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-09_14h22_192-168-1-11.csv.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-09_14h31_192-168-1-11.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-09_14h31_192-168-1-11.csv.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-09_14h35_192-168-1-11.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-09_14h35_192-168-1-11.csv.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-09_14h36_192-168-1-11.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-09_14h36_192-168-1-11.csv.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-09_14h40_192-168-1-11.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-09_14h40_192-168-1-11.csv.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-09_14h41_192-168-1-11.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-09_14h41_192-168-1-11.csv.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-09_14h43_192-168-1-11.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-09_14h43_192-168-1-11.csv.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-09_14h44_192-168-1-11.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-09_14h44_192-168-1-11.csv.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-09_14h46_192-168-1-11.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-09_14h46_192-168-1-11.csv.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-09_14h49_192-168-1-11.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-09_14h49_192-168-1-11.csv.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-09_14h50_192-168-1-11.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-09_14h50_192-168-1-11.csv.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-09_14h52_192-168-1-11.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-09_14h52_192-168-1-11.csv.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-09_14h54_192-168-1-11.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-09_14h54_192-168-1-11.csv.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-14_12h00_192-168-1-11.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-14_12h00_192-168-1-11.csv.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-14_12h01_192-168-1-11.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-14_12h01_192-168-1-11.csv.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-14_12h04_192-168-1-11.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-14_12h04_192-168-1-11.csv.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-14_12h06_192-168-1-11.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-14_12h06_192-168-1-11.csv.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-14_12h09_192-168-1-11.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-14_12h09_192-168-1-11.csv.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-14_12h17_192-168-1-11.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-14_12h17_192-168-1-11.csv.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-14_12h19_192-168-1-11.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-14_12h19_192-168-1-11.csv.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-14_12h26_192-168-1-11.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-14_12h26_192-168-1-11.csv.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-14_12h55_192-168-1-11.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-14_12h55_192-168-1-11.csv.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-14_12h56_192-168-1-11.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-14_12h56_192-168-1-11.csv.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-14_13h00_192-168-1-11.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-14_13h00_192-168-1-11.csv.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-14_14h20_192-168-1-11.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-14_14h20_192-168-1-11.csv.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-17_12h28_192-168-1-11.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-17_12h28_192-168-1-11.csv.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-17_12h45_192-168-1-11.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-17_12h45_192-168-1-11.csv.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-17_12h56_192-168-1-11.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-17_12h56_192-168-1-11.csv.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-17_12h58_192-168-1-11.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-17_12h58_192-168-1-11.csv.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-17_13h08_192-168-1-11.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-17_13h08_192-168-1-11.csv.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-17_13h19_192-168-1-11.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-17_13h19_192-168-1-11.csv.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-17_13h45_192-168-1-11.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-17_13h45_192-168-1-11.csv.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-17_14h15_192-168-1-11.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-17_14h15_192-168-1-11.csv.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-17_14h32_192-168-1-11.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-17_14h32_192-168-1-11.csv.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-17_15h12_192-168-1-11.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-17_15h12_192-168-1-11.csv.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_SOSXR/Logs/2024-10-17_15h23_192-168-1-11.csv.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.coupled-sim/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.coupled-sim/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_SOSXR/Prefabs/ExperimentDefinition_3PerCar.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_SOSXR/Prefabs/ExperimentDefinition_3PerCar.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Scenes/MainScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Scenes/MainScene.unity" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,15 +65,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "SOSXR__Jom",
-    "ignore.virus.scanning.warn.message": "true",
-    "settings.editor.selected.configurable": "preferences.keymap"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;SOSXR__Jom&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2022.3.37f1\Editor\Unity.exe" />
