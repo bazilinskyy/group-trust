@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - WP
+  - Pedestrian
+  - Marker
+  - Car
+  - Active
+  - Non_active
+  - StationaryCar
+  - Lamp
+  - Brake_X
+  - Brake_Z
+  - AutonomousCar
+  - ManualCar
+  - StartAV
+  - WaitInput_X
+  - StartTrial_Z
+  - StartTrial_X
+  - FreeRotating
+  - Target_XROrigin
+  - Controller_Left_AttachPoint
+  - Controller_Right_AttachPoint
+  - HMD_AttachPoint
+  - Pickable
+  - Cube
+  - Fracture
+  - Eye_Left
+  - Eye_Right
+  - Carrot
+  - PuntMuts
+  - XR_Rig_Host
+  - XR_Rig_Client_1
+  - XR_Rig_Client_2
+  - XR_Rig_CameraOffset
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - NotRendered
+  - Driver
+  - WP
+  - Car
+  - Pedestrian
+  - HMI
+  - Yielding
+  - YieldingSecond
+  - YieldingThird
+  - Passenger
+  - XR_Rig
+  - Varjo
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - Volume
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
