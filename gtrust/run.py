@@ -40,6 +40,8 @@ if __name__ == '__main__':
         logger.info('Creating figures.')
 
         # histogram of AOIs
+        logger.info('Unique values in AOI: ')
+        print(sim_data['EyeTracking_FocusName'].unique())
         analysis.hist_aoi(sim_data)
 
         figures = [manager.canvas.figure

@@ -25,6 +25,7 @@ import cv2
 import gtrust as gt
 from statistics import mean
 from plotly.subplots import make_subplots
+import plotly.io as pio
 
 matplotlib.use('TkAgg')
 logger = gt.CustomLogger(__name__)  # use custom logger
@@ -1934,16 +1935,22 @@ class Analysis:
         if save_html:
             if open_browser:
                 # open in browser
-                py.offline.plot(fig, filename=os.path.join(path, name + '.html'))
-                # also save the final figure
+                py.offline.plot(fig, filename=os.path.join(path, name + '.html'), include_plotlyjs='cdn',
+                                include_mathjax='cdn')
+
+                # also save the final figure with reduced size (exclude embedded data)
                 if save_final:
-                    py.offline.plot(fig, filename=os.path.join(path_final, name + '.html'), auto_open=False)
+                    pio.write_html(fig, file=os.path.join(path_final, name + '.html'), 
+                                   include_plotlyjs='cdn', include_mathjax='cdn', full_html=False)
             else:
                 # do not open in browser
-                py.offline.plot(fig, filename=os.path.join(path, name + '.html'), auto_open=False)
-                # also save the final figure
+                py.offline.plot(fig, filename=os.path.join(path, name + '.html'), auto_open=False,
+                                include_plotlyjs='cdn', include_mathjax='cdn')
+
+                # also save the final figure with reduced size (exclude embedded data)
                 if save_final:
-                    py.offline.plot(fig, filename=os.path.join(path_final, name + '.html'), auto_open=False)
+                    pio.write_html(fig, file=os.path.join(path_final, name + '.html'), 
+                                   include_plotlyjs='cdn', include_mathjax='cdn', full_html=False)
         # remove white margins
         if remove_margins:
             fig.update_layout(margin=dict(l=2, r=2, t=20, b=12))
