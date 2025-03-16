@@ -14,6 +14,13 @@ FILTER_DATA = True  # filter Appen and heroku data
 CLEAN_DATA = False  # clean Appen data
 SHOW_OUTPUT = True  # should figures be plotted
 
+# SAVE_P = False  # save pickle files with data
+# LOAD_P = True  # load pickle files with data
+# SAVE_CSV = True  # save csv files with data
+# FILTER_DATA = True  # filter Appen and heroku data
+# CLEAN_DATA = False  # clean Appen data
+# SHOW_OUTPUT = True  # should figures be plotted
+
 
 if __name__ == '__main__':
     # create object for working with data
@@ -42,10 +49,13 @@ if __name__ == '__main__':
         # histogram of AOIs
         logger.info('Unique values in EyeTracking_FocusName: ')
         print(sim_data['EyeTracking_FocusName'].unique())
-        analysis.hist_aoi(sim_data)
+        print(len(sim_data['EyeTracking_FocusName'].unique()))
+        # analysis.hist_aoi(sim_data)
 
+        # keypress data
         logger.info('Unique values in EmperorsRating_UnixTime: ')
         print(sim_data['EmperorsRating_UnixTime'].unique())
+        print(len(sim_data['EmperorsRating_UnixTime'].unique())/len(sim_data['EmperorsRating_UnixTime']))
         # analysis.hist(sim_data, 'EmperorsRating_UnixTime')
 
         figures = [manager.canvas.figure
