@@ -1863,7 +1863,7 @@ class Analysis:
         """Creates a histogram of EyeTracking_FocusName with subplots for each role and stacked bars for conditions."""
         roles = df['role'].unique()
         conditions = df['condition'].unique()
-        condition_colors = {cond: px.colors.qualitative.Set1[i % len(px.colors.qualitative.Set1)] for i, cond in enumerate(conditions)}
+        condition_colors = {cond: px.colors.qualitative.Set1[i % len(px.colors.qualitative.Set1)] for i, cond in enumerate(conditions)}  # noqa: E501
         
         fig = make_subplots(rows=len(roles), cols=1, subplot_titles=roles)
         
@@ -1872,18 +1872,20 @@ class Analysis:
             
             for condition in conditions:
                 df_condition = df_role[df_role['condition'] == condition]
+                # Ignore Waypoints
+                df_condition = df_condition[~df_condition['EyeTracking_FocusName'].str.startswith('WayPoint', na=False)]  # noqa: E501
                 if not df_condition.empty:
                     hist = go.Histogram(
                         x=df_condition['EyeTracking_FocusName'],
                         name=condition,
                         marker_color=condition_colors[condition],
                         histfunc='count',
-                        opacity=0.75
+                        opacity=0.75,
+                        legendgroup=condition,  # Group by condition
                     )
                     fig.add_trace(hist, row=i+1, col=1)
         
         fig.update_layout(
-            title_text='EyeTracking Focus Name Histogram',
             barmode='stack',
             height=400 * len(roles)
         )
@@ -1891,33 +1893,9 @@ class Analysis:
         if save_file:
             self.save_plotly(fig=fig,
                              name='hist_aoi',
+                             height=400 * len(roles),
                              remove_margins=True,
                              save_final=save_final)  # also save as "final" figure
-        # open it in localhost instead
-        else:
-            fig.show()
-
-    def map(self, df, color, save_file=True):
-        """Map of countries of participation with color based on column in
-           dataframe.
-
-        Args:
-            df (dataframe): dataframe with keypress data.
-            save_file (bool, optional): flag for saving an html file with plot.
-        """
-        logger.info('Creating visualisation of heatmap of participants by'
-                    + ' country with colour defined by {}.', color)
-        # create map
-        fig = px.choropleth(df,
-                            locations='country',
-                            color=color,
-                            hover_name='country',
-                            color_continuous_scale=px.colors.sequential.Plasma)
-        # update layout
-        fig.update_layout(template=self.template)
-        # save file
-        if save_file:
-            self.save_plotly(fig, 'map_' + color, self.folder)
         # open it in localhost instead
         else:
             fig.show()

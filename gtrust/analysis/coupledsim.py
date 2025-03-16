@@ -94,8 +94,6 @@ class CoupledSim:
                                     df_pp['condition'] = condition  # extracted condition
                                     
                                     dataframes.append(df_pp)
-            
-
             # # Process keypress data column outside the loop
             # keypress_column = 'EmperorsRating - UnixTimeSeconds'
             # if keypress_column in df_pp.columns:
