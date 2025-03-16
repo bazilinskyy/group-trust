@@ -9,14 +9,18 @@ Tested with Python 3.9.12. To setup the environment run these two commands in a 
 
 ### Configuration of project
 Configuration of the project needs to be defined in `group-trust/config`. Please use the `default.config` file for the required structure of the file. If no custom config file is provided, `default.config` is used. The config file has the following parameters:
-* `num_stimuli`: number of stimuli in the study.
-* `num_stimuli_participant`: subset of stimuli in the study shown to each participant.
-* `num_repeat`: number of times each stimulus is repeated.
 * `kp_resolution`: bin size in ms in which keypress data is stored.
 * `eg_resolution`: bin size in ms in which eyegaze data is stored.
 * `files_data`: files with data from coupled simulator.
 * `plotly_template`: template used to make graphs in the analysis.
 
+<!-- ## Keypress data
+[![plot_all_all_videos](figures/kp_videos.png?raw=true)](https://htmlpreview.github.io/?https://github.com/bazilinskyy/trust-crowdsourced/blob/main/figures/kp_videos.html)
+Percentage of participants pressing the response key as a function of elapsed video time for all stimuli for all participants. -->
+
+## Eye tracking data
+[![hist_aoi](figures/hist_aoi.png?raw=true)](https://htmlpreview.github.io/?https://github.com/bazilinskyy/group-trust/blob/main/figures/hist_aoi.html)
+Histogram of eye gaze falling onto Areas of Interest (AOIs) of participants of all three roles.
 
 ## Troubleshooting
 ### Troubleshooting setup

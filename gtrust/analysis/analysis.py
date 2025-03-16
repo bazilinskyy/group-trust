@@ -24,6 +24,7 @@ from scipy.stats.kde import gaussian_kde
 import cv2
 import gtrust as gt
 from statistics import mean
+from plotly.subplots import make_subplots
 
 matplotlib.use('TkAgg')
 logger = gt.CustomLogger(__name__)  # use custom logger
@@ -34,8 +35,6 @@ class Analysis:
     template = gt.common.get_configs('plotly_template')
     # store resolution for keypress data
     res = gt.common.get_configs('kp_resolution')
-    # number of stimuli
-    num_stimuli = gt.common.get_configs('num_stimuli')
     # folder for output
     fig = None
     g = None
@@ -43,7 +42,7 @@ class Analysis:
     stim_id = None
     points = None
     save_frames = False
-    folder = '/figures/'
+    folder_figures = 'figures'  # subdirectory to save figures
     polygons = None
 
     def __init__(self):
@@ -1860,6 +1859,44 @@ class Analysis:
         else:
             fig.show()
 
+    def hist_aoi(self, df, save_file=True, save_final=True):
+        """Creates a histogram of EyeTracking_FocusName with subplots for each role and stacked bars for conditions."""
+        roles = df['role'].unique()
+        conditions = df['condition'].unique()
+        condition_colors = {cond: px.colors.qualitative.Set1[i % len(px.colors.qualitative.Set1)] for i, cond in enumerate(conditions)}
+        
+        fig = make_subplots(rows=len(roles), cols=1, subplot_titles=roles)
+        
+        for i, role in enumerate(roles):
+            df_role = df[df['role'] == role]
+            
+            for condition in conditions:
+                df_condition = df_role[df_role['condition'] == condition]
+                if not df_condition.empty:
+                    hist = go.Histogram(
+                        x=df_condition['EyeTracking_FocusName'],
+                        name=condition,
+                        marker_color=condition_colors[condition],
+                        histfunc='count',
+                        opacity=0.75
+                    )
+                    fig.add_trace(hist, row=i+1, col=1)
+        
+        fig.update_layout(
+            title_text='EyeTracking Focus Name Histogram',
+            barmode='stack',
+            height=400 * len(roles)
+        )
+        # save file
+        if save_file:
+            self.save_plotly(fig=fig,
+                             name='hist_aoi',
+                             remove_margins=True,
+                             save_final=save_final)  # also save as "final" figure
+        # open it in localhost instead
+        else:
+            fig.show()
+
     def map(self, df, color, save_file=True):
         """Map of countries of participation with color based on column in
            dataframe.
@@ -1885,25 +1922,68 @@ class Analysis:
         else:
             fig.show()
 
-    def save_plotly(self, fig, name, output_subdir):
+    def save_plotly(self, fig, name, remove_margins=False, width=1320, height=680, save_eps=True, save_png=True,
+                    save_html=True, open_browser=True, save_mp4=False, save_final=False):
         """
         Helper function to save figure as html file.
 
         Args:
             fig (plotly figure): figure object.
             name (str): name of html file.
-            output_subdir (str): Folder for saving file.
+            path (str): folder for saving file.
+            remove_margins (bool, optional): remove white margins around EPS figure.
+            width (int, optional): width of figures to be saved.
+            height (int, optional): height of figures to be saved.
+            save_eps (bool, optional): save image as EPS file.
+            save_png (bool, optional): save image as PNG file.
+            save_html (bool, optional): save image as html file.
+            open_browser (bool, optional): open figure in the browse.
+            save_mp4 (bool, optional): save video as MP4 file.
+            save_final (bool, optional): whether to save the "good" final figure.
         """
         # build path
-        path = gt.settings.output_dir + output_subdir
+        path = os.path.join(gt.settings.output_dir, self.folder_figures)
         if not os.path.exists(path):
             os.makedirs(path)
-        # limit name to 255 char
-        if len(path) + len(name) > 250:
-            name = name[:255 - len(path) - 5]
-        file_plot = os.path.join(path + name + '.html')
-        # save to file
-        py.offline.plot(fig, filename=file_plot)
+        # build path for final figure
+        path_final = os.path.join(gt.settings.root_dir, self.folder_figures)
+        if save_final and not os.path.exists(path_final):
+            os.makedirs(path_final)
+        # limit name to max 200 char (for Windows)
+        if len(path) + len(name) > 195 or len(path_final) + len(name) > 195:
+            name = name[:200 - len(path) - 5]
+        # save as html
+        if save_html:
+            if open_browser:
+                # open in browser
+                py.offline.plot(fig, filename=os.path.join(path, name + '.html'))
+                # also save the final figure
+                if save_final:
+                    py.offline.plot(fig, filename=os.path.join(path_final, name + '.html'), auto_open=False)
+            else:
+                # do not open in browser
+                py.offline.plot(fig, filename=os.path.join(path, name + '.html'), auto_open=False)
+                # also save the final figure
+                if save_final:
+                    py.offline.plot(fig, filename=os.path.join(path_final, name + '.html'), auto_open=False)
+        # remove white margins
+        if remove_margins:
+            fig.update_layout(margin=dict(l=2, r=2, t=20, b=12))
+        # save as eps
+        if save_eps:
+            fig.write_image(os.path.join(path, name + '.eps'), width=width, height=height)
+            # also save the final figure
+            if save_final:
+                fig.write_image(os.path.join(path_final, name + '.eps'), width=width, height=height)
+        # save as png
+        if save_png:
+            fig.write_image(os.path.join(path, name + '.png'), width=width, height=height)
+            # also save the final figure
+            if save_final:
+                fig.write_image(os.path.join(path_final, name + '.png'), width=width, height=height)
+        # save as mp4
+        if save_mp4:
+            fig.write_image(os.path.join(path, name + '.mp4'), width=width, height=height)
 
     def save_fig(self, image, fig, output_subdir, suffix, pad_inches=0):
         """
