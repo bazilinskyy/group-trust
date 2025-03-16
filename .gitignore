@@ -249,3 +249,6 @@ gtrust/analysis/.autosave
 
 # data
 /data
+
+# large figure
+/figures/hist_aoi.html

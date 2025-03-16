@@ -1071,9 +1071,9 @@ class Analysis:
             # show.fig(fig, auto_play=False)
             logger.error('show not implemented')
 
-    def hist(self, df, x, nbins=None, color=None, pretty_text=False,
-             marginal='rug', xaxis_title=None, yaxis_title=None,
-             save_file=True):
+    def hist(self, df, x, nbins=None, color=None, pretty_text=False, marginal='rug', xaxis_title=None,
+             yaxis_title=None, name_file=None, save_file=False, save_final=False, fig_save_width=1320,
+             fig_save_height=680, font_family=None, font_size=None):
         """
         Output histogram of time of participation.
 
@@ -1081,20 +1081,23 @@ class Analysis:
             df (dataframe): dataframe with data from heroku.
             x (list): column names of dataframe to plot.
             nbins (int, optional): number of bins in histogram.
-            color (str, optional): dataframe column to assign color of circles.
-            pretty_text (bool, optional): prettify ticks by replacing _ with
-                                          spaces and capitilisng each value.
-            marginal (str, optional): type of marginal on x axis. Can be
-                                      'histogram', 'rug', 'box', or 'violin'.
+            color (str, optional): dataframe column to assign colour of circles.
+            pretty_text (bool, optional): prettify ticks by replacing _ with spaces and capitalising each value.
+            marginal (str, optional): type of marginal on x axis. Can be 'histogram', 'rug', 'box', or 'violin'.
             xaxis_title (str, optional): title for x axis.
             yaxis_title (str, optional): title for y axis.
+            name_file (str, optional): name of file to save.
             save_file (bool, optional): flag for saving an html file with plot.
+            save_final (bool, optional): flag for saving an a final figure to /figures.
+            fig_save_width (int, optional): width of figures to be saved.
+            fig_save_height (int, optional): height of figures to be saved.
+            font_family (str, optional): font family to be used across the figure. None = use config value.
+            font_size (int, optional): font size to be used across the figure. None = use config value.
         """
         logger.info('Creating histogram for x={}.', x)
         # using colour with multiple values to plot not supported
         if color and len(x) > 1:
-            logger.error('Color property can be used only with a single' +
-                         ' variable to plot.')
+            logger.error('Color property can be used only with a single variable to plot.')
             return -1
         # prettify ticks
         if pretty_text:
@@ -1102,83 +1105,48 @@ class Analysis:
                 # check if column contains strings
                 if isinstance(df.iloc[0][variable], str):
                     # replace underscores with spaces
-                    df[variable] = df[variable].sgt.replace('_', ' ')
+                    df[variable] = df[variable].str.replace('_', ' ')
                     # capitalise
-                    df[variable] = df[variable].sgt.capitalize()
+                    df[variable] = df[variable].str.capitalize()
             if color and isinstance(df.iloc[0][color], str):  # check if string
                 # replace underscores with spaces
-                df[color] = df[color].sgt.replace('_', ' ')
+                df[color] = df[color].str.replace('_', ' ')
                 # capitalise
-                df[color] = df[color].sgt.capitalize()
+                df[color] = df[color].str.capitalize()
         # create figure
         if color:
-            fig = px.histogram(df[x], nbins=nbins, marginal=marginal,
-                               color=df[color])
+            fig = px.histogram(df[x], nbins=nbins, marginal=marginal, color=df[color])
         else:
             fig = px.histogram(df[x], nbins=nbins, marginal=marginal)
         # ticks as numbers
         fig.update_layout(xaxis=dict(tickformat='digits'))
         # update layout
-        fig.update_layout(template=self.template,
-                          xaxis_title=xaxis_title,
-                          yaxis_title=yaxis_title)
-        # save file
-        if save_file:
-            self.save_plotly(fig,
-                             'hist_' + '-'.join(str(val) for val in x),
-                             self.folder)
-        # open it in localhost instead
+        fig.update_layout(template=self.template, xaxis_title=xaxis_title, yaxis_title=yaxis_title)
+        # update font family
+        if font_family:
+            # use given value
+            fig.update_layout(font=dict(family=font_family))
         else:
-            fig.show()
-
-    def hist_stim_duration_time(self, df, time_ranges, nbins=0,
-                                save_file=True):
-        """
-        Output distribution of stimulus durations for time ranges.
-
-        Args:
-            df (dataframe): dataframe with data from heroku.
-            time_ranges (dictionaries): time ranges for analysis.
-            nbins (int, optional): number of bins in histogram.
-            save_file (bool, optional): flag for saving an html file with plot.
-        """
-        logger.info('Creating histogram of stimulus durations for time ' +
-                    'ranges.')
-        # columns with durations
-        col_dur = df.columns[df.columns.to_series().sgt.contains('-dur')]
-        # extract durations of stimuli
-        df_dur = df[col_dur]
-        df = df_dur.join(df['start'])
-        df['range'] = np.nan
-        # add column with labels based on time ranges
-        for i, t in enumerate(time_ranges):
-            for index, row in df.iterrows():
-                if t['start'] <= row['start'] <= t['end']:
-                    start_str = t['start'].strftime('%m-%d-%Y-%H-%M-%S')
-                    end_str = t['end'].strftime('%m-%d-%Y-%H-%M-%S')
-                    df.loc[index, 'range'] = start_str + ' - ' + end_str
-        # drop nan
-        df = df.dropna()
-        # create figure
-        if nbins:
-            fig = px.histogram(df[col_dur], nbins=nbins, marginal='rug',
-                               color=df['range'], barmode='overlay')
+            # use value from config file
+            fig.update_layout(font=dict(family=gt.common.get_configs('font_family')))
+        # update font size
+        if font_size:
+            # use given value
+            fig.update_layout(font=dict(size=font_size))
         else:
-            fig = px.histogram(df[col_dur], marginal='rug', color=df['range'],
-                               barmode='overlay')
-        # ticks as numbers
-        fig.update_layout(xaxis=dict(tickformat='digits'))
-        # update layout
-        fig.update_layout(template=self.template)
-        # save file
+            # use value from config file
+            fig.update_layout(font=dict(size=gt.common.get_configs('font_size')))
+        # save file to local output folder
         if save_file:
-            self.save_plotly(fig,
-                             'hist_stim_duration' +
-                             '-'.join(t['start'].strftime('%m.%d.%Y,%H:%M:%S') +  # noqa: E501
-                                      '-' +
-                                      t['end'].strftime('%m.%d.%Y,%H:%M:%S')
-                                      for t in time_ranges),
-                             self.folder)
+            # build filename
+            if not name_file:
+                name_file = 'hist_' + '-'.join(str(val) for val in x)
+            self.save_plotly(fig=fig,
+                             name=name_file,
+                             remove_margins=True,
+                             width=fig_save_width,
+                             height=fig_save_height,
+                             save_final=save_final)  # also save as "final" figure
         # open it in localhost instead
         else:
             fig.show()

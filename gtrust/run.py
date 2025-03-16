@@ -7,8 +7,8 @@ gt.logs(show_level='debug', show_color=True)
 logger = gt.CustomLogger(__name__)  # use custom logger
 
 # const
-SAVE_P = False  # save pickle files with data
-LOAD_P = True  # load pickle files with data
+SAVE_P = True  # save pickle files with data
+LOAD_P = False  # load pickle files with data
 SAVE_CSV = True  # save csv files with data
 FILTER_DATA = True  # filter Appen and heroku data
 CLEAN_DATA = False  # clean Appen data
@@ -40,9 +40,13 @@ if __name__ == '__main__':
         logger.info('Creating figures.')
 
         # histogram of AOIs
-        logger.info('Unique values in AOI: ')
+        logger.info('Unique values in EyeTracking_FocusName: ')
         print(sim_data['EyeTracking_FocusName'].unique())
         analysis.hist_aoi(sim_data)
+
+        logger.info('Unique values in EmperorsRating_UnixTime: ')
+        print(sim_data['EmperorsRating_UnixTime'].unique())
+        # analysis.hist(sim_data, 'EmperorsRating_UnixTime')
 
         figures = [manager.canvas.figure
                    for manager in

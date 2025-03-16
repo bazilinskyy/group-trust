@@ -13,6 +13,8 @@ Configuration of the project needs to be defined in `group-trust/config`. Please
 * `eg_resolution`: bin size in ms in which eyegaze data is stored.
 * `files_data`: files with data from coupled simulator.
 * `plotly_template`: template used to make graphs in the analysis.
+* `font_family`: font family to be used on the figures.
+* `font_size`: font size to be used on the figures.
 
 <!-- ## Keypress data
 [![plot_all_all_videos](figures/kp_videos.png?raw=true)](https://htmlpreview.github.io/?https://github.com/bazilinskyy/trust-crowdsourced/blob/main/figures/kp_videos.html)
