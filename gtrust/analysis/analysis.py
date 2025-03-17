@@ -1151,78 +1151,6 @@ class Analysis:
         else:
             fig.show()
 
-    # def plot_kp(self, df, conf_interval=None, xaxis_title='Time (s)',
-    #             yaxis_title='Percentage of trials with response key pressed',
-    #             xaxis_range=None, yaxis_range=None, save_file=True):
-    #     """Plot keypress data.
-
-    #     Args:
-    #         df (dataframe): dataframe with keypress data.
-    #         conf_interval (float, optional): show confidence interval defined
-    #                                          by argument.
-    #         xaxis_title (str, optional): title for x axis.
-    #         yaxis_title (str, optional): title for y axis.
-    #         xaxis_range (list, optional): range of x axis in format [min, max].
-    #         yaxis_range (list, optional): range of y axis in format [min, max].
-    #         save_file (bool, optional): flag for saving an html file with plot.
-    #     """
-    #     logger.info('Creating visualisations of keypresses for all data.')
-    #     # calculate times
-    #     times = np.array(range(self.res,
-    #                            df['video_length'].max() + self.res,
-    #                            self.res)) / 1000
-    #     # add all data together. Must be converted to np array to add together
-    #     kp_data = np.array([0.0] * len(times))
-    #     for i, data in enumerate(df['kp']):
-    #         # append zeros to match longest duration
-    #         data = np.pad(data, (0, len(times) - len(data)), 'constant')
-    #         # add data
-    #         kp_data += np.array(data)
-    #     kp_data = (kp_data / i)
-    #     # create figure
-    #     fig = go.Figure()
-    #     # plot keypresses
-    #     fig = px.line(y=kp_data,
-    #                   x=times,
-    #                   title='Keypresses for all stimuli')
-    #     # show confidence interval
-    #     if conf_interval:
-    #         # calculate condidence interval
-    #         (y_lower, y_upper) = self.get_conf_interval_bounds(kp_data,
-    #                                                            conf_interval)
-    #         # plot interval
-    #         fig.add_trace(go.Scatter(name='Upper Bound',
-    #                                  x=times,
-    #                                  y=y_upper,
-    #                                  mode='lines',
-    #                                  fillcolor='rgba(0,100,80,0.2)',
-    #                                  line=dict(color='rgba(255,255,255,0)'),
-    #                                  hoverinfo="skip",
-    #                                  showlegend=False))
-    #         fig.add_trace(go.Scatter(name='Lower Bound',
-    #                                  x=times,
-    #                                  y=y_lower,
-    #                                  fill='tonexty',
-    #                                  fillcolor='rgba(0,100,80,0.2)',
-    #                                  line=dict(color='rgba(255,255,255,0)'),
-    #                                  hoverinfo="skip",
-    #                                  showlegend=False))
-    #     # define range of y axis
-    #     if not yaxis_range:
-    #         yaxis_range = [0, max(y_upper) if conf_interval else max(kp_data)]
-    #     # update layout
-    #     fig.update_layout(template=self.template,
-    #                       xaxis_title=xaxis_title,
-    #                       yaxis_title=yaxis_title,
-    #                       xaxis_range=xaxis_range,
-    #                       yaxis_range=yaxis_range)
-    #     # save file
-    #     if save_file:
-    #         self.save_plotly(fig, 'kp', self.folder)
-    #     # open it in localhost instead
-    #     else:
-    #         fig.show()
-
     def plot_kp(self, df, conf_interval=None, save_file=True, save_final=True):
         """Plot keypress data with subplots per condition and lines for each role."""
         logger.info('Creating visualisations of keypresses for all data.')
@@ -1237,7 +1165,8 @@ class Analysis:
             
             # determine actual experiment duration
             min_time = df_condition['UnixTime'].min()
-            df_condition['time_relative'] = (df_condition['UnixTime'] - min_time) / 1000  # Convert to seconds, start from 0
+            # convert to seconds, start from 0
+            df_condition['time_relative'] = (df_condition['UnixTime'] - min_time) / 1000
             times = np.linspace(0, df_condition['time_relative'].max(), num=100)
             
             for role in roles:
@@ -1253,21 +1182,15 @@ class Analysis:
                 
                 if count > 0:
                     kp_data /= count
-
-                # remove spike in the beginning
-                print(len(times), len(kp_data))
-                times = times[1:]
-                kp_data = kp_data[1:]
                 
                 fig.add_trace(go.Scatter(
-                    x=times,
-                    y=kp_data,
+                    x=times[1:],  # remove spike in the beginning
+                    y=kp_data[1:],  # remove spike in the beginning
                     mode='lines',
                     name=role if i == 0 else None,
                 ), row=i+1, col=1)
         
         fig.update_layout(
-            title_text='Keypresses per Condition',
             height=400 * len(conditions),
             showlegend=True
         )
@@ -1276,7 +1199,7 @@ class Analysis:
             self.save_plotly(fig=fig,
                              name='kp',
                              height=400 * len(roles),
-                             remove_margins=True,
+                             remove_margins=False,
                              save_final=save_final)  # also save as "final" figure
         # open it in localhost instead
         else:
