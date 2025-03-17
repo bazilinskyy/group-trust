@@ -7,19 +7,19 @@ gt.logs(show_level='debug', show_color=True)
 logger = gt.CustomLogger(__name__)  # use custom logger
 
 # const
-SAVE_P = True  # save pickle files with data
-LOAD_P = False  # load pickle files with data
-SAVE_CSV = True  # save csv files with data
-FILTER_DATA = True  # filter Appen and heroku data
-CLEAN_DATA = False  # clean Appen data
-SHOW_OUTPUT = True  # should figures be plotted
-
-# SAVE_P = False  # save pickle files with data
-# LOAD_P = True  # load pickle files with data
+# SAVE_P = True  # save pickle files with data
+# LOAD_P = False  # load pickle files with data
 # SAVE_CSV = True  # save csv files with data
 # FILTER_DATA = True  # filter Appen and heroku data
 # CLEAN_DATA = False  # clean Appen data
 # SHOW_OUTPUT = True  # should figures be plotted
+
+SAVE_P = False  # save pickle files with data
+LOAD_P = True  # load pickle files with data
+SAVE_CSV = True  # save csv files with data
+FILTER_DATA = True  # filter Appen and heroku data
+CLEAN_DATA = False  # clean Appen data
+SHOW_OUTPUT = True  # should figures be plotted
 
 
 if __name__ == '__main__':
@@ -56,7 +56,7 @@ if __name__ == '__main__':
         logger.info('Unique values in EmperorsRating_UnixTime: ')
         print(sim_data['EmperorsRating_UnixTime'].unique())
         print(len(sim_data['EmperorsRating_UnixTime'].unique())/len(sim_data['EmperorsRating_UnixTime']))
-        # analysis.hist(sim_data, 'EmperorsRating_UnixTime')
+        analysis.plot_kp(sim_data)
 
         figures = [manager.canvas.figure
                    for manager in

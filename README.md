@@ -16,9 +16,9 @@ Configuration of the project needs to be defined in `group-trust/config`. Please
 * `font_family`: font family to be used on the figures.
 * `font_size`: font size to be used on the figures.
 
-<!-- ## Keypress data
-[![plot_all_all_videos](figures/kp_videos.png?raw=true)](https://htmlpreview.github.io/?https://github.com/bazilinskyy/trust-crowdsourced/blob/main/figures/kp_videos.html)
-Percentage of participants pressing the response key as a function of elapsed video time for all stimuli for all participants. -->
+## Keypress data
+[![kp](figures/kp.png?raw=true)](https://htmlpreview.github.io/?https://github.com/bazilinskyy/group-trust/blob/main/figures/kp.html)
+Keypress data of participants of all three roles.
 
 ## Eye tracking data
 [![hist_aoi](figures/hist_aoi.png?raw=true)](https://htmlpreview.github.io/?https://github.com/bazilinskyy/group-trust/blob/main/figures/hist_aoi.html)
