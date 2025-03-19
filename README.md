@@ -16,6 +16,9 @@ Configuration of the project needs to be defined in `group-trust/config`. Please
 * `font_family`: font family to be used on the figures.
 * `font_size`: font size to be used on the figures.
 
+## Analysis
+Analysis can be started by running `python group-trust/gtrust/run.py`. A number of CSV files used for data processing are saved in `group-trust/_output`. Visualisations of all data are saved in `group-trust/_output/figures/`.
+
 ## Keypress data
 [![kp](figures/kp.png?raw=true)](https://htmlpreview.github.io/?https://github.com/bazilinskyy/group-trust/blob/main/figures/kp.html)
 Keypress data of participants of all three roles.
