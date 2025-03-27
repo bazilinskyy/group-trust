@@ -50,7 +50,7 @@ if __name__ == '__main__':
         logger.info('Unique values in EyeTracking_FocusName: ')
         print(sim_data['EyeTracking_FocusName'].unique())
         print(len(sim_data['EyeTracking_FocusName'].unique()))
-        # analysis.hist_aoi(sim_data)
+        analysis.hist_aoi(sim_data)
 
         # keypress data
         logger.info('Unique values in EmperorsRating_UnixTime: ')
